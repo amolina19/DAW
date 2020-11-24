@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>47</title>
+
+    <!--
+
+        Crear un vector con 5 valores aleatorios comprendidos entre 1 y 1000.
+         Luego extraer los dos últimos elementos sumarlos y mostrarlos.
+         Imprimir también el tamaño final del vector.
+    -->
+
+    <script type="text/javascript">
+
+        function generador(numero){
+            return Math.floor(Math.random() * numero);
+        }
+
+        var vector = new Array();
+        for(i=0;i<5;i++){
+            var number = generador(1000);
+            vector.push(number);
+            document.writeln(number)
+        }
+
+        var salida = vector.slice(-2);
+        
+        document.writeln("<br>");
+        var sumatotal = 0;
+        salida.forEach(element => {
+            document.writeln(element);
+            sumatotal += element;
+        });
+        document.writeln("<br> Suma de Ambos elementos");
+        document.writeln(sumatotal);
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
