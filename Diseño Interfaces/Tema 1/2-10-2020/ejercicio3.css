@@ -1,0 +1,138 @@
+.grid{
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+}
+
+.row-1{
+    height: 6%;
+    padding-left: 10%;
+    background-color: rgb(63, 63, 63);
+    text-align: center;
+}
+
+.row-2{
+    height: 30%;
+    background-color: gainsboro;
+    padding-left: 10%;
+}
+
+.row-3{
+    height: 50%;
+    display: flex;
+    padding-left: 3%;
+}
+
+.button{
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    border: none;
+    padding: 15px 15px;
+    border-radius: 8px;
+    font-size: 25px;
+    color: white;
+}
+
+.button-row2{
+    background-color: rgb(75, 86, 233);
+}
+
+.button-details{
+    background-color: white;
+    color: black;
+    border: 2px solid gray;
+}
+
+#imageSize{
+    width: 28px;
+    height: 22px;
+}
+
+.button:hover {
+    background-color: greenyellow;
+    border: 2px solid orange;
+  }
+
+.heading-row2{
+    font-size: 400%;
+    color: rgba(0, 0, 0, 0.863);
+    font-weight: bolder;
+}
+
+.heading-row3{
+    font-size: 250%;
+    color: black;
+    font-weight: bolder;
+}
+
+#buttonPadding{
+    padding-top: 1%;
+    display: flex;
+}
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    font-size: 17px;
+}
+
+.dropdown:hover{
+    background-color:black ;
+    color: #ddd;
+}
+
+#signupbutton{
+    background-color: green;
+    font-size: 100%;
+    padding: 0.1% 1%;
+}
+
+.login{
+    margin-inline-start: 50%;
+    padding: 0.5% 16px;
+}
+
+.content-row2{
+    color: rgba(0, 0, 0, 0.863);
+    font-size: 200%;
+}
+
+.content-row3{
+    padding: 5%;
+    padding-top: 5%;
+}
+
+.topnav{
+    overflow: hidden;
+    color: rgb(199, 199, 199);
+}
+
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color:black ;
+    color: #ddd;
+}
+
+
+.font{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}

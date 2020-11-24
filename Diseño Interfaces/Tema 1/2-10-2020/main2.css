@@ -1,0 +1,60 @@
+.grid{
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.row{
+    width: 100%;
+    display: flex;
+}
+
+.div{
+    border: 1px solid red !important;
+}
+
+
+.fondo_azulclaro{
+    background-color: aquamarine;
+}
+
+.fondo_verde{
+    background-color: greenyellow;
+}
+
+.fondo_amarillo{
+    background-color: yellow;
+}
+
+.fondo_rojo{
+    background-color: red;
+}
+
+.fondo_naranja{
+    background-color: orange;
+}
+
+.div-header{
+    width: 100%;
+    height: 20%;
+}
+
+.div-articles{
+    width: 20%;
+    height: 60%;
+}
+
+.div-content{
+    width: 60%;
+    height: 60%;
+}
+
+.div-ads{
+    width: 20%;
+    height: 60%;
+}
+
+.div-footer{
+    width: 100%;
+    height: 20%;
+}

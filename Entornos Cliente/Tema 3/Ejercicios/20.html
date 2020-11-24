@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20</title>
+
+    <script type="text/javascript">
+    
+    /*
+    20.- Confeccionar un programa que muestre en que cuatrimestre del año nos encontramos. Para esto obtener el mes
+    */
+
+    var d = new Date();
+    var n = d.getMonth();
+
+    //No coge bien el date del mes
+    console.log(n);
+    n++;
+    //alert(n);
+    
+
+    if(n < 4){
+        alert("Primer trimestre");
+    }else if(n < 7){
+        alert("Segundo Trimestre");
+    }else if(n < 10){
+        alert("Tercer Trimestre");
+    }else{
+        alert("Cuarto Trimestre");
+    }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

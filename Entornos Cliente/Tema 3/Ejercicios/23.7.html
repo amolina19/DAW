@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23.7</title>
+    <script type="text/javascript">
+    
+
+    /*
+    23.7- Codifique un programa que permita cargar una oración por teclado, luego mostrar cada palabra ingresada en una línea distinta.
+    */
+        var palabra = prompt("Introduce una oriacion");
+        var out = "";
+
+        for(i=0;i<palabra.length;i++) {
+
+            if(palabra.charAt(i) == " "){
+                out+= "\n";
+            }else{
+                out += palabra.charAt(i);
+            }
+        }
+        alert(out);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

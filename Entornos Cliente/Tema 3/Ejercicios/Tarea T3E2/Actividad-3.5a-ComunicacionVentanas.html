@@ -1,0 +1,19 @@
+<!DOCTYPE html >
+<html>
+<head>
+<title>Ejemplo de comunicaci&oacute;n</title>
+
+    <script type="text/javascript">
+        function enviarVentanaNueva(){
+            var tab2 = window.open('Actividad-3.5b-ComunicacionVentanas.html','Test','height=300,width=300');
+            tab2.document.formulario2.datos.value = window.document.formulario1.resultado.value;
+        }
+    </script>
+</head>
+<body>
+<form name="formulario1">
+    <input type="Button" value="Nueva Ventana" onclick="enviarVentanaNueva();">
+    <input type="text" size="100" name="resultado" id="resultado" value="Comunicaci&oacute;n entre ventanas"/><br>
+</form>
+</body>
+</html>

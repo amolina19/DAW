@@ -1,0 +1,40 @@
+.hill-background{
+    background-image: url("Imagenes/hill.png");
+    background-image: url("Imagenes/house.png");
+    background-repeat: no-repeat;
+    background-position: right;
+    
+}
+
+.row-margin{
+    margin-top: 10%;
+}
+
+div {
+    margin-top: 2%;
+}
+
+h5{
+    color: gray;
+    font-weight: bold;
+}
+
+.encabezado{
+    color: gray;
+}
+
+.body{
+    background: url("Imagenes/footer.png");
+    z-index: 0;
+}
+
+.mountain-anim{
+    animation: mountain 3s;
+    position: relative;
+    z-index: -1;
+}
+
+@keyframes mountain{
+    from{ top: -500px;}
+    to{ top: 0px;}
+}

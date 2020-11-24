@@ -1,0 +1,56 @@
+<html>
+   <head>
+      <title>
+         P&aacute;gina con Javascript.
+      </title>
+      <script language="javascript">
+         
+         var tab;
+         var parametros = "width=400, height=300, left=200, top=150 resizable=no, menubar=no, toolbar=no, directories=no, location=no, scrollbars=no, status=no";
+
+         function abrirVentana()
+         {
+            tab = window.open("texto_de_secundaria_2.htm", "ventana", parametros);
+         }
+
+         function aplicarCoordenadas(){
+            var coordenadas = document.getElementById("coordenadas");
+            var coordenada1 = coordenadas.value.substring(0,3);
+            var coordenada2 = coordenadas.value.substring(4,coordenadas.length);
+            tab.close();
+            var parametrosCoord = "width=400, height=300, left="+coordenada1+", top="+coordenada2+" resizable=no, menubar=no, toolbar=no, directories=no, location=no, scrollbars=no, status=no";
+            //document.write(parametrosCoord);
+            window.open("texto_de_secundaria_2.htm", "ventana", parametrosCoord);
+         }
+        
+      </script>
+   </head>
+   <body>
+      <button onClick="abrirVentana();">
+         Pulse.
+      </button>
+      <input id="coordenadas" type="text" name="coordenadas" placeholder="Introduce coordenadas">
+      <input id="cerrarVentana" type="text" name="cerrarVentana" placeholder="Segundos para cerrar ventana" value="0">
+      <input id="texto" type="text" name="texto" placeholder="Introduce texto 2 ventana">
+      <button onclick="aplicarCoordenadas();">Aplicar Coordenadas</button>
+      <select id="color">
+         <option value="red">Rojo</option>
+         <option value="green">Verde</option>
+         <option value="blue">Azul</option>
+       </select>
+
+      <select id="colorTexto">
+         <option value="yellow">Amarillo</option>
+         <option value="white">Blanco</option>
+         <option value="orange">Naranja</option>
+      </select>
+      <button onclick="window.focus();">Focus</button>
+      <button onclick="window.blur();">Blur</button>
+      <br>
+      <button onClick="self.close();">
+         Cerrar
+      </button>
+
+      
+   </body>
+</html>

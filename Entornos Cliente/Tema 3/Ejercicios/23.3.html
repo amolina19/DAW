@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23.3</title>
+
+    <script type="text/javascript">
+
+    /*
+    23.2- Igual al anterior, pero que termine la aplicación sin contemplar mayúsculas ni minúsculas. Es decir que para salir se pueda teclear fin, Fin o FIN.
+    */
+        var fuente = prompt("Ingresa un texto (fuente)");
+
+        var clave = prompt("Clave a buscar en la fuente");
+
+        var spaces = [];
+        for(i=0;i<fuente.length;i++){
+            if(fuente.charAt(i)==" "){
+                spaces.push(i);
+            }
+        }
+        //alert(spaces);
+
+        if(fuente.includes(clave)){
+            var posicion =fuente.indexOf(clave);
+            var found = false;
+            var posPalabra = 0;
+            
+            for(i=0;i<spaces.length;i++){
+                if(posicion > spaces[i]){
+                    posPalabra = i;
+                }
+            }
+            posPalabra+= 2;//EL espacio puede estar en el primer hueco , la palabra va detras entonces la palabra es la siguiente posicion del espacio y la posicion del for empieza por 0 y deberia ser 1
+
+            alert("La posicion de la palabra clave: "+clave +" es: "+posPalabra);
+
+        }else{
+            alert("Es una leyenda");
+        }
+
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
+
+<!-- Realizar la búsqueda de un string clave en un string fuente. 
+    Se deberá ingresar una frase o texto (fuente) y luego la clave a buscar.
+     En caso de encontrarla, imprimir la posición, de lo contrario una
+      leyenda-->

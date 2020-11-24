@@ -1,0 +1,19 @@
+.encabezado{
+    background-color: gainsboro;
+}
+
+.encabezado-content{
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: center;
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+
+.proyecto{
+    color: rgb(134, 134, 134);
+}
+
+.copyright{
+    color: rgb(134, 134, 134);
+}

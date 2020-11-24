@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script type="text/javascript">
+        var contador = 0;
+        var resultado = "";
+        var sum = 0;
+        var numbers = new Array();
+        for(i=2;i<=1000 && contador <=23;i++){
+
+            if(i%23==0){
+                contador++;
+                sum += i;
+                numbers.push(i);
+            }
+        }
+
+        resultado += "Estos son todos los multiplos de 23\n";
+        for(var number of numbers){
+
+            resultado += number+"\t";
+        }
+
+        resultado +=("\nLa suma total de todos ellos es "+sum);
+        alert(resultado);
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

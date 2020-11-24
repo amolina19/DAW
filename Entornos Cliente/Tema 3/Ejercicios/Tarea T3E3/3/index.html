@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3</title>
+    <script type="text/javascript">
+
+    function diagonal(){
+        var altura = screen.height*2;
+        var anchura = screen.width*2;
+        var diagonal = Math.sqrt((altura + anchura));
+        var d = document.getElementById("resultado");
+        d.innerHTML = "La diagonal de la pantalla del usuario es "+diagonal;
+    }
+        
+    </script>
+</head>
+<body>
+    <h1 id="resultado">text</h1>
+    <script>diagonal()</script>
+    
+</body>
+</html>

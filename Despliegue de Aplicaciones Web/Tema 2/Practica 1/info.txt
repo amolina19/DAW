@@ -1,0 +1,7 @@
+
+
+Schedia
+password:       despliegue2021
+Red:            192.168.40.0/24
+Puerta Enlace   192.168.40.1
+NAS:            192.168.3.12

@@ -1,0 +1,61 @@
+PROYECTO
+Encabezado
+Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+
+
+Apartado 1
+Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.
+
+Apartado 2
+Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.
+
+Apartado 3
+Maecenas sed diam eget risus varius blandit sit amet non magna.
+
+Apartado 4
+Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.
+
+Apartado 5
+Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.
+
+Apartado 6
+Maecenas sed diam eget risus varius blandit sit amet non magna.
+
+© 2018 FDGA, Dpto Informática - IES Murgi
+
+
+
+
+
+Este ejercicio consiste en desarrollar mediante Bootstrap 4 web que se muestra a continuación. El diseño deberá ser adaptativo según las imágenes que se adjuntan para el móvil y la versión de escritorio. 
+
+Para ello descarga las imágenes del fichero que se adjunta al final del ejercicio. 
+
+OBJETIVOS:
+
+    Conseguir que la web resultante se parezca lo más posible al diseño dado.
+
+    Hacer la estructura mediante el grid que implementa Bootstrap 4 o superior.
+    Implementar el diseño adaptativo (escritorio y móvil según las imágenes aportadas)
+    Usar los tipos de letra correctos (Roboto para el menú y el resto Arial).   
+    Los colores que se han utilizado son:
+
+Azul del menú - #337ab7
+
+Gris de fondo - #ededed
+
+Verde del botón - #5cb85c
+
+Gris de las líneas - #e5e5e5
+
+
+VALOR DE CADA PARTE:
+
+    Uso correcto del grid de Bootstrap para escritorio y móvil . 40%
+    Que la página resultante sea igual a la pedida. Cabecera de la página y menú 10%, zona con fondo gris 10%, apartados 10% y fondo de la página 5%.
+    Uso de etiquetas semánticas. 15%
+    Uso de colores. 5%
+    Claridad del código HTML y CSS. 5%
+
+
+

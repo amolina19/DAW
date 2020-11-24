@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen T1 y T2</title>
+
+    <script type="text/javascript">
+
+
+    /*
+
+
+    Realizar un programa que lea los lados de 4 triángulos, e informe de:
+    a) De cada uno de ellos, qué tipo de triángulo es: equilátero (tres lados iguales), isósceles (dos lados iguales), o escaleno (ningún lado igual)
+    b) Cantidad de triángulos de cada tipo.
+    c) Tipo de triángulo del que hay menor cantidad. 
+    */
+        var triangulo1 = [];
+        var triangulo2 = [];
+        var triangulo3 = [];
+        var triangulo4 = [];
+        var tipos = []; // El inidice 0 corresponde al Equilatero, el 1 El Isoceles y el 2 el Escaleno
+
+        triangulo1[0] = parseFloat(prompt("Introduce el primer lado del primer triángulo"));
+        triangulo1[1] = parseFloat(prompt("Introduce el segundo lado del primer triángulo"));
+        triangulo1[2] = parseFloat(prompt("introduce el tercer lado del primer triángulo"));
+
+        triangulo2[0] = parseFloat(prompt("Introduce el primer lado del segundo triángulo"));
+        triangulo2[1] = parseFloat(prompt("Introduce el segundo lado del segundo triángulo"));
+        triangulo2[2] = parseFloat(prompt("introduce el tercer lado del segundo triángulo"));
+
+        triangulo3[0] = parseFloat(prompt("Introduce el primer lado del tercer triángulo"));
+        triangulo3[1] = parseFloat(prompt("Introduce el segundo lado del tercer triángulo"));
+        triangulo3[2] = parseFloat(prompt("introduce el tercer lado del tercer triángulo"));
+
+        triangulo4[0] = parseFloat(prompt("Introduce el primer lado del cuarto triángulo"));
+        triangulo4[1] = parseFloat(prompt("Introduce el segundo lado del cuarto triángulo"));
+        triangulo4[2] = parseFloat(prompt("introduce el tercer lado del cuarto triángulo"));
+
+        //alert("Test");
+        //Primer triangulo
+        if((triangulo1[0] == triangulo1[1] && triangulo1[1] == triangulo1[2])){
+            tipos[0]++;
+            alert("El primer triangulo es Equilatero");
+        }else if(triangulo1[0] == triangulo1[1] || triangulo1[1] == triangulo2[2] || triangulo1[0] == triangulo1[2]){
+            tipos[1]++;
+            alert("El primer triangulo es Isoceles");
+        }else{
+            tipos[2]++;
+            alert("El primer triangulo es Escaleno");
+        }
+
+        //Segundo triangulo
+        if((triangulo2[0] == triangulo2[1] && triangulo2[1] == triangulo2[2])){
+            tipos[0]++;
+            alert("El segundo triangulo es Equilatero");
+        }else if(triangulo2[0] == triangulo2[1] || triangulo2[1] == triangulo2[2] || triangulo2[0] == triangulo2[2]){
+            tipos[1]++;
+            alert("El segundo triangulo es Isoceles");
+        }else{
+            tipos[2]++;
+            alert("El segundo triangulo es Escaleno");
+        }
+
+        //Tercer triangulo
+        if((triangulo3[0] == triangulo3[1] && triangulo3[1] == triangulo3[2])){
+            tipos[0]++;
+            alert("El tercer triangulo es Equilatero");
+        }else if(triangulo3[0] == triangulo3[1] || triangulo3[1] == triangulo3[2] || triangulo3[0] == triangulo3[2]){
+            tipos[1]++;
+            alert("El tercer triangulo es Isoceles");
+        }else{
+            tipos[2]++;
+            alert("El tercer triangulo es Escaleno");
+        }
+
+        //Cuarto triangulo
+        if((triangulo4[0] == triangulo4[1] && triangulo4[1] == triangulo4[2])){
+            tipos[0]++;
+            alert("El cuarto triangulo es Equilatero");
+        }else if(triangulo4[0] == triangulo4[1] || triangulo4[1] == triangulo4[2] || triangulo4[0] == triangulo4[2]){
+            tipos[1]++;
+            alert("El cuarto triangulo es Isoceles");
+        }else{
+            tipos[2]++;
+            alert("El cuarto triangulo es Escaleno");
+        }
+        
+        var pequeño = "";
+        if(tipos[0] < tipos[1] && tipos[0] < tipos[2]){
+            pequeño = "El tipo de triangulo más pequeño es el Equilatero";
+        }else if(tipos[1] < tipos[0] && tipos[1] < tipos[2]){
+            pequeño = "El tipo de triangulo más pequeño es el Isoceles";
+        }else{
+            pequeño = "El tipo de triangulo más pequeño es el Escaleno";
+        }
+        alert(pequeño);
+        
+        
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

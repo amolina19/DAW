@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Nueva ventana</title>
+
+<script type="text/javascript">
+    //pasarValor();
+    function pasarValor(){
+        //tab2.document.formulario2.datos.value = window.document.formulario1.resultado.value;
+
+        window.opener.document.formulario1.resultado.value = window.document.formulario2.datos.value;
+    }
+
+    function recogerValor(){
+        var sonD = document.getElementById("datos");
+        sonD.value = window.opener.document.formulario1.resultado.value
+    }
+    
+</script>
+</head>
+<body>
+    <form name="formulario2">
+
+    <input type="text" size="100" name="datos" id="datos" value="pasar a la ventana principal"/>
+    </form>
+    <a href="JavaScript:close();" title="Pasar el valor" onClick="pasarValor();">Pasar el valor a la ventana principal</a>
+    <script>recogerValor()</script>
+</body>
+</html>
+

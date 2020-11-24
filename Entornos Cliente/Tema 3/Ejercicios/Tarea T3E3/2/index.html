@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2</title>
+    <script type="text/javascript">
+
+        function mediarCadena(){
+            var cadena = document.getElementById("texto").value;
+            var h1 = document.getElementById("h1");
+            h1.innerHTML = "La cadena mide "+cadena.length+ " caracteres";
+        }
+
+        function limpiar(){
+            var cadena = document.getElementById("texto").value = "";
+            var h1 = document.getElementById("h1");
+            h1.innerHTML = "";
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <h1>Introduce una cadena para conocer su longitud</h1>
+        <input placeholder="Introduce texto" id="texto">
+        <button type="button" onclick="mediarCadena();">Enviar</button>
+        <button type="button" onclick="limpiar();">Limpiar</button>
+    </form>
+    <h1 id="h1"></h1>
+</body>
+</html>

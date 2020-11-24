@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script type="text/javascript">
+        var numbers = new Array();
+
+        do{
+            var number = prompt("Introduce un número");
+            numbers.push(number);
+        }while(number != 9999);
+        var resultado = "Números Introducidos: \n";
+
+        for(i=0;i<numbers.length-1;i++){
+            resultado += numbers[i]+"\t"
+        }
+
+        alert(resultado);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

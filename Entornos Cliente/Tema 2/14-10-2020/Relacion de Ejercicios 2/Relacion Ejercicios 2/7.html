@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+
+        /*
+        7.1.- Realizar un programa que lea por teclado dos números, si el primero
+        es mayor al segundo informar su suma y diferencia, en caso contrario
+        informar el producto y la división del primero respecto al segundo.
+        */
+
+        var number1 = Number(prompt("Introduce el primer número"));
+        var number2 = Number(prompt("Introduce el segundo número"));
+
+        var resultado = "";
+        if(number1 >= number2){
+            resultado += "La suma de los 2 números es "+(number1+number2)+" y su diferencia es "+(number1-number2);
+        }else{
+            resultado += "El producto de los 2 numeros es "+(number1*number2)+" y su division es "+(number2/number1);
+        }
+        alert(resultado);
+    </script>
+    <title>7</title>
+</head>
+<body>
+    
+</body>
+</html>

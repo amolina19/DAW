@@ -1,0 +1,35 @@
+<html>
+   <head>
+      <title>
+         P&aacute;gina con Javascript.
+      </title>
+
+      <script type="text/javascript">
+      
+         function recogerValores(){
+            document.bgColor = window.opener.document.getElementById("color").value;
+            document.fgColor = window.opener.document.getElementById("colorTexto").value;
+            var segundos = window.opener.document.getElementById("cerrarVentana").value;
+            document.getElementById("textoMostrar").innerHTML = window.opener.document.getElementById("texto").value;
+            
+            if(segundos > 0){
+               setTimeout("window.close()",segundos*1000); 
+            }
+         }
+      </script>
+   </head>
+   <body>
+      
+      <h1>
+         &Eacute;sta es la
+         <br>
+         ventana secundaria.
+      </h1>
+      <h1 id="textoMostrar"></h1>
+      <button onClick="self.close();">
+         Cerrar
+      </button>
+      
+      <script>recogerValores()</script>
+   </body>
+</html>

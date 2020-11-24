@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+
+        /*
+            5.4.- Se debe desarrollar un programa que pida el ingreso del precio de un
+            artículo y la cantidad que lleva el cliente. Mostrar lo que debe abonar el
+            comprador (Ingresar por teclado un precio sin decimales, es decir un
+            entero: 2, 7, 90 etc.)
+        */
+        var precioArticulo = Number(prompt("Introduce precio del articulo"));
+        var articulos = Number(prompt("Cantidad de articulos a introducir"));
+        var precioTotal = precioArticulo*articulos;
+        alert("El comprador debe abonar "+precioTotal+"€");
+
+        var abono = parseInt(Number(prompt("Introduce la cantidad para abonar")));
+
+        if(abono<precioTotal){
+            alert("La cantidad abonada no es suficiente");
+        }else{
+            alert("Has comprado el articulo abonando "+abono+"€");
+        }
+    </script>
+    <title>4</title>
+</head>
+<body>
+    
+</body>
+</html>

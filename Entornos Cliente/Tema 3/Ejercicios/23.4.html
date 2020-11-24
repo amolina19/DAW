@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23.4</title>
+
+    <script type="text/javascript">
+
+    /*
+    23.4- Ingresar una palabra o texto por teclado y determinar si es o no una palabra palíndromo. (Palabra que se lee de igual manera de adelante haciaatrás, que de atrás hacia delante)
+    */
+    
+        var palabra = prompt("Introduce una palabra");
+        for(i=0;i<palabra.length;i++){
+            if(palabra.charAt(i) == palabra.charAt(palabra.length-(i+1))){
+                palindromo = true;
+            }else{
+                palindromo = false;
+            }
+            
+        }
+
+        if(palindromo){
+            alert("La palabra es Palindromo");
+        }else{
+            alert("La palabra no es palindromo");
+        }
+    
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

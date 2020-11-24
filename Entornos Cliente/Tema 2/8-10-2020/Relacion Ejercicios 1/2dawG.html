@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <script type="text/javascript">
+
+            var numero = prompt("Introduce número");
+            var numOp = numero;
+            
+            var resultado = "Número introducido: "+numero+"\nContadores: ";
+            for(i=0;i<3;i++){
+                if(i==0){
+                    resultado += (parseInt(numOp)+5)+"\t";
+                }else if(i==1){
+                    resultado += (parseInt(numOp)+21)+"\t\t";
+                }else if(i==2){
+                    resultado += (parseInt(numOp)-4)+"\t";
+                }
+                
+            }
+            alert(resultado);
+
+        </script>
+    </head>
+
+    <body></body>
+</html>
