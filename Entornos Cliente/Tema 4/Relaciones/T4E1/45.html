@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>45 </title>
+
+    <!-- 
+        Crear un vector con 10 valores aleatorios comprendidos entre 1 y500. 
+        Luego crear otros dos vectores y copiar los elementos menores a 250 
+        en el segundo vector y los mayores o iguales a 250 en el tercer vector.
+        Imprimir los tamaños del segundo y tercer vector. Imprimir los tresvectores.
+    -->
+
+    <script type="text/javascript">
+    
+        function generador(numero){
+            return Math.floor(Math.random() * numero);
+        }
+
+        function generarArray(){
+
+            var array = new Array();
+            for(i=0;i<500;i++){
+                array.push(generador(500));
+            }
+            return array;
+        }
+
+        var array = generarArray();
+        var array2 = new Array();
+        var array3 = new Array();
+
+        array.forEach(element => {
+            if(element < 250){
+                array2.push(element);
+            }else if(element >= 250){
+                array3.push(element);
+            }
+        });
+
+        document.writeln("Elementos del array original "+array.length);
+        document.writeln("<br>");
+        document.writeln("Elementos del 2 array: "+array2.length);
+        document.writeln("<br>");
+        document.writeln("Elementos del 2 array: "+array3.length);
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
