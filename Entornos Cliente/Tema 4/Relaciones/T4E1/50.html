@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>50</title>
+    
+    <!--
+        Cargar los sueldos de un conjunto de empleados. 
+        Finalizar la carga al ingresar cero. 
+        Mostrar por pantalla los sueldos ordenados de mayor amenor.
+     -->
+
+     <script type="text/javascript">
+    
+        function Empleado(name,money){
+            this.name = name;
+            this.money = money;
+        }
+        var empleados = new Array();
+        
+
+        function mostrar(empleado){
+            return empleado.name+" "+empleado.money;
+        }
+        var count = 1;
+        do{
+            var sueldo = parseInt(prompt("Introduce un sueldo "));
+            var empleado = new Empleado("empleado"+count,sueldo);
+            count++;
+            empleados.push(empleado);
+        }while(sueldo != 0);
+        
+        empleados.forEach(element => {
+            document.writeln(element.name+" Sueldo: "+element.money+"€");
+            document.writeln("<br>");
+        });
+        //document.write(mostrar(empleado1));
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>l

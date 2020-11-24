@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>51</title>
+    
+    <!--
+        Crear un vector con una lista de valores.
+        Luego borrar las componentes donde hay un 2
+        y al mismo tiempo insertar dos elementos con el valor 1.
+     -->
+
+     <script type="text/javascript">
+
+
+        function generador(numero){
+            return Math.floor(Math.random() * numero);
+        }
+
+        function elementos(array){
+
+            for(i=0;i<array.length;i++){
+                if(array[i]==2){
+                    array.splice(i, 2, 1);
+                }
+            }
+
+            return array;
+        }
+
+        var array = new Array();
+
+        for(i=0;i<20;i++){
+            array.push(generador(5));
+        }
+
+        
+        var fixedArray = elementos(array);
+        
+        fixedArray.forEach(element => {
+            document.writeln(element);
+        });
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

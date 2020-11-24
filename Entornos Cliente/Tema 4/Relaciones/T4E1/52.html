@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>52</title>
+    
+    <!--
+        Crear un vector de 10 elementos con valores aleatorios comprendidosentre 0 y 1000.
+        Buscar el menor y luego generar otro vector a partir dedicha posición hasta el final.
+     -->
+
+     <script type="text/javascript">
+    
+
+        function generador(numero){
+                return Math.floor(Math.random() * numero);
+        }
+
+        function devolver(array){
+
+            var min = array[0];
+            var pos = 0;
+            for(i=1;i<array.length;i++){
+                if(min > array[i]){
+                    min = array[i];
+                    pos = i;
+                }
+            }
+
+            var newArray = new Array();
+
+            for(i=pos;i<array.length;i++){
+                newArray.push(array[i]);
+            }
+            return newArray;
+        }
+
+
+        var array = new Array();
+        for(i=0;i<10;i++){
+            array.push(generador(1000));
+        }
+        var newArray = devolver(array);
+        array.forEach(element => {
+            document.writeln(element);
+        });
+        document.write("<br>");
+
+        newArray.forEach(element =>{
+            document.writeln(element);
+        });
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
