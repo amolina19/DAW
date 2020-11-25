@@ -99,6 +99,8 @@ public class Ejercicio8 {
                 }
             }while(!posiciones);
         }
+        pos1--;
+        pos2--;
 
         int numeropos1 = arrayNumeros[pos1];
         int numeropos2 = arrayNumeros[pos2];
