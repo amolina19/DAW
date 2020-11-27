@@ -21,7 +21,7 @@
         
 
         function mostrar(empleado){
-            return empleado.name+" "+empleado.money;
+            return empleado.name+" Sueldo: "+empleado.money+" €";
         }
         var count = 1;
         do{
@@ -32,7 +32,7 @@
         }while(sueldo != 0);
         
         empleados.forEach(element => {
-            document.writeln(element.name+" Sueldo: "+element.money+"€");
+            document.writeln(mostrar(element));
             document.writeln("<br>");
         });
         //document.write(mostrar(empleado1));
