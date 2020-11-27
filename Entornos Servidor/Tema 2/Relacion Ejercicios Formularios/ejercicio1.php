@@ -33,7 +33,7 @@
             <h1>Formulario Simple</h1>
             <h3>Búsqueda de canciones </h3>
 
-            <form method="get" action="ejercicio1-resultados.php">
+            <form method="post" action="ejercicio1-resultados.php">
                 <div class="row" id="border">
                     <div class="col-md-4 mb-4 mt-4">
                         <p>Texto a buscar: </p>

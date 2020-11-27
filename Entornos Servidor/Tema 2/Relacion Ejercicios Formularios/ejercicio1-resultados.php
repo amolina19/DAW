@@ -1,8 +1,8 @@
 <?php
 
-    $texto = $_GET["textobuscar"];
-    $radiobutton = $_GET["radiocheck"];
-    $select= $_GET["genero"];
+    $texto = $_REQUEST["textobuscar"];
+    $radiobutton = $_REQUEST["radiocheck"];
+    $select= $_REQUEST["genero"];
 
 ?>
 
