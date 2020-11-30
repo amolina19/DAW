@@ -1,3 +1,16 @@
+<?php
+    $action = "";
+    $error = "";
+    if(isset($_POST["enviar"])){
+        if(empty($_POST["textobuscar"])){
+            $error = "¡Debe introducir el texto de busqueda!";
+        }else{
+            $action = "action='ejercicio1-resultados.php'";
+        }
+    }
+?>
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -8,7 +21,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Ejercicio 1 Formulario</title>
+    <title>Ejercicio 5 Formulario</title>
 
     <link rel="stylesheet" href="styles.css">
   </head>
@@ -17,13 +30,14 @@
             <h1>Formulario Simple</h1>
             <h3>Búsqueda de canciones </h3>
 
-            <form method="post" action="ejercicio1-resultados.php">
+            <form method="post" <?php echo $action ?>>
                 <div class="row" id="border">
                     <div class="col-md-4 mb-4 mt-4">
                         <p>Texto a buscar: </p>
+                        <p id="error"> <?php echo $error ?></p>
                         <p>Buscar en: </p>
                         <p>Género musical: </p>
-                        <input type="submit" value="Buscar">
+                        <input type="submit" value="Buscar" name="enviar">
                     </div>
 
                     <div class="col-md-8 mt-4">

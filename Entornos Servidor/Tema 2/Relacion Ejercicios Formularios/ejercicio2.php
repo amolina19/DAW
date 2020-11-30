@@ -8,23 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style>
-        h1{
-            color:blue;
-            font-weight: bold;
-        }
-        h3{
-            font-style: italic;
-            font-weight: bold;
-        }
-        p[id="encabezado"]{
-            font-weight: bold;
-        }
-        #border{
-            border: 1px solid blue;
-            width: 100%;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
         <div class="container" id="border">
@@ -84,7 +68,6 @@
                             <option value="Verde">Verde</option>
                             <option value="Amarillo">Amarillo</option>
                             <option value="Azul">Azul</option>
-                            
                         </select>
                     </p>
                     </div>
@@ -93,7 +76,7 @@
                 <div>
                     <p id="encabezado">SELECT MÚLTIPLE</p>
                     <p>Idiomas: 
-                    <select multiple name="idiomas">
+                    <select multiple="multiple" name="idiomas[]">
                         <option value="Inglés" CHECKED>Inglés</option>
                         <option value="Francés"> Francés</option>
                         <option value="Alemán"> Alemán</option>

@@ -3,11 +3,26 @@
 
     $texto = $_REQUEST["texto"];
     $sexo = $_REQUEST["radiocheck"];
-    $extras = $_REQUEST["checkbox[]"];
+    $extras = $_REQUEST["checkbox"];
     $password = $_REQUEST["password"];
     $color = $_REQUEST["color"];
     $idiomas = $_REQUEST["idiomas"];
     $textarea = $_REQUEST["textarea"];
+
+    function getArray($array){
+
+      echo "<pre>";
+      foreach ($array as $key => $value) {
+        echo $value."\n";
+      }
+      echo "</pre>";
+    }
+
+    function getIdiomas($array){
+      foreach($_REQUEST["idiomas"] as $selected){
+        echo $selected."\n";
+      }
+    }
 
 ?>
 
@@ -25,14 +40,14 @@
   <body>
 
     <ul>
-        <li>Texto introducido: <? $texto ?> </li>
-        <li>Sexo: <? $sexo ?> </li>
-        <li>Extras <? $extras?> </li>
+        <li>Texto introducido: <?= $texto ?> </li>
+        <li>Sexo: <?= $sexo ?> </li>
+        <li>Extras: <?= getArray($extras) ?> </li>
         <li>File: lo veremos en el Tema 4</li>
-        <li>Contraseña: <? $_REQUEST["password"] ?> </li>
-        <li>Color <? $color ?> </li>
-        <li>Idioma: <? $idiomas ?> </li>
-        <li>TextArea: <? $textarea ?> </li>
+        <li>Contraseña: <?= $password ?> </li>
+        <li>Color: <?= $color ?> </li>
+        <li>Idioma: <?= getIdiomas($idiomas) ?></li>
+        <li>TextArea: <?= $textarea ?> </li>
     </ul>
       
     <!-- Optional JavaScript -->
