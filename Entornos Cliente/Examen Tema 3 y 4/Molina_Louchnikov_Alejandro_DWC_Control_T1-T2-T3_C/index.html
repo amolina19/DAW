@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apartado C</title>
+
+    <script type="text/javascript">
+
+        //Funcion que llamo para cambiar el color con el evento onclick del boton cambia color.
+        function cambiarColor(){
+            document.bgColor = document.getElementById("color").value;
+        }
+
+        //Funcion que llamo desde el botton aplicar con el evento onclick para abrir la nueva ventana
+        function aplicar(){
+            var ventana = window.open("ventana.html","Ventana apartado B",'height=600,width=600');
+        }
+    </script>
+</head>
+<body>
+
+    <select name="color" id="color">
+        <option value="red">Rojo</option>
+        <option value="blue">Azul</option>
+        <option value="green">Green</option>
+    </select>
+
+    <input type="button" onclick="cambiarColor();" value="Cambia color"/>
+    <br>
+    <select id="opcion">
+        <option value="mensaje">Mostar mensaje</option>
+        <option value="hora">Mostrar hora</option>
+    </select>
+    <input type="button" onclick="aplicar();" value="Aplicar"/>
+    
+</body>
+</html>

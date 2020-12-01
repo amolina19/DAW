@@ -17,8 +17,8 @@
       echo "<li>Categoría: ".$_SESSION["categoria"];
       echo "<li>Imagen: <img src='";
       echo "img/".$_SESSION["file"]."'>";
-      //echo $_SESSION["file"];
-      echo "</img>";
+      echo $_SESSION["file"];
+      echo "</>";
       echo "</ul>";
 
     }

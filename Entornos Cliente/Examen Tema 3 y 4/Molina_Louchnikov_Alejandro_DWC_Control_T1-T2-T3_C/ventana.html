@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventana C</title>
+    <script type="text/javascript">
+    
+        var valor = recogerValor();
+        //alert("Valor de "+valor);
+
+        //Funcion que empieza a insertar los valores en el parrafo segun la opción escogia
+        function start(){
+            
+            //compruebo que el valor no sea nulo.
+            if(valor != null){
+                if(valor == "hora"){
+                    var date = new Date();
+                    var hora = date.getHours()+":"+date.getMinutes();
+                    window.document.getElementById("contenido").innerHTML = hora;
+                }else if(valor == "mensaje"){
+                    window.document.getElementById("contenido").innerHTML = "Este es un mensaje en la ventana del apartado C";
+                }
+                //cambia el color de la ventana secundaria segun el valor que recogo del a ventana padre
+                document.bgColor = window.opener.document.getElementById("color").value;
+            }else{
+                window.document.getElementById("contenido").innerHTML = "Es nulo";
+                //alert("Es nulo");
+            }
+        }
+
+        //Funcion que llamo para recoger el valor de la otra ventana segun la opcion escogida
+        function recogerValor(){
+            //return window.opener.document.opcion.value;
+            var value = window.opener.document.getElementById("opcion").value;
+            return value;
+        }
+    </script>
+</head>
+<body>
+
+    <p id="contenido"></p>
+    <script>recogerValor();start();</script>
+
+</body>
+</html>

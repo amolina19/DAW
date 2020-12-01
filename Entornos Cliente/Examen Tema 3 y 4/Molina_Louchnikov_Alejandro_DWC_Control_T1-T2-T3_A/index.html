@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apartado A</title>
+
+    <script type="text/javascript">
+        //Funcion que llamo desde el botton con el evento onclick para cambiar el color
+        function cambiarColor(){
+            document.bgColor = document.getElementById("color").value;
+        }
+    </script>
+</head>
+<body>
+
+    <select name="color" id="color">
+        <option value="red">Rojo</option>
+        <option value="blue">Azul</option>
+        <option value="green">Green</option>
+    </select>
+
+    <input type="button" onclick="cambiarColor();" value="Cambia color">
+    
+</body>
+</html>
