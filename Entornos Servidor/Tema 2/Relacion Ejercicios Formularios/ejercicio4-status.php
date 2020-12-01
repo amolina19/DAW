@@ -15,10 +15,10 @@
       echo "<li>Título: ".$_SESSION["texto"];
       echo "<li>Texto: ".$_SESSION["textarea"];
       echo "<li>Categoría: ".$_SESSION["categoria"];
-      echo "<li>Imagen: <a href='";
+      echo "<li>Imagen: <img src='";
       echo "img/".$_SESSION["file"]."'>";
-      echo $_SESSION["file"];
-      echo "</a>";
+      //echo $_SESSION["file"];
+      echo "</img>";
       echo "</ul>";
 
     }
