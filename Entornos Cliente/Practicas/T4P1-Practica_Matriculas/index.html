@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica 4</title>
+
+    <!-- a) 
+        Diseña un programa en javascrip que nos calcule las cantidades de dobles parejas, trios,
+        escaleras de tres elementos, escaleras de 4 elementos o pocker (4 elementos iguales) 
+        que tenemos en un número con 4 cifras. Por ejemplo
+
+    Doble pareja: 1166, 2552, 8998, 3377 …
+
+    Trios: 5558, 5855, 7977, …
+
+    Escalera simple (3 elementos): 5670, 4856, 9781, …
+
+    Escalera completa (4 elementos): 1234, 5687, 3254, …
+
+    Pocker (4 elementos ) : 1111, 2222, 5555, ….
+
+    b) Modifica el programa para que nos solicite un número de 4 cifras y 
+    nos diga qué figura representa de las 5 vistas anteriormente.
+    En este caso debe de disponer de un botón que al pulsarlo nos muestre durante 10 segundos una subventana con todas las figuras anteriores
+    y sus porcentajes de aparición-->
+
+    <script type="text/javascript">
+        //Determina si se introduce datos por parte del usuario o ya generados en el codigo, del apartado B.
+        var b = true;
+        var parejas = new Map();
+        var numeros;
+        
+        if(b){
+            numeros = pedirUsuario();
+        }else{
+            numeros = new Array(2,4,2,3);
+        }
+        
+        parejas = rellenarMap(numeros);
+        getResult(check(parejas),numeros);
+
+        function pedirUsuario(){
+            var num = 0;
+            do{
+                num = parseInt(prompt("Introduce un numero de 4 digitos"));
+
+            }while(!(num.toString().length == 4));
+            var numeros = Array.from(num.toString()).map(Number);
+            return numeros;
+        }
+
+        function rellenarMap(array){
+            var map = new Map();
+            for(i=0;i<array.length;i++){
+                if(map.has(array[i])){
+                    map.set(array[i],map.get(array[i])+1);
+                }else{
+                    map.set(array[i],1);
+                }
+            }
+            return map;
+        }
+
+        function escalera(array){
+            array.sort();
+            var map = rellenarMap(array);
+            var cont = 1;
+            
+            for(i=0;i<array.length;i++){
+                if(map.has(array[i]+1)){
+                    cont++;
+                }
+            }
+
+            if(cont == 3){
+                alert("Escalera Simple");
+            }else if(cont == array.length ){
+                alert("Escalera completa");
+            }else{
+                alert("Sin escalera");
+            }  
+        }
+
+        function check(map){
+            for(var value of map.values()){
+                if(value == 2){
+                    return 1;//Devuelve uno si es pareja
+                }else if(value == 3){
+                    return 2;//Devuelve 2 si es un trio
+                }else if(value > 3){
+                    return 3;//Poker
+                }
+            }
+            return 0;//Devuelve 0 si no llega a ser pareja
+        }
+
+        function getResult(returned,array){
+            if(returned == 0){
+                escalera(array);
+            }else if(returned == 1){
+                alert("Pareja");
+            }else if(returned == 2){
+                alert("Trio");
+            }else if(returned == 3){
+                alert("Poker");
+            }
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
