@@ -3,6 +3,12 @@
 
     $cadena = $_POST["input"];
 
+    $nombre = substr($cadena,0,strrpos($cadena,"@"));
+    $dominio = substr($cadena,strrpos($cadena,"@")+1,strlen($cadena));
+
+    echo "Nombre: ".$nombre." <br>";
+    echo "Dominio: ".$dominio;
+
     
 ?>
 
@@ -16,7 +22,7 @@
 <body>
 
     <form action="" method="post">
-        <input type="text" name="input" placeholder="Introduce una cadena"/>
+        <input type="text" name="input" placeholder="Introduce una correo electronico"/>
 
     </form>
     
