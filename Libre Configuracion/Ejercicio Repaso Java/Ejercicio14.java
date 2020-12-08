@@ -17,6 +17,8 @@ class UsoTrabajador {
         System.out.println(trabajador4.DevuelveDatos());
         System.out.println("El proximo id del trabajador es "+Trabajador.obtenerIdSiguiente());
 
+        System.out.println("\n Fin del programa");
+
 
 
         
