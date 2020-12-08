@@ -4,6 +4,7 @@
     if(isset($_POST["enviar"])){
 
         $cadena = $_POST["texto1"];
+        $posicion = array();
         $vocalesMin = array("a","e","i","o","u");
         $vocalesMay = array("A","E","I","O","U");
         //$cadenaout = "";
@@ -17,7 +18,7 @@
 
         $salida = str_replace(array($vocalesMin,$vocalesMay),array($vocalesMay,$vocalesMin),$cadena);
         //$salida = str_replace($vocalesMay,$vocalesMin,$cadena);
-
+        
         echo $salida;
         
     }
