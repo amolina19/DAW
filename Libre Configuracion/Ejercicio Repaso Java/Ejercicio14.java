@@ -31,11 +31,11 @@ enum Seccion{
 
 class Trabajador{
 
-    String nombre;
-    String apellidos;
-    Seccion seccion;
-    Integer id;
-    static Integer totalIds = 0;
+    private String nombre;
+    private String apellidos;
+    private Seccion seccion;
+    private Integer id;
+    private static Integer totalIds = 0;
 
     public Trabajador(String nombre,String apellidos){
         this.nombre = nombre;

@@ -18,8 +18,8 @@ class PruebaCuenta{
 
 class Cuenta{
 
-    String titular;
-    Double cantidad;
+    private String titular;
+    private Double cantidad;
 
     public Cuenta(String titular){
         this.titular = titular;
