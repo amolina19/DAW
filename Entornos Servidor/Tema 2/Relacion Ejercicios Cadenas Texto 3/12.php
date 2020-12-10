@@ -1,14 +1,46 @@
 <?php
 
-    $cadena = $_POST["cadena"];
-    //$dotsPos = array();
-    
-    for($i=0;$i<strlen($cadena);$i++){
-            echo substr($cadena,$i,$i+1);
-        if(strcmp(substr($cadena,$i,$i+1),".") === 0){
-            echo ".";
-        }
+    $ip = $_POST["cadena"];
 
+    checkIfValid($ip);
+
+    function checkIfValid($ip){
+        $ipStr = "";
+        $iparr = array();
+        $dotCount = 0;
+        for($i=0;$i<strlen($ip);$i++){
+            if($ip[$i] === "."){
+                $dotCount++;
+                array_push($iparr,$ipStr);
+                $ipStr = "";
+            }else{
+                $ipStr .= $ip[$i];
+                if(($i == strlen($ip)-1) === true){
+                    array_push($iparr,$ipStr);
+                    $ipStr = "";
+                }
+            }
+        }
+        if($dotCount === 3){
+            if(validIP($iparr)){
+                echo "Is valid";
+            }else{
+                echo "Not valid";
+            }
+        }else{
+            echo "Not a valid IP address";
+        }
+        //print_r($iparr);
+    }
+
+    function validIP($iparray) {
+        for($i=0;$i<sizeof($iparray);$i++){
+            //echo $iparray[$i];
+            if(($iparray[$i] >= 0 && $iparray[$i] <= 255) === false){
+                return false;
+            }
+        }
+        return true;
     }
 
 ?>
