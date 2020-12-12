@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventana</title>
+
+    <script type="text/javascript">
+
+        //Variable que obtengo del padre para realizar los calculos
+        var numero = window.opener.document.getElementById("number").innerHTML;
+        //Array con los numeros añadidos ceros por delante en caso de que el el numero sea una longitud de menos de 4 
+        var numeroArr = arreglarArr(numero);
+        //Cierra la ventana despues de 10 segundos.
+        setTimeout(cerrarVentana,10000);
+        
+        function setWindowValues(){
+            //Los valores retorandos son la cantidad de veces que se ha encontrado, luego se dividen entre la cantidad de combinaciones de 10000 para conocer su probabilidad
+            var poker = calcularPoker(numero);
+            //var doblePareja = CalcularDoblePareja(numero);
+            //var escaleraSimple = calcularEscaleraSimple(numero);
+            //var escaleraCompleta = calcularEscaleraCompleta(numero);
+            //var trios = calcularTrios(numero);
+            document.getElementById("poker").innerHTML = "Porcentaje de aparcion de poker "+poker/10000+"%";
+            document.getElementById("doblepareja").innerHTML = "Porcentaje de aparcion de Doble Parejas "+doblePareja/10000+"%";
+            document.getElementById("trios").innerHTML = "Porcentaje de aparcion de Doble Parejas "+trios/10000+"%";
+            document.getElementById("escalerasimple").innerHTML = "Porcentaje de aparcion de Escaleras Simples "+escaleraSimple/10000+"%";
+            document.getElementById("escaleracompleta").innerHTML = "Porcentaje de aparcion de Escaleras Completas "+escaleraCompleta/10000+"%";
+        }
+
+        //Calcula cuantos poker pueden haber hasta el numero que se introduce
+        function calcularPoker(numero){
+            var count = 0;
+            for(i=0;i<=numero;i+=1000){
+                
+                if(numero >= i){
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        //Calcula cuantos trios pueden haber hasta el numero que se introduce
+        function calcularTrios(numero){
+            var count = 0;
+            for(i=0;i<=numero;i++){
+
+                //Entra en una funcion haber si es un trio valido
+                if(checkTrios(i) == 1){
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        //Una funcion que comprueba si hay 3 numeros iguales en el array, para eso el array necesita arreglarse en caso de meter un numero 0005, javascript solo lee 5
+        function checkTrios(numero){
+            //Va a almacenar el numero como clave y su valor la cantidad de veces que es encontrado
+            var map = new Map();
+            var numArr = arreglarArr(numero);
+            for(i=0;i<numeroArr.length;i++){
+                map.set(numArr[i],i++);
+            }
+            
+            //En el trio el hay un numero que no tiene por que ser del trio por eso compruebo el valor del numero del principio si se encuentra en el map haber si devuelve un valor de 3
+            if(map.get(numArr[0]) == 3){
+                return 1;
+            }
+            //Lo mismo que la condicional de arriba pero compruebo el numero partiendo de la mitad
+            if(map.get(numArr[2]) == 3){
+                return 1;
+            }
+
+            return 0;
+        }
+
+        //Funcion que calcula la escalera simple recorriendo desde 0000 hasta el numero de la escalera
+        function calcularEscaleraSimple(numero){
+
+            var count = 0;
+            for(i=0;i<numero;i++){
+                //Entra en la funcion haber si la escalera es valida
+                if(checkEscaleraSimple(i) == 0){
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        //Funcion que comprueba si la escalera simple es valida, primero añadiendo 0 ya que el bucle introduce numeros sin el 0 ejemplo quiero calcular 0005 y solo introduce 5, los 0 los ignora por delante.
+        //El array es ordenado de menor a mayor
+        //Comprubea que el numero que hay delante tengo el mismo valor + 1
+        function checkEscaleraSimple(numero){
+
+            var numArr = arreglarArr(numero);
+            Array.sort(numArr);
+            if(numArr[0]+1 == numArr[1] && numArr[1]+1 == numArr[2]){
+                return 0;
+            }
+
+            if(numArr[1]+1 == numArr[2] && numArr[2]+1 == numArr[3]){
+                return 0;
+            }
+
+            return 1;
+        }
+
+        //Funcion que calcula cuantas escaleras completas hay recorriendo desde 0000 hasta el numero de la escalera
+        function calcularEscaleraCompleta(numero){
+
+            var count = 0;
+            for(i=0;i<numero;i++){
+
+                //Entra en la funcion haber si la escalera es valida
+                if(checkEscaleraCompleta(i) == 0){
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        
+        //Funcion que comprueba si la escalera simple es valida, primero añadiendo 0 ya que el bucle introduce numeros sin el 0 ejemplo quiero calcular 0005 y solo introduce 5, los 0 los ignora por delante
+        //El array es ordenado de menor a mayor
+        //Comprubea que el numero que hay delante tengo el mismo valor + 1
+        function checkEscaleraCompleta(numero){
+
+            var numArr = arreglarArr(numero);
+            Array.sort(numArr);
+            if(numArr[0]+1 == numArr[1] && numArr[1]+1 == numArr[2] && numArr[2]+1 == numArr[3]){
+                return 0;
+            }
+
+            return 1;
+        }
+
+        //Funcion que calcula cuantas doble parejas hay recorriendo desde 0000 hasta el numero introducido
+        function CalcularDoblePareja(numero){
+
+            var count = 0;
+            for(i=0;i<=numero;i++){
+                //alert(i);
+                if(checkDoble(i) == 0){
+                    count++
+                }
+            }
+            alert(count);
+            return count;
+        }
+
+        //Funcion que comprueba si los 2 primeros numeros son iguales y los 2 ultimos tmb
+        function checkDoble(numero){
+            //alert("aun no entra");
+
+            numeros = arreglarArr(numero);
+            if(numeros[0] == numeros[1] && numeros[2] == numeros[3]){
+                //alert("entra");
+                return 0;
+            }else{
+                return 1;
+            }
+        }
+
+        //Funcion que arregla el array para que pueda ser comprobado luego correctamente
+        //Ejemplo el bucle empieza por 0, pero se debe comprobar con 0000, para ello se le introducen 0 al final para que al calucar 5, sea 0005 
+        function arreglarArr(numero){
+            var numeros = Array.from(numero.toString()).map(Number);
+
+            //Dependiendo de la longitud del array, se le añadiran x 0 al principio
+            if(numeros.length == 1){
+                for(i=0;i<3;i++){
+                    numeros.unshift(0);
+                }
+            }else if(numeros.length == 2){
+                for(i=0;i<2;i++){
+                    numeros.unshift(0);
+                }
+            }
+
+            else if(numeros.length == 3){
+                numeros.unshift(0);
+            }
+            return numeros;
+        }
+
+        //Funcion que cierra la ventana
+        function cerrarVentana(){
+            window.close();
+        }
+    
+    </script>
+</head>
+<body>
+
+    <p id="poker"></p>
+    <p id="doblepareja"></p>
+    <p id="trios"></p>
+    <p id="escalerasimple"></p>
+    <p id="escaleracompleta"></p>
+
+    <script>setWindowValues();</script>
+    
+</body>
+</html>

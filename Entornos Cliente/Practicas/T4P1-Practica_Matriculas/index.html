@@ -30,16 +30,20 @@
         var b = true;
         var parejas = new Map();
         var numeros;
+        var ventana;
         
         if(b){
             numeros = pedirUsuario();
         }else{
+            //En caso de que b sea falso se le introducen manualmente
             numeros = new Array(2,4,2,3);
         }
         
+
         parejas = rellenarMap(numeros);
         getResult(check(parejas),numeros);
-
+        
+        //Funcion que pide el numero al usuario hasta que no introduzca 4 digitos
         function pedirUsuario(){
             var num = 0;
             do{
@@ -50,6 +54,7 @@
             return numeros;
         }
 
+        //Rellena el map con los numeros como clave y su valor la cantidad de veces que aparece
         function rellenarMap(array){
             var map = new Map();
             for(i=0;i<array.length;i++){
@@ -62,6 +67,7 @@
             return map;
         }
 
+        //La escalera calcula en el array si el valor de esa posicion y el siguiente posicion sea el mismo + 1 sea valido
         function escalera(array){
             array.sort();
             var map = rellenarMap(array);
@@ -73,6 +79,7 @@
                 }
             }
 
+            //Comprueba cuantas veces ha contado los valores correctamente, dependiendo de cuantas devolvera si sera completa,simple o sin escalera.
             if(cont == 3){
                 alert("Escalera Simple");
             }else if(cont == array.length ){
@@ -82,7 +89,9 @@
             }  
         }
 
+
         function check(map){
+            //Esta funcion devuelve cuantos numeros iguales se han encontrado
             for(var value of map.values()){
                 if(value == 2){
                     return 1;//Devuelve uno si es pareja
@@ -95,6 +104,7 @@
             return 0;//Devuelve 0 si no llega a ser pareja
         }
 
+        //En los parametros returned se le introduce el valor que devuelve check para devolver si es una paerja, trio o poker, si no es ninngua comprobara la escalera al no haber ningun numero igual repetido
         function getResult(returned,array){
             if(returned == 0){
                 escalera(array);
@@ -106,10 +116,33 @@
                 alert("Poker");
             }
         }
+        //Funcion que abre la nueva ventana desde el boton 
+        function ventana(){
+            ventana = window.open("ventana.html","Ventana","witdh=600, height=600");
+        }
+
+        //funcion de prueba
+        function setValue(){
+            var salida = corregirNumeros(numeros);
+            document.getElementById("number").innerHTML = salida;
+            //alert(salida+"salida");
+        }
+
+        //Funcioon que corrige los numeros al ser parseados de un array a un numero entero sin ,,,
+        function corregirNumeros(array){
+            var numero = "";
+            for(i=0;i<array.length;i++){
+                numero += array[i];
+            }
+            numero = parseInt(numero);
+            return numero;
+        }
 
     </script>
 </head>
 <body>
-    
+    <input type="button" value="Abrir ventana" onclick="ventana();">
+    <h1 id="number"></h1>
+    <script>setValue()</script>
 </body>
 </html>
