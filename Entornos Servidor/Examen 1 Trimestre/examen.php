@@ -113,10 +113,11 @@
                     $arr = str_split($cadena);
                     $arrarbol[$i] = $arr;
 
-                    //print_r($arrarbol);
+                    
 
                     //print_r($arrarbol);
                 }
+                print_r($arrarbol);
                 
                 
                 $table = "<table border='1'>";
@@ -126,7 +127,7 @@
 
                     for($j=0;$j<count($arrFila);$j++){
                 
-                        if(strcmp($arrFila[$i],"/")){
+                        if(strcmp($arrFila[$j],"/")){
                             $table .= "<td bgcolor ='#000000'>/</td>";
                         }else{
                             $table .= "<td bgcolor ='#00FFFF'>*</td>";
