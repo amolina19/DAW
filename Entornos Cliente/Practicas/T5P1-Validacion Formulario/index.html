@@ -6,51 +6,92 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <style>
+        
+        form{
+            border: 1px solid black; 
+            background-color: aqua; 
+        } 
+
+        legend {
+            border: 1px solid black;
+            background-color: #eeeeee;
+        }    
+    </style>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
-    <script type="text/javascript" src="validacion.js">
-    
-    </script>
+    <script type="text/javascript" src="validacion.js"></script>
   </head>
   <body>
+    
 
-    <div class="container">
+    <div class="container mt-4">
         
-        <div class="row">
-            <form method="post">
-                <fieldset>
-                    <legend>DWEC05 - Solución Tarea</legend>
-        
-                    
-                    
-                    <div class="col-4">
-                        <div><label for="nombre">Nombre:</label></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        
-                        <label for="apellidos">Apellidos:</label>
-                        <label for="edad">Edad:</label>
-                        <label for="nif">NIF:</label>
-                        <label for="email">Email:</label>
-                        <label for="provincia">Provincia:</label>
-                        <label for="fechanacimiento">Fecha Nacimiento:</label>
-                        <label for="telefono">Teléfono:</label>
-                        <label for="horavisita">Hora de visita:</label>
-                        
+        <form method="post">
+            <fieldset>
+                <legend>DWEC05 - Solución Tarea</legend>
+
+                <div class="row">
+
+                    <div class="col-1"></div>
+                    <div class="col-5">
+                        <p>Nombre:</p>
                     </div>
+                    <div class="col-6">
+                        <input type="text" placeholder="Nombre" id="nombre">
+                    </div>
+                </div>
 
-                    <div class="col-4">
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-5">
+                        <p>Apellidos:</p>
+                    </div>
+                    <div class="col-6">
+                        <input type="text" placeholder="Apellidos" id="Apellidos" id="apellidos">
+                    </div>
+                </div>
 
-                        <input type="text" id="fname" name="nombre">
-                        <input type="text" id="lname" name="apellidos">
-                        <input type="text" id="edad" name="edad">
-                        <input type="text" id="nif" name="nif">
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-5">
+                        <p>Edad:</p>
+                    </div>
+                    <div class="col-6">
+                        <input type="text" placeholder="Edad" id="edad">
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-5">
+                        <p>NIF:</p>
+                    </div>
+                    <div class="col-6">
+                        <input type="text" placeholder="NIF" id="nif">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-5">
+                        <p>Email:</p>
+                    </div>
+                    <div class="col-6">
+                        <input type="text" placeholder="Email" id="email">
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-5">
+                        <p>Provincia:</p>
+                    </div>
+                    <div class="col-6">
                         <select id="provincia" name="provincia">
                             <option value='alava'>Álava</option>
                             <option value='albacete'>Albacete</option>
@@ -105,17 +146,56 @@
                             <option value='zamora'>Zamora</option>
                             <option value='zaragoza'>Zaragoza</option>
                         </select>
-                        <input type="date" id="fechanacimiento" name="fechanacimiento">
-                        <input type="text" id="telefono" name="telefono">
-                        <input type="text" id="horavisita" name="horavisita">
-                        <input type="reset" value="Limpiar">
-                        <input type="submit" value="Enviar">
                     </div>
-                </fieldset>
-            </form>
-        </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-5">
+                        <p>Fecha nacimiento:</p>
+                    </div>
+                    <div class="col-6">
+                        <input type="date" placeholder="Fecha Nacimiento:" id="fecha">
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-5">
+                        <p>Télefono:</p>
+                    </div>
+                    <div class="col-6">
+                        <input type="text" placeholder="Telefono" id="telefono">
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-5">
+                        <p>Hora de visita:</p>
+                    </div>
+                    <div class="col-6">
+                        <input type="text" placeholder="Hora de visita" id="horavisita">
+                    </div>
+                </div>
+
+
+                <div class="row mb-4">
+                    <div class="col-1"></div>
+                    <div class="col-5">
+                        <input type="reset" value="Limpiar">
+                    </div>
+                    <div class="col-6">
+                        <input type="submit" value="Enviar" id="enviar">
+                    </div>
+                </div>
+            </fieldset>
+        </form>
     </div>
-      
+
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
