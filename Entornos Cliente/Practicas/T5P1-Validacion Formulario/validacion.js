@@ -3,6 +3,10 @@ enviar = document.getElementById("enviar");
 
 var nombre = document.getElementById("fname");
 var apellidos = document.getElementById("lname");
+
+    
+var nombre = document.getElementById("nombre");
+var apellidos = document.getElementById("apellidos");
 var edad = document.getElementById("edad");
 var nif = document.getElementById("nif");
 var email = document.getElementById("email");
