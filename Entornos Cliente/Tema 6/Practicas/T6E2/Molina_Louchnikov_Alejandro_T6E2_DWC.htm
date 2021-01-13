@@ -1,0 +1,94 @@
+<!--
+Enunciado del ejercicio:
+
+Amplia el siguiente código con  funciones en javascript que me permita leer el 
+grosor, aumentar y reducir  del borde de la tabla,   mediante su  boton correspondiente
+-->
+
+
+<html>
+   <head>
+      <title>
+         P&aacute;gina con Javascript.
+      </title>
+      
+   <script type="text/javascript" src="https://educacionadistancia.juntadeandalucia.es/ruxitagentjs_ICA2SVfhqru_10205201218101503.js" data-dtconfig="rid=RID_-2029316644|rpid=669146901|domain=juntadeandalucia.es|reportUrl=/rb_ff94954a-6c99-4a24-a824-477d78373cea|app=5e7445692bcd30b0|featureHash=ICA2SVfhqru|rdnt=1|uxrgce=1|bp=2|cuc=rpvxpcq5|dpvc=1|md=mdcc1=a#actionmenuaction-1|lastModification=1610107415973|dtVersion=10205201218101503|tp=500,50,0,1|uxdcw=1500|vs=2|agentUri=/ruxitagentjs_ICA2SVfhqru_10205201218101503.js"></script>
+
+   <script type="text/javascript">
+   
+      window.onload = function() {
+
+         var buttonleer = document.getElementById("botonleer");
+         var buttonaum = document.getElementById("botonaumentar");
+         var buttondis = document.getElementById("botondisminuir");
+
+         buttonleer.onclick = function() { leer()};
+         buttonaum.onclick = function() { aumentar()};
+         buttondis.onclick = function() { disminuir()};
+
+         function leer(){
+            alert("Borde "+document.getElementById("tabla1").getAttribute("width")+"px")
+         }
+
+         function aumentar(){
+            var px = document.getElementById("tabla1").getAttribute("width");
+            px = Number(px) + 50;
+            document.getElementById("tabla1").setAttribute("width",px);
+         }
+
+         function disminuir(){
+            var px = document.getElementById("tabla1").getAttribute("width");
+            px = Number(px) - 50;
+            document.getElementById("tabla1").setAttribute("width",px);
+         }
+      }
+   </script>
+</head>
+
+   <body>
+
+      <table width="300" align="left" id="tabla1" border="2">
+         <tr height="100">
+            <td width="100" align="center">
+               Celda 1
+            </td>
+            <td width="100" align="center">
+               Celda 2
+            </td>
+            <td width="100" align="center">
+               Celda 3
+            </td>
+         </tr>
+         <tr height="100">
+            <td align="center">
+               Celda 4
+            </td>
+            <td align="center">
+               Celda 5
+            </td>
+            <td align="center">
+               Celda 6
+            </td>
+         </tr>
+         <tr height="100">
+            <td align="center">
+               Celda 7
+            </td>
+            <td align="center">
+               Celda 8
+            </td>
+            <td align="center">
+               Celda 9
+            </td>
+         </tr>
+      </table>
+
+      <p>
+      </p>
+
+      <button id="botonleer">Leer Grosor</button>
+      <button id="botonaumentar">Aumentar</button>
+      <button id="botondisminuir">Disminuir</button>
+
+   </body>
+</html>

@@ -1,0 +1,48 @@
+<html>
+   <head>
+      <title>
+         P&aacute;gina con Javascript.
+      </title>
+      <script type="text/javascript" src="https://educacionadistancia.juntadeandalucia.es/ruxitagentjs_ICA2SVfhqru_10205201218101503.js" data-dtconfig="rid=RID_789616088|rpid=-55555698|domain=juntadeandalucia.es|reportUrl=/rb_ff94954a-6c99-4a24-a824-477d78373cea|app=5e7445692bcd30b0|featureHash=ICA2SVfhqru|rdnt=1|uxrgce=1|bp=2|cuc=rpvxpcq5|dpvc=1|md=mdcc1=a#actionmenuaction-1|lastModification=1610107415973|dtVersion=10205201218101503|tp=500,50,0,1|uxdcw=1500|vs=2|agentUri=/ruxitagentjs_ICA2SVfhqru_10205201218101503.js"></script><script language="javascript">
+      
+         window.onload = function() {
+
+            function crearNodo()
+            {
+               var nodoImagen = document.getElementById("imagen");
+               nodoImagen.onmouseover = function(){ leer()};
+               nodoImagen.mouseout = function(){ borrar()};
+            }
+
+            function borrar(){
+               alert("borrar");
+               eliminar();
+            }
+
+            function leer(){
+               agregar();
+            }
+
+            function agregar()
+            {
+               nodoImagen.setAttribute("title","Trozo de hielo");
+            }
+
+            function eliminar()
+            {
+               nodoImagen.removeAttribute("title");
+            }
+         } 
+         
+      </script>
+   </head>
+   <body">
+      <img id="imagen" onmouseover= alt="test" src="https://p.bigstockphoto.com/GeFvQkBbSLaMdpKXF1Zv_bigstock-Aerial-View-Of-Blue-Lakes-And--227291596.jpg">
+      <br>
+      <form>
+         <input type="button" value="Agregar 'title' a la imagen" onClick="agregar();">
+         <br>
+         <input type="button" value="Borrar 'title' de la imagen" onClick="eliminar();">
+      </form>
+   </body>
+</html>

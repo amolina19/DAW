@@ -1,0 +1,74 @@
+<!--
+Enunciado del ejercicio:
+
+Completa el siguiente código con una función en javascript que me permita leer el 
+grosor del borde de la tabla mediante un boton.
+-->
+<html>
+   <head>
+      <title>
+         P&aacute;gina con Javascript.
+      </title>
+      <script type="text/javascript" src="https://educacionadistancia.juntadeandalucia.es/ruxitagentjs_ICA2SVfhqru_10205201218101503.js" data-dtconfig="rid=RID_950139801|rpid=-1638875244|domain=juntadeandalucia.es|reportUrl=/rb_ff94954a-6c99-4a24-a824-477d78373cea|app=5e7445692bcd30b0|featureHash=ICA2SVfhqru|rdnt=1|uxrgce=1|bp=2|cuc=rpvxpcq5|dpvc=1|md=mdcc1=a#actionmenuaction-1|lastModification=1610107415973|dtVersion=10205201218101503|tp=500,50,0,1|uxdcw=1500|vs=2|agentUri=/ruxitagentjs_ICA2SVfhqru_10205201218101503.js"></script>
+      
+      <script language="javascript">
+
+         window.onload = function () {
+            var button = document.getElementById("boton");
+            button.onclick = function() {leer()};
+         }
+
+         function leer(){
+            var ancho = document.getElementById("tabla1").getAttribute("width");
+            alert("La anchura de la celda es "+ancho+" pixeles");
+         } 
+         
+      </script>
+   </head>
+   <body>
+
+      <table width="300" align="left" id="tabla1" border="2">
+         <tr height="100">
+            <td width="100" align="center">
+               Celda 1
+            </td>
+            <td width="100" align="center">
+               Celda 2
+            </td>
+            <td width="100" align="center">
+               Celda 3
+            </td>
+         </tr>
+         <tr height="100">
+            <td align="center">
+               Celda 4
+            </td>
+            <td align="center">
+               Celda 5
+            </td>
+            <td align="center">
+               Celda 6
+            </td>
+         </tr>
+         <tr height="100">
+            <td align="center">
+               Celda 7
+            </td>
+            <td align="center">
+               Celda 8
+            </td>
+            <td align="center">
+               Celda 9
+            </td>
+         </tr>
+      </table>
+
+      <p>
+      </p>
+
+      <button id="boton">Leer grosor</button>
+
+      
+
+   </body>
+</html>
