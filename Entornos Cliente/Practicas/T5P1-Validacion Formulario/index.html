@@ -9,111 +9,167 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
-    <script type="text/javascript" src="validacion.js">
     
-    </script>
   </head>
   <body>
 
     <div class="container">
-        
-        <div class="row">
-            <form method="post">
-                <fieldset>
-                    <legend>DWEC05 - Solución Tarea</legend>
-        
-                    
-                    
-                    <div class="col-4">
-                        <div><label for="nombre">Nombre:</label></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        
-                        <label for="apellidos">Apellidos:</label>
-                        <label for="edad">Edad:</label>
-                        <label for="nif">NIF:</label>
-                        <label for="email">Email:</label>
-                        <label for="provincia">Provincia:</label>
-                        <label for="fechanacimiento">Fecha Nacimiento:</label>
-                        <label for="telefono">Teléfono:</label>
-                        <label for="horavisita">Hora de visita:</label>
-                        
+        <form method="post" id="form">
+            <fieldset>
+                <legend>DWEC05 - Solución Tarea</legend>
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="nombre">Nombre:</label>
+                        </div>
+
+                        <div class="col-6">
+                            <input type="text" id="fname" name="nombre">
+                        </div>
                     </div>
 
-                    <div class="col-4">
-
-                        <input type="text" id="fname" name="nombre">
-                        <input type="text" id="lname" name="apellidos">
-                        <input type="text" id="edad" name="edad">
-                        <input type="text" id="nif" name="nif">
-                        <select id="provincia" name="provincia">
-                            <option value='alava'>Álava</option>
-                            <option value='albacete'>Albacete</option>
-                            <option value='alicante'>Alicante/Alacant</option>
-                            <option value='almeria'>Almería</option>
-                            <option value='asturias'>Asturias</option>
-                            <option value='avila'>Ávila</option>
-                            <option value='badajoz'>Badajoz</option>
-                            <option value='barcelona'>Barcelona</option>
-                            <option value='burgos'>Burgos</option>
-                            <option value='caceres'>Cáceres</option>
-                            <option value='cadiz'>Cádiz</option>
-                            <option value='cantabria'>Cantabria</option>
-                            <option value='castellon'>Castellón/Castelló</option>
-                            <option value='ceuta'>Ceuta</option>
-                            <option value='ciudadreal'>Ciudad Real</option>
-                            <option value='cordoba'>Córdoba</option>
-                            <option value='cuenca'>Cuenca</option>
-                            <option value='girona'>Girona</option>
-                            <option value='laspalmas'>Las Palmas</option>
-                            <option value='granada'>Granada</option>
-                            <option value='guadalajara'>Guadalajara</option>
-                            <option value='guipuzcoa'>Guipúzcoa</option>
-                            <option value='huelva'>Huelva</option>
-                            <option value='huesca'>Huesca</option>
-                            <option value='illesbalears'>Illes Balears</option>
-                            <option value='jaen'>Jaén</option>
-                            <option value='acoruña'>A Coruña</option>
-                            <option value='larioja'>La Rioja</option>
-                            <option value='leon'>León</option>
-                            <option value='lleida'>Lleida</option>
-                            <option value='lugo'>Lugo</option>
-                            <option value='madrid'>Madrid</option>
-                            <option value='malaga'>Málaga</option>
-                            <option value='melilla'>Melilla</option>
-                            <option value='murcia'>Murcia</option>
-                            <option value='navarra'>Navarra</option>
-                            <option value='ourense'>Ourense</option>
-                            <option value='palencia'>Palencia</option>
-                            <option value='pontevedra'>Pontevedra</option>
-                            <option value='salamanca'>Salamanca</option>
-                            <option value='segovia'>Segovia</option>
-                            <option value='sevilla'>Sevilla</option>
-                            <option value='soria'>Soria</option>
-                            <option value='tarragona'>Tarragona</option>
-                            <option value='santacruztenerife'>Santa Cruz de Tenerife</option>
-                            <option value='teruel'>Teruel</option>
-                            <option value='toledo'>Toledo</option>
-                            <option value='valencia'>Valencia/Valéncia</option>
-                            <option value='valladolid'>Valladolid</option>
-                            <option value='vizcaya'>Vizcaya</option>
-                            <option value='zamora'>Zamora</option>
-                            <option value='zaragoza'>Zaragoza</option>
-                        </select>
-                        <input type="date" id="fechanacimiento" name="fechanacimiento">
-                        <input type="text" id="telefono" name="telefono">
-                        <input type="text" id="horavisita" name="horavisita">
-                        <input type="reset" value="Limpiar">
-                        <input type="submit" value="Enviar">
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="apellidos">Apellidos:</label>
+                        </div>
+                        <div class="col-6">
+                            <input type="text" id="lname" name="apellidos">
+                        </div>
                     </div>
-                </fieldset>
-            </form>
-        </div>
+
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="edad">Edad:</label>
+                        </div>
+                        <div class="col-6">
+                            <input type="text" id="edad" name="edad">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="nif">NIF:</label>
+                        </div>
+                        <div class="col-6">
+                            <input type="text" id="nif" name="nif">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="email">Email:</label>
+                        </div>
+                        <div class="col-6">
+                            <input type="text" id="email" name="email">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="provincia">Provincia:</label>
+                        </div>
+                        <div class="col-6">
+                            <select id="provincia" name="provincia">
+                                <option value='alava'>Álava</option>
+                                <option value='albacete'>Albacete</option>
+                                <option value='alicante'>Alicante/Alacant</option>
+                                <option value='almeria'>Almería</option>
+                                <option value='asturias'>Asturias</option>
+                                <option value='avila'>Ávila</option>
+                                <option value='badajoz'>Badajoz</option>
+                                <option value='barcelona'>Barcelona</option>
+                                <option value='burgos'>Burgos</option>
+                                <option value='caceres'>Cáceres</option>
+                                <option value='cadiz'>Cádiz</option>
+                                <option value='cantabria'>Cantabria</option>
+                                <option value='castellon'>Castellón/Castelló</option>
+                                <option value='ceuta'>Ceuta</option>
+                                <option value='ciudadreal'>Ciudad Real</option>
+                                <option value='cordoba'>Córdoba</option>
+                                <option value='cuenca'>Cuenca</option>
+                                <option value='girona'>Girona</option>
+                                <option value='laspalmas'>Las Palmas</option>
+                                <option value='granada'>Granada</option>
+                                <option value='guadalajara'>Guadalajara</option>
+                                <option value='guipuzcoa'>Guipúzcoa</option>
+                                <option value='huelva'>Huelva</option>
+                                <option value='huesca'>Huesca</option>
+                                <option value='illesbalears'>Illes Balears</option>
+                                <option value='jaen'>Jaén</option>
+                                <option value='acoruña'>A Coruña</option>
+                                <option value='larioja'>La Rioja</option>
+                                <option value='leon'>León</option>
+                                <option value='lleida'>Lleida</option>
+                                <option value='lugo'>Lugo</option>
+                                <option value='madrid'>Madrid</option>
+                                <option value='malaga'>Málaga</option>
+                                <option value='melilla'>Melilla</option>
+                                <option value='murcia'>Murcia</option>
+                                <option value='navarra'>Navarra</option>
+                                <option value='ourense'>Ourense</option>
+                                <option value='palencia'>Palencia</option>
+                                <option value='pontevedra'>Pontevedra</option>
+                                <option value='salamanca'>Salamanca</option>
+                                <option value='segovia'>Segovia</option>
+                                <option value='sevilla'>Sevilla</option>
+                                <option value='soria'>Soria</option>
+                                <option value='tarragona'>Tarragona</option>
+                                <option value='santacruztenerife'>Santa Cruz de Tenerife</option>
+                                <option value='teruel'>Teruel</option>
+                                <option value='toledo'>Toledo</option>
+                                <option value='valencia'>Valencia/Valéncia</option>
+                                <option value='valladolid'>Valladolid</option>
+                                <option value='vizcaya'>Vizcaya</option>
+                                <option value='zamora'>Zamora</option>
+                                <option value='zaragoza'>Zaragoza</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="fechanacimiento">Fecha Nacimiento:</label>
+                        </div>
+                        <div class="col-6">
+                            <input type="date" id="fechanacimiento" name="fechanacimiento">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="telefono">Teléfono:</label>
+                        </div>
+                        <div class="col-6">
+                            <input type="text" id="telefono" name="telefono">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="horavisita">Hora de visita:</label>
+                        </div>
+                        <div class="col-6">
+                            <input type="text" id="horavisita" name="horavisita">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            
+                        </div>
+                        <div class="col-6">
+                            <input type="reset" value="Limpiar">
+                            <input type="submit" value="Enviar" id="enviar">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-3">
+                           <label id="inentoslabel">Nº Intentos</label>
+                        </div>
+                        <div class="col-6">
+                            <p id="intentos">0</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div id="errores"></div>
+                    </div>
+                
+            </fieldset>
+        </form>
     </div>
       
     <!-- Optional JavaScript -->
@@ -121,5 +177,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="validacion.js"></script>
   </body>
 </html>
