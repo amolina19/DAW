@@ -1,0 +1,50 @@
+<html>
+   <head>
+      <title>
+         P&aacute;gina con Javascript.
+      </title>
+      <script language="javascript">
+         
+         window.onload = function() {
+
+            var addbtn = document.getElementById("add");
+            var delbtn = document.getElementById("remove");
+
+            var table = document.createElement("table");
+
+            addbtn.onclick = function(){ agregar()};
+            delbtn.onclick = function(){ eliminar()};
+
+            var body = document.getElementsByTagName("BODY")[0];
+            
+            var td1 = document.createElement("td1");
+            var td2 = document.createElement("td2");
+
+            function agregar(){
+               table = document.createElement("table");
+               table.border = "1";
+               body.appendChild(table);
+               var tr = document.createElement("tr");
+               table.appendChild(tr);
+
+               td1.innerHTML = "Celda 1";
+               td2.innerHTML = "Celda 2";
+               tr.appendChild(td1);
+               tr.appendChild(td2);
+            }
+
+            function eliminar(){
+               body.removeChild(table);
+            }
+
+
+         }
+
+      </script>
+   </head>
+   <body>
+
+      <button id="add">Añadir tabla</button>
+      <button id="remove">Eliminar tabla</button>
+   </body>
+</html>

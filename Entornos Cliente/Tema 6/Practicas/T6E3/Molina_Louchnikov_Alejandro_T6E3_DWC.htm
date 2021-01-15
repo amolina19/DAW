@@ -7,21 +7,15 @@
       
          window.onload = function() {
 
-            function crearNodo()
-            {
-               var nodoImagen = document.getElementById("imagen");
-               nodoImagen.onmouseover = function(){ leer()};
-               nodoImagen.mouseout = function(){ borrar()};
-            }
+            var nodoImagen = document.getElementById("imagen");
+            var addbutton = document.getElementById("agregarbtn");
+            var delbutton = document.getElementById("eliminarbtn");
 
-            function borrar(){
-               alert("borrar");
-               eliminar();
-            }
+            nodoImagen.onmouseover = function(){ leer()};
+            nodoImagen.mouseout = function(){ borrar()};
 
-            function leer(){
-               agregar();
-            }
+            addbutton.onclick = function() { agregar()};
+            delbutton.onclick = function() { eliminar()};
 
             function agregar()
             {
@@ -30,19 +24,19 @@
 
             function eliminar()
             {
-               nodoImagen.removeAttribute("title");
+               nodoImagen.setAttribute("title","");
             }
          } 
          
       </script>
    </head>
    <body">
-      <img id="imagen" onmouseover= alt="test" src="https://p.bigstockphoto.com/GeFvQkBbSLaMdpKXF1Zv_bigstock-Aerial-View-Of-Blue-Lakes-And--227291596.jpg">
+      <img id="imagen" src="https://p.bigstockphoto.com/GeFvQkBbSLaMdpKXF1Zv_bigstock-Aerial-View-Of-Blue-Lakes-And--227291596.jpg">
       <br>
       <form>
-         <input type="button" value="Agregar 'title' a la imagen" onClick="agregar();">
+         <input type="button" value="Agregar 'title' a la imagen" id="agregarbtn">
          <br>
-         <input type="button" value="Borrar 'title' de la imagen" onClick="eliminar();">
+         <input type="button" value="Borrar 'title' de la imagen" id="eliminarbtn">
       </form>
    </body>
 </html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T6E5</title>
+
+    <script type="text/javascript">
+
+        
+        window.onload = function(){
+            createTable();
+            recorrer();
+        }
+
+        createTable();
+        recorrer();
+        
+        function recorrer(){
+
+            //var body = document.getElementsByTagName("BODY")[0];
+            //var elementos = body.getElementsByTagName("*");
+
+            var body = document.querySelectorAll( 'body > *' );
+
+            body.forEach(element => {
+                alert(element.tagName);
+            });
+            
+        }
+
+        function createTable(){
+            var node = document.getElementsByTagName("BODY")[0];
+            var table = document.createElement("table");
+            table.border = "1";
+            var tr = document.createElement("tr");
+            var td1 = document.createElement("td");
+            td1.innerHTML = "Celda1 Tabla 1";
+            var td2 = document.createElement("td");
+            td2.innerHTML = "Celda 2 Tabla 1";
+
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            table.appendChild(tr);
+            node.appendChild(table);
+        }
+
+        function createTable2(){
+            var node = document.body;
+        }
+    </script>
+</head>
+<body>
+
+    <table border="1">
+        <tr>
+            <td>Celda 1</td>
+            <td>Celda 2</td>
+        </tr>
+    </table>
+
+    <p>Test paraf</p>
+    <br>
+    <button id="button">Boton</button>
+    <br>
+    <img src="https://www.talkwalker.com/images/2020/blog-headers/image-analysis.png">
+</body>
+</html>
