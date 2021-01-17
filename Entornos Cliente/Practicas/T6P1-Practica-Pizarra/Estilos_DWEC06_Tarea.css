@@ -14,6 +14,10 @@
 	height:10px;
 	margin: 0px;
 	padding: 0px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
 }
 .color1 {
 	background-color: #FF0;

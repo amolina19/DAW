@@ -6,45 +6,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link type="text/css" rel="stylesheet" href="https://educacionadistancia.juntadeandalucia.es/centros/almeria/pluginfile.php/276503/mod_assign/introattachment/0/Estilos_DWEC06_Tarea.css" />
-    <script type="text/javascript" src="https://educacionadistancia.juntadeandalucia.es/centros/almeria/pluginfile.php/276503/mod_assign/introattachment/0/Apellidos_nombre_t6p1_dwc.js"></script>
+    <link rel="stylesheet" href="Estilos_DWEC06_Tarea.css" />
+    
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <script type="text/javascript">
-
-  
-
-      window.onload = function() {
-        panel();
-      }
-    
-      function panel(){
-        const zonadibujo = document.getElementById("zonadibujo");
-    
-        for(i=0;i<30;i++){
-    
-          var divrow = document.createElement("div");
-          divrow.id = "divrow"+i;
-          divrow.border = "1px solid black";
-          divrow.classList.add("row");
-    
-          for(j=0;j<30;j++){
-    
-            var divcol = document.createElement("div");
-            divcol.id = "divcol"+j;
-            divcol.width = "10px";
-            divcol.height = "10px";
-            divcol.border = "1px solid"
-            divcol.innerHTML = "";
-            divcol.style = "border:1px solid black";
-            divrow.appendChild(divcol);
-          }
-          zonadibujo.appendChild(divrow);
-        }
-        
-      }
-      </script>
+    <script src="app.js"></script>
   </head>
   <body>
     <div class="container">
@@ -53,15 +19,21 @@
         <caption>
           Haga CLICK en un color para comenzar a pintar
         </caption>
-        <tr><td class="color1 seleccionado"></td><td class="color2"></td><td class="color3"></td><td class="color4"></td><td class="color5"></td><td class="color6"></td></tr>
-        <tr><td colspan="6" id="pincel">Estado del pincel</td></tr>
+        <tr class="paleta">
+          <td id="color1" class="color1 seleccionado pincel"></td>
+          <td id="color2" class="color2 pincel"></td>
+          <td id="color3" class="color3 pincel"></td>
+          <td id="color4" class="color4 pincel"></td>
+          <td id="color5" class="color5 pincel"></td>
+          <td id="color6" class="color6 pincel"></td>
+        </tr>
+        <tr>
+          <td colspan="6" id="pincel">Estado del pincel - DESACTIVADO</td>
+        </tr>
       </table>
       <p></p>
       <div id="zonadibujo"></div>
     </div>
-    
-      
-
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
