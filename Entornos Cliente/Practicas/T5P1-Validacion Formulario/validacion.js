@@ -218,7 +218,7 @@ function edadfun(){
 //Función que se dispara al dejar el input del nif, que comprueba si es nulo o no, y comprobando que cumple una expresion regular dinámicamente.
 function niffun(){
 
-    var express = "^[0-9]{8}[-]{1,1}[A-Z]{1,1}$";
+    var express = "^[0-9]{8}[-]{1}[A-Z]{1,1}$";
     //Si esta vacio el campo, se creará un error y se enfocará en el campo.
     if(nif.value.length == 0){
         nif.classList.add("error");
@@ -226,7 +226,7 @@ function niffun(){
         createError(nif);
     //Si el nif coincide con la expresion regular, se eliminarán los errores que pudiese contener.
     }else if(nif.value.match(express)){
-        eliminateError(edad);
+        eliminateError(nif);
         nif.classList.remove("error");
     //En caso de no conincidir con la expresión regular se creará un error y se enfocará en el campo.
     }else{
