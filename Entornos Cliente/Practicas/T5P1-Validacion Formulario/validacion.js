@@ -2,8 +2,6 @@
 var nombre,apellidos,edad,nif,email,provincia,fechanacimiento,telefono,visita,erroresDiv,intentos,intentosnum=0;
 
 window.onload = function() {
-
-    enviar = document.getElementById("enviar");
         
     nombre = document.getElementById("nombre");
     apellidos = document.getElementById("apellidos");
