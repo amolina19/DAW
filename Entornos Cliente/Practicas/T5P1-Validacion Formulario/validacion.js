@@ -223,8 +223,8 @@ function provinciafun(){
 
 function fechanacfun(){
 
-    var express = "[0-9]{2}[-]{1,1}[0-9]{2}[-]{1,1}[0-9]{4}";
-    alert(fechanacimiento.value);
+    var express = "^[0-9]{4}[-]{1,1}[0-9]{2}[-]{1,1}[0-9]{2}$";
+    
     if(fechanacimiento.value == null){
         createError(fechanacimiento);
         fechanacimiento.classList.add("error");
