@@ -37,7 +37,7 @@
                         </div>
 
                         <div class="col-6">
-                            <input type="text" id="fname" name="nombre">
+                            <input type="text" id="nombre" name="nombre" class="campo">
                         </div>
                     </div>
 
@@ -46,7 +46,7 @@
                             <label for="apellidos">Apellidos:</label>
                         </div>
                         <div class="col-6">
-                            <input type="text" id="lname" name="apellidos">
+                            <input type="text" id="apellidos" name="apellidos" class="campo">
                         </div>
                     </div>
 
@@ -55,7 +55,7 @@
                             <label for="edad">Edad:</label>
                         </div>
                         <div class="col-6">
-                            <input type="text" id="edad" name="edad">
+                            <input type="text" id="edad" name="edad" class="campo">
                         </div>
                     </div>
                     <div class="row">
@@ -63,7 +63,7 @@
                             <label for="nif">NIF:</label>
                         </div>
                         <div class="col-6">
-                            <input type="text" id="nif" name="nif">
+                            <input type="text" id="nif" name="nif" class="campo">
                         </div>
                     </div>
                     <div class="row">
@@ -71,7 +71,7 @@
                             <label for="email">Email:</label>
                         </div>
                         <div class="col-6">
-                            <input type="text" id="email" name="email">
+                            <input type="text" id="email" name="email" class="campo">
                         </div>
                     </div>
                     <div class="row">
@@ -79,7 +79,8 @@
                             <label for="provincia">Provincia:</label>
                         </div>
                         <div class="col-6">
-                            <select id="provincia" name="provincia">
+                            <select id="provincia" name="provincia" class="campo">
+                                <option value='-1'></option>
                                 <option value='alava'>Álava</option>
                                 <option value='albacete'>Albacete</option>
                                 <option value='alicante'>Alicante/Alacant</option>
@@ -140,7 +141,7 @@
                             <label for="fechanacimiento">Fecha Nacimiento:</label>
                         </div>
                         <div class="col-6">
-                            <input type="date" id="fechanacimiento" name="fechanacimiento">
+                            <input type="date" id="fechanacimiento" name="fechanacimiento" class="campo">
                         </div>
                     </div>
                     <div class="row">
@@ -148,7 +149,7 @@
                             <label for="telefono">Teléfono:</label>
                         </div>
                         <div class="col-6">
-                            <input type="text" id="telefono" name="telefono">
+                            <input type="text" id="telefono" name="telefono" class="campo">
                         </div>
                     </div>
                     <div class="row">
@@ -156,7 +157,7 @@
                             <label for="horavisita">Hora de visita:</label>
                         </div>
                         <div class="col-6">
-                            <input type="text" id="horavisita" name="horavisita">
+                            <input type="text" id="horavisita" name="horavisita" class="campo">
                         </div>
                     </div>
                     <div class="row">
@@ -164,7 +165,7 @@
                             
                         </div>
                         <div class="col-6">
-                            <input type="reset" value="Limpiar">
+                            <input type="reset" value="Limpiar" id="limpiar">
                             <input type="submit" value="Enviar" id="enviar">
                         </div>
                     </div>
@@ -177,13 +178,13 @@
                             <p id="intentos">0</p>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div id="errores"></div>
-                    </div>
                 
             </fieldset>
         </form>
+
+        <div class="row">
+            <div id="errores"></div>
+        </div>
     </div>
 
     

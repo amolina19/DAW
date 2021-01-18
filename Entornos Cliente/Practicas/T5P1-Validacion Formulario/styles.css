@@ -7,3 +7,7 @@
 .errores{
     color: red;
 }
+
+.error{
+    background-color: rgb(255, 155, 155);
+}
