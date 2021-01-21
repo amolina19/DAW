@@ -1,2 +1,2 @@
 <?php
-query
+database

@@ -1,18 +1,20 @@
 <?php
 
 include_once "configuracion.php";
-$GLOBALS["table"]= "dwes";
 $productos = null;
-obtenerProductos();
+
+//obtenerProductos();
 
 function obtenerProductos(){
-  
-  $productos = generarConsulta("select cod,nombre_corto from producto");
-  print $productos->fetch_array();
-}
-
-function generarConsulta($query){
-  return query($query,$GLOBALS["table"]);
+  global $productos;
+  $productos = queryConnect("select cod,nombre_corto from producto");
+  //print $productos->fetch_array();
+  for($i;$i<sizeof($productos);$i++){
+    $nombre = $productos[$i]['nombre_corto'];
+    $cod = $productos[$i]['cod'];
+    echo "<option value='$cod'>$nombre</option>";
+  }
+  //print_r($productos);
 }
 ?>
 
@@ -34,23 +36,25 @@ function generarConsulta($query){
     <div class="container">
 
       <div id="encabezado">
-      <h1>Ejercicio: </h1>
-        <form id="form_seleccion" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+        <h1>Ejercicio: </h1>
+          <form id="form_seleccion" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 
-      </form>
+          <div class="row">
+              <div class="col-8">
+                  <select name="stockselect" id="stockselect"> <?php obtenerProductos(); ?></select>
+              </div>
+              <div class="col-4">
+                  <button type="button" id="stockbutton">Mirar Stock</button>
+              </div>
+          </div>
+
+          <div class="row">
+
+          </div>
+
+        </form>
       </div>
-        <div class="row">
-            <div class="col-8">
-                <select name="stockselect" id="stockselect"></select>
-            </div>
-            <div class="col-4">
-                <button type="button" id="stockbutton">Mirar Stock</button>
-            </div>
-        </div>
-
-        <div class="row">
-
-        </div>
+        
     </div>
       
     <!-- Optional JavaScript -->

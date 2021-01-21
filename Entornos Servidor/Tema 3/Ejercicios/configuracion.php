@@ -1,31 +1,35 @@
 <?php
-
 $GLOBALS["address"] = "localhost";
 $GLOBALS["username"] = "dwes";
 $GLOBALS["password"] = "abc123";
 $GLOBALS["dbname"] = "dwes";
-$GLOBALS["database"] = new mysqli($GLOBALS["address"],$GLOBALS["username"],$GLOBALS["password"],$GLOBALS["dbname"]);
+$database = new mysqli($GLOBALS["address"],$GLOBALS["username"],$GLOBALS["password"],$GLOBALS["dbname"]);
 //selectDB("dwes");
 //$conexion = new mysqli($address,$user,$password,$database);
+//print $database->server_info;
 
-query("select cod,nombre_corto from producto","dwes");
+//queryConnect("select cod,nombre_corto from producto");
 
-function query($query,$table){
-    
-    if($GLOBALS["database"]->connect_errno != null){
-        $GLOBALS["database"]->select_db($table);
-        print "Database selected";
-        $queryResult = $GLOBALS["database"]->query($query);
-
+function queryConnect($query){
+    global $database;
+    $result = null;
+    if($database != null){
+        $queryResult = $database->query($query);
+        //print_r($queryResult);
         if($queryResult){
-            print $GLOBALS["database"]->fetch_array();
-            $conexion->close();
-            return $queryResult;
+            $rows = $queryResult->num_rows;
+            $count = 0;
+            while($count < $rows){
+                $fila = $queryResult->fetch_array();
+                $result[$count] = $fila;
+                $count++;
+            }
+            //print_r($result);
+            $database->close();
+            return $result;
         }
     }
-    $conexion->close();
+    $database->close();
     return null;
 }
-//$info = $conexion->server_info;
-//print $info;
 ?>
