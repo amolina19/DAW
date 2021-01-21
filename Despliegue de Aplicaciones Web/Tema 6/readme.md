@@ -15,3 +15,16 @@ exit
 sudo apt install phpmyadmin
 
 ALTER USER 'pphmyadmin'@'localhost' IDENTIFIED WITH mysql_native_password BY 'despliegue';
+
+COntraseña webHosting000
+DP3NvXLwfRO#mg!xDl4g
+
+
+username peliculas
+database peliculas666
+mysql password (w]M<4RN$-Z!Gusz
+
+database name phpmyadin id15971447_peliculas
+username phpmyadmin id15971447_peliculas666
+
+https://desp17.000webhostapp.com/peliculas/index.php
