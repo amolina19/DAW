@@ -1,17 +1,19 @@
 <?php
 
-    obtenerProductos();
+include_once "configuracion.php";
+$GLOBALS["table"]= "dwes";
+$productos = null;
+obtenerProductos();
 
-    function obtenerProductos(){
+function obtenerProductos(){
+  
+  $productos = generarConsulta("select cod,nombre_corto from producto");
+  print $productos->fetch_array();
+}
 
-
-    }
-
-    function generarConsulta(){
-
-        //$br = $dom->createElement('br');//Create new <br> tag
-        //$dom->appendChild($br);//Add the <br> tag to document
-    }
+function generarConsulta($query){
+  return query($query,$GLOBALS["table"]);
+}
 ?>
 
 
@@ -30,6 +32,13 @@
   <body>
 
     <div class="container">
+
+      <div id="encabezado">
+      <h1>Ejercicio: </h1>
+        <form id="form_seleccion" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+
+      </form>
+      </div>
         <div class="row">
             <div class="col-8">
                 <select name="stockselect" id="stockselect"></select>
