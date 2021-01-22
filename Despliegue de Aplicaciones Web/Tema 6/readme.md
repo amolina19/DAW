@@ -15,3 +15,4 @@ exit
 sudo apt install phpmyadmin
 
 ALTER USER 'pphmyadmin'@'localhost' IDENTIFIED WITH mysql_native_password BY 'despliegue';
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'my_password';
