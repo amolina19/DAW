@@ -1,17 +1,21 @@
 <?php
 
-    obtenerProductos();
+include_once "configuracion.php";
+$productos = null;
 
-    function obtenerProductos(){
+//obtenerProductos();
 
-
-    }
-
-    function generarConsulta(){
-
-        //$br = $dom->createElement('br');//Create new <br> tag
-        //$dom->appendChild($br);//Add the <br> tag to document
-    }
+function obtenerProductos(){
+  global $productos;
+  $productos = queryConnect("select cod,nombre_corto from producto");
+  //print $productos->fetch_array();
+  for($i;$i<sizeof($productos);$i++){
+    $nombre = $productos[$i]['nombre_corto'];
+    $cod = $productos[$i]['cod'];
+    echo "<option value='$cod'>$nombre</option>";
+  }
+  //print_r($productos);
+}
 ?>
 
 
@@ -30,18 +34,27 @@
   <body>
 
     <div class="container">
-        <div class="row">
-            <div class="col-8">
-                <select name="stockselect" id="stockselect"></select>
-            </div>
-            <div class="col-4">
-                <button type="button" id="stockbutton">Mirar Stock</button>
-            </div>
-        </div>
 
-        <div class="row">
+      <div id="encabezado">
+        <h1>Ejercicio: </h1>
+          <form id="form_seleccion" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 
-        </div>
+          <div class="row">
+              <div class="col-8">
+                  <select name="stockselect" id="stockselect"> <?php obtenerProductos(); ?></select>
+              </div>
+              <div class="col-4">
+                  <button type="button" id="stockbutton">Mirar Stock</button>
+              </div>
+          </div>
+
+          <div class="row">
+
+          </div>
+
+        </form>
+      </div>
+        
     </div>
       
     <!-- Optional JavaScript -->
