@@ -64,7 +64,7 @@ function obtenerProductos(){
                   <select name="stockselect" id="stockselect"> <?php obtenerProductos(); ?></select>
               </div>
               <div class="col-4">
-                  <input type="submit" id="stockbutton" name="stockbutton" value="Mirar Stock">
+                  <input type="button" id="stockbutton" name="stockbutton" value="Mirar Stock">
               </div>
           </div>
 
