@@ -3,13 +3,33 @@
 include_once "configuracion.php";
 $productos = null;
 
+
+if($_POST['stockbutton']){
+  if($_POST['stockselect']){
+    print "Entro";
+    print $_POST['stockselect'];
+    $resultado = queryConnect("select tienda.nombre,stock.unidades from producto,tienda,stock where producto.cod = stock.producto AND tienda.cod = stock.tienda AND producto.cod = ".$_POST['stockselect']);
+    print_r($resultado);
+    /*
+    for($i=0;$i<sizeof($resultado);$i++){
+      $tienda = $resultado[$i]['tienda.nombre'];
+      $unidades = $resultado[$i]['stock.unidades'];
+  
+      echo "<div>Este producto tiene ".$unidades." en ".$tienda."</div>";
+    }
+    */
+  
+  }
+}
+
+
 //obtenerProductos();
 
 function obtenerProductos(){
   global $productos;
   $productos = queryConnect("select cod,nombre_corto from producto");
   //print $productos->fetch_array();
-  for($i;$i<sizeof($productos);$i++){
+  for($i=0;$i<sizeof($productos);$i++){
     $nombre = $productos[$i]['nombre_corto'];
     $cod = $productos[$i]['cod'];
     echo "<option value='$cod'>$nombre</option>";
@@ -36,7 +56,7 @@ function obtenerProductos(){
     <div class="container">
 
       <div id="encabezado">
-        <h1>Ejercicio: </h1>
+        <h1>Ejercicio: </h1> 
           <form id="form_seleccion" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 
           <div class="row">
@@ -44,7 +64,7 @@ function obtenerProductos(){
                   <select name="stockselect" id="stockselect"> <?php obtenerProductos(); ?></select>
               </div>
               <div class="col-4">
-                  <button type="button" id="stockbutton">Mirar Stock</button>
+                  <input type="submit" id="stockbutton" name="stockbutton" value="Mirar Stock">
               </div>
           </div>
 
