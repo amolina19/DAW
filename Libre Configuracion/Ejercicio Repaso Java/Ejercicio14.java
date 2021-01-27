@@ -46,7 +46,7 @@ class Trabajador{
     }
 
     public static Integer obtenerIdSiguiente(){
-        return totalIds + 1;
+        return totalIds;
     }
 
     public void CambiaSeccion(Seccion seccion){
