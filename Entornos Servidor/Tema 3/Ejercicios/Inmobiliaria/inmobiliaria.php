@@ -14,14 +14,12 @@
             echo "<tr>";
             echo "<td>".$row['titulo']."</td>";
             echo "<td>".$row['texto']."</td>";
-            echo "<td>".$row['fecha']."</td>";
+            echo "<td id='fecha'>".$row['fecha']."</td>";
             echo "<td>".$row['imagen']."</td>";
             echo "</tr>";
         }
         echo "</table>";
     }
-
-
 ?>
 
 <!doctype html>
@@ -38,15 +36,16 @@
   </head>
   <body>
 
-    <div class="container">
-        <div class="row mt-10">
-            <div class="col-1"></div>
-            <div class="col-10">
+    <div class="container mt-10">
+        <div class="row ">
+            <div class="col-md-10">
+                <form>
+                    <div>Actualziar datos por categoría</div>
+                    <select name="categoria" id="categoria" 
+                    <?php generateTable($conexion); ?>
+                </form>
                 
-                <?php generateTable($conexion); ?>
-            
             </div>
-            <div class="col-1"></div>
         </div>
     </div>
       
