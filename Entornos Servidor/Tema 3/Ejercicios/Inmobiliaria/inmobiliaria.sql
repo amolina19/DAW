@@ -1,4 +1,4 @@
-# phpMyAdmin MySQL-Dump
+/* phpMyAdmin MySQL-Dump
 # version 2.3.2
 # http://www.phpmyadmin.net/ (download page)
 #
@@ -13,19 +13,27 @@
 # Estructura de tabla para la tabla `noticias`
 #
 
+*/
+
+USE inmobiliaria;
+
 CREATE TABLE noticias (
   id smallint(5) unsigned NOT NULL auto_increment,
   titulo varchar(100) NOT NULL default '',
   texto text NOT NULL,
   categoria enum('promociones','ofertas','costas') NOT NULL default 'promociones',
-  fecha date NOT NULL default '0000-00-00',
+  fecha date NOT NULL,
   imagen varchar(100) default NULL,
-  PRIMARY KEY  (id)
-) TYPE=MyISAM COMMENT='Noticias de la inmobiliaria Lindavista';
+  PRIMARY KEY (id)
+) 
 
+--TYPE=MyISAM COMMENT='Noticias de la inmobiliaria Lindavista';
+
+/*
 #
 # Volcar la base de datos para la tabla `noticias`
 #
+*/
 
 INSERT INTO noticias VALUES (1, 'Nueva promoción en Nervión', '145 viviendas de lujo en urbanización ajardinada situadas en un entorno privilegiado', 'promociones', '2004-02-04', NULL);
 INSERT INTO noticias VALUES (2, 'últimas viviendas junto al río', 'Apartamentos de 1 y 2 dormitorios, con fantásticas vistas. Excelentes condiciones de financiación.', 'ofertas', '2004-02-05', NULL);
