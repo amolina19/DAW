@@ -1,7 +1,7 @@
 
 
 //Variables que usaremos mas tarde de manera global
-var nombre,apellidos,edad,nif,email,provincia,fechanacimiento,telefono,visita,erroresDiv,intentos,intentosnum=0;
+var nombre,apellidos,edad,nif,email,provincia,fechanacimiento,telefono,visita,erroresDiv,intentos,intentosnum=getCookie("intentos");
 
 window.onload = function() {
     
@@ -60,6 +60,8 @@ function checkForm(){
             if(value){
                 limpiar();
                 window.alert("Has enviado el formulario");
+                setCookie("intentos",0,1);
+                intentosnum = 0;
             }
             //En caso de que exista algun campo que no cumpla los requisitos, se le aumentaran los intentos y se le informara al usuario.
         }else{
@@ -147,6 +149,10 @@ function limpiar(){
     fechanacimiento.value = null;
     telefono.value = null;
     visita.value = null;
+
+    intentosnum = 0;
+    setCookie("intentos",0,1);
+    intentos.innerHTML = "";
     //Funcion para limpiar los campos.
     cleanInputErrors();
     //Función que elimina todos los errores que se le muestran al usuario debajo.

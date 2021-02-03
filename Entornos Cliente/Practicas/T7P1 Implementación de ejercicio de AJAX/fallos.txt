@@ -1,0 +1,31 @@
+
+    Fallos en datosjson.php
+
+    1*  El objeto mysql solo existen en las versionas 4 y 5 de PHP, si se ejecuta en PHP 7 dara errores.
+    Debe ser sustituido por el objeto mysqli.
+
+    2*  El objeto mysql perteneciente a versiones anteriores no necesitaban que el argumento de conexión o de error este en la función.
+    EL objeto mysqli si es necesario insertale los argumentos de handle de conexión en la primera posición.
+
+    Ejemplos
+    Version antigua.
+    mysql_query("SET NAMES 'utf8'",$conexion);
+    Version nueva.
+    mysqli_query($conexion,"SET NAMES 'utf8'");
+
+    Version Antigua : die(mysql_error()));
+    Version nueva: die(mysqli_error($conexion));
+
+    3*  En el archivo index.js en la línea 18 de la función cargarAsync, la url que debe introducirse es un php ya ejecutandose en un servidor en una ruta absoluta.
+
+    Incorrecto cargarAsync("datosjson.php");
+    Correcto cargarAsync("http://localhost:3000/Entornos%20Cliente/Practicas/T7P1%20Implementaci%C3%B3n%20de%20ejercicio%20de%20AJAX/datosjson.php");
+    
+    4*  En el archivo index.js en la línea 78, los campos de objeto no estan definidos y es necesario recogerlo con posiciones.
+
+    Incorrecto: texto+="<tr><td>"+objeto.nombrecentro+"</
+    Correcto: texto+="<tr><td>"+objeto[1]+"</
+    
+
+    
+
