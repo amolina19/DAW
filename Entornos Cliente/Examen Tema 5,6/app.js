@@ -19,7 +19,8 @@ window.onload = function(){
             buttonAdmin.onclick = function(){
                 changeLanguge();
             }
-            document.body.appendChild(buttonAdmin);
+            buttonAdmin.classList.add("mt-5");
+            document.getElementById("form").appendChild(buttonAdmin);
         }
     }
 
