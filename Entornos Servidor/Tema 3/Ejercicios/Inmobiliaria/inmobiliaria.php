@@ -27,15 +27,20 @@
         $sql = 'SELECT DISTINCT categoria from noticias';
         foreach ($conn->query($sql) as $row) {
             $cat = $row['categoria'];
-            echo "<option value='.$cat.'>".$cat."</option>";
+            echo "<option value='$cat'>".$cat."</option>";
         }
         echo "</select>";
     }
 
     function updateTable($conn,$categoria){
-        echo "UPDATED";
+
+        if($categoria == 'none'){
+            $sql = "SELECT titulo,texto,fecha,imagen,categoria FROM noticias";
+        }else{
+            $sql = "SELECT titulo,texto,fecha,imagen,categoria FROM noticias WHERE categoria LIKE '$categoria'";
+        }
         $output = "<table>";
-        $sql = "SELECT titulo,texto,fecha,imagen,categoria FROM noticias WHERE categoria LIKE ".$categoria;
+        
         echo "<table>";
         echo "<tr><th>Titulo</th><th>Texto</th><th>Fecha</th><th>Imagen</th></tr>";
         foreach ($conn->query($sql) as $row) {
@@ -65,18 +70,19 @@
   <body>
 
     <div class="container mt-5">
-        <form method="post">
+        <form method="post" action="inmobiliaria.php">
             <div class="row">
                 <h5>Actualziar datos por categoría</h5>
                 <?php generateCategoria($conexion); ?>
                 <div class="ml-3"><input type="submit" value="Actualizar" name="actualizar"></div>
             </div>
             <div class="row">
-                <?php generateTable($conexion); ?>
                 <?php 
                     if(isset($_POST['actualizar']) && $_POST['actualizar']){
                         $category = $_POST['categoria'];
                         updateTable($conexion,$category);
+                    }else{
+                        updateTable($conexion,"none");
                     }
                 ?>
             </div>
