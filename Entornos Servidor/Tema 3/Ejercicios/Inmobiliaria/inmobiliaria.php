@@ -20,6 +20,34 @@
         }
         echo "</table>";
     }
+
+    function generateCategoria($conn){
+        echo "<select name='categoria' id='categoria' class='ml-2 mb-2'>";
+        //SHOW COLUMnS FROM noticias LIKE 'categoria';
+        $sql = 'SELECT DISTINCT categoria from noticias';
+        foreach ($conn->query($sql) as $row) {
+            $cat = $row['categoria'];
+            echo "<option value='.$cat.'>".$cat."</option>";
+        }
+        echo "</select>";
+    }
+
+    function updateTable($conn,$categoria){
+        echo "UPDATED";
+        $output = "<table>";
+        $sql = "SELECT titulo,texto,fecha,imagen,categoria FROM noticias WHERE categoria LIKE ".$categoria;
+        echo "<table>";
+        echo "<tr><th>Titulo</th><th>Texto</th><th>Fecha</th><th>Imagen</th></tr>";
+        foreach ($conn->query($sql) as $row) {
+            echo "<tr>";
+            echo "<td>".$row['titulo']."</td>";
+            echo "<td>".$row['texto']."</td>";
+            echo "<td id='fecha'>".$row['fecha']."</td>";
+            echo "<td>".$row['imagen']."</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+    }
 ?>
 
 <!doctype html>
@@ -36,17 +64,23 @@
   </head>
   <body>
 
-    <div class="container mt-10">
-        <div class="row ">
-            <div class="col-md-10">
-                <form>
-                    <div>Actualziar datos por categoría</div>
-                    <select name="categoria" id="categoria" 
-                    <?php generateTable($conexion); ?>
-                </form>
-                
+    <div class="container mt-5">
+        <form method="post">
+            <div class="row">
+                <h5>Actualziar datos por categoría</h5>
+                <?php generateCategoria($conexion); ?>
+                <div class="ml-3"><input type="submit" value="Actualizar" name="actualizar"></div>
             </div>
-        </div>
+            <div class="row">
+                <?php generateTable($conexion); ?>
+                <?php 
+                    if(isset($_POST['actualizar']) && $_POST['actualizar']){
+                        $category = $_POST['categoria'];
+                        updateTable($conexion,$category);
+                    }
+                ?>
+            </div>
+        </form>
     </div>
       
 
