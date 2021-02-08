@@ -5,10 +5,13 @@ function generateCategoria($conn){
     //SHOW COLUMnS FROM noticias LIKE 'categoria';
     $sql = 'SELECT DISTINCT categoria from noticias';
     echo "<option value='todas'>Todas</option>";
+
     foreach ($conn->query($sql) as $row) {
         $cat = $row['categoria'];
         echo "<option value='$cat'>".$cat."</option>";
     }
+
+    
     echo "</select>";
 }
 

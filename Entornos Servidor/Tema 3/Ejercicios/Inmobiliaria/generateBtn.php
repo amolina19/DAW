@@ -23,11 +23,10 @@ function generateBtn($rows){
         echo "<div class='row mt-4'>";
         echo "<input type='submit' class='btn btn-danger' name='borrarBtn' value='Eliminar Noticias'>";
         echo "</div>";
-
-        echo "<div class='row mt-4'>";
-        echo "<input class='btn btn-success' type='submit' name='insertar' value='Insertar Noticia'>";
-        echo "</div>";
     }
+    echo "<div class='row mt-4'>";
+    echo "<input class='btn btn-success' type='submit' name='insertar' value='Insertar Noticia'>";
+    echo "</div>";
 }
 
 function deleteRow($conn,$arrayRow){

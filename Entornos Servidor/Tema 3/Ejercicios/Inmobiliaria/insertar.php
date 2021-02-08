@@ -43,10 +43,18 @@ function generateSelectCategoria(){
     $categorias = obtainCategorias();
     //echo var_dump($categorias);
     echo "<select name='formulario[]'>";
-    for($i=0;$i<sizeof($categorias);$i++){
-        echo "<option value='".$categorias[$i]."'>".$categorias[$i]."</option>";
-        echo $categorias[$i];
+
+    if(sizeof($categorias) === 0){
+        echo "<option value='Promociones'>Promociones</option>";
+        echo "<option value='Costas'>Costas</option>";
+        echo "<option value='Ofertas'>Ofertas</option>";
+    }else{
+        for($i=0;$i<sizeof($categorias);$i++){
+            echo "<option value='".$categorias[$i]."'>".$categorias[$i]."</option>";
+            echo $categorias[$i];
+        }
     }
+    
     echo "</select>";
 }
 
