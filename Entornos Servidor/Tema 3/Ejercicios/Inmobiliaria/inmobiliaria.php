@@ -1,58 +1,15 @@
 <?php
 
     include_once 'configuracion.php';
+    include_once 'updateTable.php';
+    include_once 'generateCategoria.php';
+    include_once 'generateTable.php';
+    include_once 'generateBtn.php';
+    include_once 'lib/fecha.php';
+    include_once 'insertar.php';
 
     $conexion = getPDODatabase();
-
-    function generateTable($conn){
-
-        $output = "<table>";
-        $sql = 'SELECT titulo,texto,fecha,imagen FROM noticias';
-        echo "<table>";
-        echo "<tr><th>Titulo</th><th>Texto</th><th>Fecha</th><th>Imagen</th></tr>";
-        foreach ($conn->query($sql) as $row) {
-            echo "<tr>";
-            echo "<td>".$row['titulo']."</td>";
-            echo "<td>".$row['texto']."</td>";
-            echo "<td id='fecha'>".$row['fecha']."</td>";
-            echo "<td>".$row['imagen']."</td>";
-            echo "</tr>";
-        }
-        echo "</table>";
-    }
-
-    function generateCategoria($conn){
-        echo "<select name='categoria' id='categoria' class='ml-2 mb-2'>";
-        //SHOW COLUMnS FROM noticias LIKE 'categoria';
-        $sql = 'SELECT DISTINCT categoria from noticias';
-        foreach ($conn->query($sql) as $row) {
-            $cat = $row['categoria'];
-            echo "<option value='$cat'>".$cat."</option>";
-        }
-        echo "</select>";
-    }
-
-    function updateTable($conn,$categoria){
-
-        if($categoria == 'none'){
-            $sql = "SELECT titulo,texto,fecha,imagen,categoria FROM noticias";
-        }else{
-            $sql = "SELECT titulo,texto,fecha,imagen,categoria FROM noticias WHERE categoria LIKE '$categoria'";
-        }
-        $output = "<table>";
-        
-        echo "<table>";
-        echo "<tr><th>Titulo</th><th>Texto</th><th>Fecha</th><th>Imagen</th></tr>";
-        foreach ($conn->query($sql) as $row) {
-            echo "<tr>";
-            echo "<td>".$row['titulo']."</td>";
-            echo "<td>".$row['texto']."</td>";
-            echo "<td id='fecha'>".$row['fecha']."</td>";
-            echo "<td>".$row['imagen']."</td>";
-            echo "</tr>";
-        }
-        echo "</table>";
-    }
+    $rows = 0;   
 ?>
 
 <!doctype html>
@@ -79,13 +36,21 @@
             <div class="row">
                 <?php 
                     if(isset($_POST['actualizar']) && $_POST['actualizar']){
+                        $checked = $_POST['borrar'];
                         $category = $_POST['categoria'];
-                        updateTable($conexion,$category);
+                        $rows = updateTable($conexion,$category);
                     }else{
-                        updateTable($conexion,"none");
+                        $rows = updateTable($conexion,"Todas");
                     }
                 ?>
             </div>
+            <?php generateBtn($rows) ?>
+            <?php 
+                if($_POST['insertar']){
+                    //echo "generated";
+                    generateFormulario();
+                } 
+            ?>
         </form>
     </div>
       
