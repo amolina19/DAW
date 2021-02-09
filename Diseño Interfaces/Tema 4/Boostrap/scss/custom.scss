@@ -1,0 +1,9 @@
+// Custom.scss
+// Option A: Include all of Bootstrap
+
+$blue: red;
+$red: green;
+$border-width:                1px; 
+$theme-colors:( "primary": $blue, "secondary": #4e5d6c, "success": $red, "info": #5bc0de, "warning": #f0ad4e);
+
+@import "../boostrap/bootstrap.scss";
