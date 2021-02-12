@@ -1,0 +1,21 @@
+@mixin button($breakpoint){
+    display: inline-block;
+    text-decoration: none;
+    padding: .5em 1em;
+
+    &:hover{
+        background: $color;
+    }
+
+    @media screen and (min-width:$breakpoint){
+        background: $color2;
+    }
+}
+
+.button{
+    @include button(640px);
+}
+
+.suscription{
+    @include button(1000px);
+}

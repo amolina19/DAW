@@ -1,6 +1,16 @@
 @import "components/nesting";
+<<<<<<< HEAD
 
 body{
 
     color:red;
 }
+=======
+@import "components/datos";
+@import "components/mixins";
+@import "components/ciclos";
+
+body{
+    color:red;
+}
+>>>>>>> fe5e9890e8234ddcb186a86c5290ec7d71db57ec

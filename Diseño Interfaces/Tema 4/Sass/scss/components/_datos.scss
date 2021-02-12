@@ -1,0 +1,28 @@
+$number: 1;
+$number2: 10px;
+$number3: 20s;
+$string: 'Test';
+$string2: none;
+$color: red;
+$color2: hsl(200,100,50);
+$color3: #aaff99;
+$list: 1px solid red;
+$list2: primary, secundary, tertiary;
+$boolean: true;
+$map:(
+    primary: red,
+    secundary: blue,
+    tertiary: green
+);
+
+body{
+    color: $color;
+}
+
+p{
+    background: $color;
+}
+
+.button{
+    border: 1px solid $color;
+}

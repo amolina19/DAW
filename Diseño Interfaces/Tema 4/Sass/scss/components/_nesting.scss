@@ -1,4 +1,18 @@
 .menu{
+<<<<<<< HEAD
 
     
 }
+=======
+    margin: 0;
+
+    grid-template: {
+        columns: 20px 20px;
+        rows: auto;
+    }
+
+    .link{
+        text-decoration: none;
+    }
+}
+>>>>>>> fe5e9890e8234ddcb186a86c5290ec7d71db57ec

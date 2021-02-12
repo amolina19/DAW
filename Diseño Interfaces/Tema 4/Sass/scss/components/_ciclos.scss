@@ -1,3 +1,24 @@
+<<<<<<< HEAD
 @for $i from 1 through 20{
     
 }
+=======
+$bp: (
+    m: 640px,
+    l: 1024
+);
+
+
+@for $i from 1 through 12{
+    .cols-#{$i}{
+        width: $i * 8,5%;
+    }
+
+    @media screen and (min-width: map-get($bp, l )){
+        .cols-m-#{$i * 5}{
+            width: $i * 5%;
+        }
+    }
+}
+
+>>>>>>> fe5e9890e8234ddcb186a86c5290ec7d71db57ec
