@@ -24,7 +24,6 @@ public class Ejercicio2 {
                     System.out.println("Introduce tu nombre, por favor:");
                     nombre = scanner.next();
                     
-
                     try{
                         System.out.println("Introduce tu edad, por favor:");
                         edad = scanner.nextInt();
@@ -33,7 +32,6 @@ public class Ejercicio2 {
                         e.printStackTrace();
                         System.err.println("El valor introducido no es numérico");
                     }
-                   
 
                     break;
                 case 2:
