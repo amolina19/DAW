@@ -14,8 +14,17 @@ if (!isset($_SESSION["contador"])) {
   $_SESSION["contador"]++;
 }
 
-function loged(){
-  
+if(isset($_POST['registrarse'])){
+  header('Location: register.php');
+}
+
+if(isset($_POST['nosoyyo'])){
+  $_SESSION['usuario'] = null;
+  $_SESSION['password'] = null;
+}
+
+if(isset($_SESSION['password']) && isset($_POST['usuario'])){
+  header('Location: user.php');
 }
 
 function error($number){
@@ -31,10 +40,14 @@ function error($number){
 }
 
 if(isset($_POST["enviar"])){
-  $password = returnPasswordUser($_POST['usuario']);
+
+  if(isset($_SESSION['usuario'])){
+    $password = returnPasswordUser($_SESSION['usuario']);
+  }else{
+    $password = returnPasswordUser($_POST['usuario']);
+  }
   
   if($password != false){
-    
     if(verificarPassword($_POST["password"],$password)){
       $_SESSION['password'] = $password;
       $_SESSION['usuario'] = $_POST['usuario'];
@@ -53,7 +66,7 @@ if(isset($_POST["enviar"])){
 }
 
 function noEresTu(){
-  if(isset($_SESSION['usuario'])){
+  if(!isset($_SESSION['usuario'])){
     echo "<div class='row'>";
     echo "<div class='col-md-4'></div>";
     echo "<div class='col-md-4 mt-3'>";
@@ -61,8 +74,11 @@ function noEresTu(){
     echo "</div></div>";
   }else{
     echo "<div class='row'>";
-    echo "<p>No eres tu".$_SESSION['usuario']."?</p>";
-    echo "</div>";
+    echo "<div class='col-md-4'></div>";
+    echo "<div class='col-md-4 mt-3'>";
+    echo "<p>No eres tu <b>".$_SESSION['usuario']."<b>?</p>";
+    echo "<input class='mr-2' type='submit' name='nosoyyo' value='No soy yo'>";
+    echo "</div></div>";
   }
 }
 
@@ -98,8 +114,8 @@ function verificarPassword($password,$hash){
       
     <div class="container">
       <form method="post">
-          <?php noEresTu(); ?>
 
+          <?php noEresTu(); ?>
           <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4 mt-3">
@@ -111,6 +127,9 @@ function verificarPassword($password,$hash){
             <div class="col-md-4"></div>
             <div class="col-md-1 mt-3">
               <input class="btn btn-primary" type="submit" name="enviar" value="Enviar">
+            </div>
+            <div class="col-md-1 mt-3">
+              <input class="btn btn-success" type="submit" name="registrarse" value="Registrarse">
             </div>
           </div>
 

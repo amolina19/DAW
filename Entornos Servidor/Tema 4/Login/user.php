@@ -1,22 +1,22 @@
 <?php
     session_start();
-    $username = $_SESSION['usuario'];
+
+    function salir(){
+      $_SESSION['password'] = NULL;
+      //echo "printed".$_SESSION['password'];
+    }
+
+    /*
+    if(isset($_POST['password'])){
+      header("Location: index.php");
+    }
+    */
 
 
-function salir(){
-    $_SESSION['password'] = NULL;
-    echo "printed".$_SESSION['password'];
-}
+    if(isset($_POST['logout'])){
+      salir();
+    }
 
-if(!isset($_POST['password'])){
-    header("Location: index.php");
-}
-
-/*
-if($_POST['logout'] == NULL){
-    salir();
-}
-*/
 
 ?>
 
@@ -34,10 +34,10 @@ if($_POST['logout'] == NULL){
   </head>
   <body>
 
-  <div class="container">
+  <div class="container mt-5">
     <form action="index.php" method="post">
       <div class="row">
-          <div>Usuario: <?php echo $_SESSION['usuario']; ?> </div>
+          <div>Usuario:<b> <?php echo $_SESSION['usuario']; ?> </b></div>
             <div>
                 <input name="logout" class="btn btn-danger ml-5" type="submit" value="Salir">
             </div>

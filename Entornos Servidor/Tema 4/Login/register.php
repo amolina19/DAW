@@ -46,7 +46,10 @@
             $gsent->bindParam(":password", $password);
             
             if($gsent->execute()){
-                echo "Se ha insertado un nuevo elemento";
+                session_start();
+                $_SESSION['usuario'] = $_POST['usuario'];
+                $_SESSION['password'] = $password;
+                header("Location: user.php");
             }
         }catch(PDOException $e){
             die("Connection to database failed: " . $e->getMessage());
@@ -75,7 +78,7 @@
   </head>
   <body>
 
-  <div class="container">
+  <div class="container mt-4">
     <form method="post">
         <div class="row">
           <div class="col-md-4"></div>
@@ -98,7 +101,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4"></div>
+            <div class="col-md-6"></div>
             <div class="col-md-2">
                 <input type="submit" name="registrarse" value="Registrarse" class="btn btn-primary">
             </div>
