@@ -18,7 +18,43 @@ window.onload = function (){
 function insertar(){
     var nombre = document.getElementById("nombre").value;
     var idProfesor = document.getElementById("idprofesor").value;
-    alert(nombre+" "+idProfesor);
+    
+
+    var item = {
+        id_profesor: +idProfesor,
+        nombre: nombre
+    };
+
+    //alert(item.nombre+" "+item.id_profesor);
+    database.then(function(db){
+        var tx = db.transaction('Profesor', 'readwrite');
+        var profesorDB = tx.objectStore('Profesor');
+        profesorDB.put(item);
+        return tx.complete;
+    }).then(function() {
+        alert.log('item updated!');
+    });
+      
+    
+    //created: new Date().getTime()
+    
+}
+
+function comprobarDatos(){
+
+    database.then(function(db) {
+        var tx = db.transaction('Profesor', 'readonly');
+        var store = tx.objectStore('Profesor');
+        return store.openCursor();
+    }).then(function() {
+
+    });
+      
+
+    
+
+
+
 }
 
 function openDB(){
