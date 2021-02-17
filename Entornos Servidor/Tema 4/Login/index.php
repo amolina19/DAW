@@ -23,7 +23,7 @@ if(isset($_POST['nosoyyo'])){
   $_SESSION['password'] = null;
 }
 
-if(isset($_SESSION['password']) && isset($_POST['usuario'])){
+if(isset($_SESSION['password']) && $_SESSION['password'] != NULL){
   header('Location: user.php');
 }
 
@@ -40,17 +40,17 @@ function error($number){
 }
 
 if(isset($_POST["enviar"])){
-
   if(isset($_SESSION['usuario'])){
     $password = returnPasswordUser($_SESSION['usuario']);
   }else{
     $password = returnPasswordUser($_POST['usuario']);
+    $_SESSION['usuario'] = $_POST['usuario'];
   }
   
   if($password != false){
     if(verificarPassword($_POST["password"],$password)){
       $_SESSION['password'] = $password;
-      $_SESSION['usuario'] = $_POST['usuario'];
+      
       $_SESSION['error'] = 3;
       header("Location: user.php");
       error(3);
@@ -61,8 +61,6 @@ if(isset($_POST["enviar"])){
     error(1);
   }
   
-
-  //$isValid = password_verify($_POST["password"],$hash);
 }
 
 function noEresTu(){

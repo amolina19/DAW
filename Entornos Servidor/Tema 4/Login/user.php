@@ -1,9 +1,9 @@
 <?php
     session_start();
-
+    
     function salir(){
       $_SESSION['password'] = NULL;
-      //echo "printed".$_SESSION['password'];
+      header("Location: index.php");
     }
 
     /*
@@ -35,7 +35,7 @@
   <body>
 
   <div class="container mt-5">
-    <form action="index.php" method="post">
+    <form method="post">
       <div class="row">
           <div>Usuario:<b> <?php echo $_SESSION['usuario']; ?> </b></div>
             <div>
