@@ -21,7 +21,7 @@ function insertar(){
     
 
     var item = {
-        id_profesor: +idProfesor,
+        id_profesor: idProfesor,
         nombre: nombre
     };
 
@@ -32,7 +32,7 @@ function insertar(){
         profesorDB.put(item);
         return tx.complete;
     }).then(function() {
-        alert.log('item updated!');
+        alert('item updated!');
     });
       
     
@@ -49,11 +49,6 @@ function comprobarDatos(){
     }).then(function() {
 
     });
-      
-
-    
-
-
 
 }
 
