@@ -11,8 +11,10 @@ window.onload = function (){
     insertarBtn = document.getElementById("insertar");
     insertarBtn.onclick = function (){
         insertar(database);
+        generateProfesorTable();
     }
     generateProfesorTable();
+    insertarGuardias(database);
 
 }
 
@@ -33,16 +35,29 @@ function insertar(database){
     
 }
 
-function comprobarDatos(){
+function insertarGuardias(database){
+    var guardias = [
+        {id_guardia: 1,id_profesor: 2, ausente: true, fecha: "11/5/2020", hora: 3},
+        {id_guardia: 2,id_profesor: 1, ausente: false, fecha: "9/3/2020", hora: 2},
+        {id_guardia: 3,id_profesor: 3, ausente: false, fecha: "11/2/2020", hora: 4},
+        {id_guardia: 4,id_profesor: 3, ausente: true, fecha: "4/1/2020", hora: 1},
+        {id_guardia: 5,id_profesor: 1, ausente: false, fecha: "18/3/2020", hora: 1},
+        {id_guardia: 6,id_profesor: 2, ausente: false, fecha: "7/4/2020", hora: 4},
+        {id_guardia: 7,id_profesor: 1, ausente: true, fecha: "14/9/2020", hora: 5},
+        {id_guardia: 8,id_profesor: 4, ausente: false, fecha: "21/11/2020", hora: 6},
+        {id_guardia: 9,id_profesor: 2, ausente: false, fecha: "12/12/2020", hora: 5},
+        {id_guardia: 10,id_profesor: 4, ausente: true, fecha: "16/10/2020", hora: 6}
+    ];
 
-    database.then(function(db) {
-        var tx = db.transaction('Profesor', 'readonly');
-        var store = tx.objectStore('Profesor');
-        return store.openCursor();
-    }).then(function() {
-
-    });
-
+    var database = indexedDB.open("Guardia", 1);
+    database.onsuccess = function(event) {
+        var active = database.result;
+        var request = active.transaction(["Guardias"], "readwrite");
+        var objectStore =  request.objectStore("Guardias");
+        for(i=0;i<guardias.length;i++){
+            objectStore.add(guardias[i]);
+        }
+    }
 }
 
 function openDB(){
@@ -77,7 +92,6 @@ function openDB(){
 
 function generateProfesorTable(){
 
-
     var database = indexedDB.open("Guardia", 1);
         database.onsuccess = function(event) {
         var db = event.target.result;
@@ -100,17 +114,14 @@ function generateProfesorTable(){
         data.oncomplete = function() {
                         
             var outerHTML = "";
+            outerHTML += "<table>";
+            outerHTML += "<th>ID</th><th>Profesor</th><th>Guardias</th>";
+            outerHTML += "<tr>";
             for (var key in elements) {
-                
-                outerHTML += "<table>";
-                outerHTML += "<th>ID</th><th>Profesor</th><th>Guardias</th>";
-                outerHTML += "<tr>";
                 outerHTML += "<td> "+ elements[key].id_profesor +"</td>";
                 outerHTML += "<td> "+ elements[key].nombre +"</td>";
-                if(elements[key].guardias == undefined){
-                    outerHTML += "<td>Sin Guardias</td>";
-                }else{
-                    outerHTML += "<td> "+ elements[key].guardias +"</td>";
+                if(elements[key].guardias == undefined && elements[key].nombre != undefined){
+                    outerHTML += "<td> <button>Visualizar</button></td>";
                 }
                 outerHTML += "</tr>";                       
             }
