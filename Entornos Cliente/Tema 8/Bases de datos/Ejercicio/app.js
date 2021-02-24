@@ -7,25 +7,31 @@ var guardia;
 window.onload = function (){
 
     indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
-    openDB();
+    database = openDB();
     insertarBtn = document.getElementById("insertar");
     insertarBtn.onclick = function (){
-        insertar();
+        insertar(database);
     }
+    generateProfesorTable();
 
 }
 
-function insertar(){
+function insertar(database){
     var nombre = document.getElementById("nombre").value;
     var idProfesor = document.getElementById("idprofesor").value;
     
-
     var item = {
         id_profesor: idProfesor,
         nombre: nombre
     };
 
+    var active = database.result;
+    var request = active.transaction(["Profesor"], "readwrite");
+    var objectStore =  request.objectStore("Profesor");
+    objectStore.add(item);
+
     //alert(item.nombre+" "+item.id_profesor);
+    /*
     database.then(function(db){
         var tx = db.transaction('Profesor', 'readwrite');
         var profesorDB = tx.objectStore('Profesor');
@@ -34,6 +40,7 @@ function insertar(){
     }).then(function() {
         alert('item updated!');
     });
+    */
       
     
     //created: new Date().getTime()
@@ -72,6 +79,7 @@ function openDB(){
 
     };
 
+
     database.onsuccess = function (e) {
         alert('Database loaded');
     };
@@ -79,5 +87,57 @@ function openDB(){
     database.onerror = function (e) {
         alert('Error loading database');
     };
+
+    return database;
+
+}
+
+function generateProfesorTable(){
+
+
+    var database = indexedDB.open("Guardia", 1);
+        database.onsuccess = function(event) {
+        var db = event.target.result;
+        var data = db.transaction(["Profesor"], "readonly");
+        var objectStorage = data.objectStore("Profesor");
+        var elements = [];
+
+        objectStorage.openCursor().onsuccess = function (e) {
+                        
+            var result = e.target.result;
+            if (result === null) {
+                return;
+            }
+            
+            elements.push(result.value);
+            result.continue();
+            
+        };
+
+        data.oncomplete = function() {
+                        
+            var outerHTML = "";
+            for (var key in elements) {
+                
+                outerHTML += "<table>";
+                outerHTML += "<th>ID</th><th>Profesor</th><th>Guardias</th>";
+                outerHTML += "<tr>";
+                outerHTML += "<td> "+ elements[key].id_profesor +"</td>";
+                outerHTML += "<td> "+ elements[key].nombre +"</td>";
+                if(elements[key].guardias == undefined){
+                    outerHTML += "<td>Sin Guardias</td>";
+                }else{
+                    outerHTML += "<td> "+ elements[key].guardias +"</td>";
+                }
+                outerHTML += "</tr>";                       
+            }
+            outerHTML += "</table>";
+            
+            elements = [];
+            document.getElementById("profesor").innerHTML = outerHTML;
+        };
+    };
+
+    
 
 }
