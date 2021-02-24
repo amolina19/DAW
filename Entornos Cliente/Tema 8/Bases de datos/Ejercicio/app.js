@@ -12,6 +12,7 @@ window.onload = function (){
     insertarBtn.onclick = function (){
         insertar(database);
         generateProfesorTable();
+        generateGuardiaTable();
     }
     generateProfesorTable();
     insertarGuardias(database);
@@ -90,13 +91,13 @@ function openDB(){
 
 }
 
-function generateProfesorTable(){
-
+function generateGuardiaTable(idProfesor){
+    //alert(idProfesor);
     var database = indexedDB.open("Guardia", 1);
         database.onsuccess = function(event) {
         var db = event.target.result;
-        var data = db.transaction(["Profesor"], "readonly");
-        var objectStorage = data.objectStore("Profesor");
+        var data = db.transaction(["Guardias"], "readonly");
+        var objectStorage = data.objectStore("Guardias");
         var elements = [];
 
         objectStorage.openCursor().onsuccess = function (e) {
@@ -105,7 +106,9 @@ function generateProfesorTable(){
             if (result === null) {
                 return;
             }
+            //
             
+            //alert(result);
             elements.push(result.value);
             result.continue();
             
@@ -115,24 +118,68 @@ function generateProfesorTable(){
                         
             var outerHTML = "";
             outerHTML += "<table>";
-            outerHTML += "<th>ID</th><th>Profesor</th><th>Guardias</th>";
+            outerHTML += "<th>Ausente</th><th>Fecha</th><th>Hora</th>";
             outerHTML += "<tr>";
             for (var key in elements) {
-                outerHTML += "<td> "+ elements[key].id_profesor +"</td>";
-                outerHTML += "<td> "+ elements[key].nombre +"</td>";
-                if(elements[key].guardias == undefined && elements[key].nombre != undefined){
-                    outerHTML += "<td> <button>Visualizar</button></td>";
+
+                if(elements[key].id_profesor == idProfesor){
+                    if(elements[key].ausente == true){
+                        outerHTML += "<td> SI </td>";
+                    }else{
+                        outerHTML += "<td> NO </td>";
+                    }
+                    outerHTML += "<td> "+ elements[key].fecha +"</td>";
+                    outerHTML += "<td> "+ elements[key].hora +"</td>";
+                    outerHTML += "</tr>";  
                 }
-                outerHTML += "</tr>";                       
+                                     
             }
             outerHTML += "</table>";
             
             elements = [];
-            document.getElementById("profesor").innerHTML = outerHTML;
+            document.getElementById("guardias").innerHTML = outerHTML;
         };
     };
 }
 
-function generateGuardiaTable(){
+function generateProfesorTable(){
+    var database = indexedDB.open("Guardia", 1);
+    database.onsuccess = function(event) {
+    var db = event.target.result;
+    var data = db.transaction(["Profesor"], "readonly");
+    var objectStorage = data.objectStore("Profesor");
+    var elements = [];
 
+    objectStorage.openCursor().onsuccess = function (e) {
+                    
+        var result = e.target.result;
+        if (result === null) {
+            return;
+        }
+        
+        elements.push(result.value);
+        result.continue();
+        
+    };
+
+    data.oncomplete = function() {
+                    
+        var outerHTML = "";
+        outerHTML += "<table>";
+        outerHTML += "<th>ID</th><th>Profesor</th><th>Guardias</th>";
+        outerHTML += "<tr>";
+        for (var key in elements) {
+            outerHTML += "<td> "+ elements[key].id_profesor +"</td>";
+            outerHTML += "<td> "+ elements[key].nombre +"</td>";
+            if(elements[key].guardias == undefined && elements[key].nombre != undefined){
+                outerHTML += "<td> <button onclick='generateGuardiaTable(this.id);' id='"+elements[key].id_profesor+"'>Visualizar</button></td>";
+            }
+            outerHTML += "</tr>";                       
+        }
+        outerHTML += "</table>";
+        
+        elements = [];
+        document.getElementById("profesor").innerHTML = outerHTML;
+    };
+};
 }
