@@ -13,7 +13,7 @@ public class Tarea2 {
         FileWriter fw;
         FileReader fr;
         String aux = "";
-        System.out.println(file.getAbsolutePath());
+        System.out.println();
 
         try {
             if(!file.exists()) {
@@ -22,14 +22,16 @@ public class Tarea2 {
             fw = new FileWriter(file);
             fw.write("Vamos a construir un fichero de salida de texto . \n");
             fr = new FileReader(file);
-            aux += getText(fr);
+            aux = getText(fr);
             aux += "Clase Segundo de Aplicaciones WEB Curso 2020-2021. \n";
             fw.write(aux);
-            aux += getText(fr);
+            fr = new FileReader(file);
+            aux = getText(fr);
             aux += "Estamos a últimos de Febrero, el curso está cerca de acabarse. \n";
             fw.write(aux);
             fw.close();
             fr.close();
+            fr = new FileReader(file);
             System.out.println(getText(fr));
         } catch (IOException e) {
             // TODO Auto-generated catch block
@@ -49,11 +51,9 @@ public class Tarea2 {
             }
             
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         
         return output;
-        
     }
 }
