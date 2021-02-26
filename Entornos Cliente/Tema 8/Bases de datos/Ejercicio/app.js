@@ -1,22 +1,57 @@
 var indexedDB;
 var database;
-var insertarBtn;
+var insertarProfe;
 var profesor;
+
+var limpiarTodo;
+
 var guardia;
+var insertarGuard;
 
 window.onload = function (){
 
     indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
     database = openDB();
-    insertarBtn = document.getElementById("insertar");
-    insertarBtn.onclick = function (){
+    insertarProfe = document.getElementById("insertarProfe");
+    insertarProfe.onclick = function (){
         insertar(database);
-        generateProfesorTable();
-        generateGuardiaTable();
+        updateTables();
     }
-    generateProfesorTable();
-    insertarGuardias(database);
+    insertarGuard = document.getElementById("insertarGuardia");
+    insertarGuard.onclick = function (){
+        insertarGuardia(database);
+        updateTables();
+    }
 
+    limpiarTodo = document.getElementById("limpiar");
+    limpiarTodo.onclick = function(){
+        limpiar();
+    }
+    updateTables();
+
+}
+
+function limpiar(){
+    limpiarProfesor();
+    limpiarGuardia();
+}
+
+function limpiarProfesor(){
+    document.getElementById("profesor").value = "";
+    document.getElementById("nombre").value = "";
+}
+
+function limpiarGuardia(){
+    document.getElementById("idprofesorguardia").value = "";
+    document.getElementById("ausente").value = "";
+    document.getElementById("horaguardia").value = "";
+    document.getElementById("fechaguardia").value = "";
+    document.getElementById("idguardia").value = "";
+}
+
+function updateTables(){
+    generateProfesorTable();
+    generateGuardiaTable();
 }
 
 function insertar(database){
@@ -34,6 +69,28 @@ function insertar(database){
     objectStore.add(item);
     //created: new Date().getTime()
     
+}
+
+function insertarGuardia(database){
+    var idGuardia = document.getElementById("idguardia").value;
+    var idProfesor = document.getElementById("idprofesorguardia").value;
+    var ausente = document.getElementById("ausente").value;
+    var fecha = document.getElementById("fechaguardia").value;
+    var hora = document.getElementById("horaguardia").value;
+    
+    var item = {
+        id_guardia: idGuardia,
+        id_profesor: idProfesor,
+        ausente: ausente,
+        fecha: fecha,
+        hora: hora
+    };
+
+    var active = database.result;
+    var request = active.transaction(["Guardias"], "readwrite");
+    var objectStore =  request.objectStore("Guardias");
+    objectStore.add(item);
+
 }
 
 function insertarGuardias(database){
