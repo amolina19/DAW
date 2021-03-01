@@ -32,7 +32,7 @@
 
         <div class="mt-2">
             <p>
-                Es una aplicación web sencilla que permita a un usuario acceder a una parte dela aplicación u otra en función de si se ha autentificado o no. Dicha aplicación constará de las siguientes páginas:
+                Es una aplicación web sencilla que permita a un usuario acceder a una parte de la aplicación u otra en función de si se ha autentificado o no. Dicha aplicación constará de las siguientes páginas:
             </p>
             <ul>
                 <li><b>index.php</b>
