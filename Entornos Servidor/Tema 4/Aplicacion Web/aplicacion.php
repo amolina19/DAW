@@ -3,6 +3,10 @@
     include_once 'funciones.inc.php';
     generateNav();
 
+    if(!isset($_SESSION['password'])){
+        header('Location:index.php');
+    }
+
 ?>
 
 

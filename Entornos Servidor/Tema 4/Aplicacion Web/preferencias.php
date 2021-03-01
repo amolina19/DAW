@@ -1,7 +1,8 @@
 <?php
 
     include_once 'funciones.inc.php';
-
+    session_start();
+    
     if(isset($_POST['establecer'])){
         $value = $_POST['background'];
         setCookiePreference($value);
@@ -29,6 +30,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body <?php if(isset($_COOKIE ['background'])){setBackground();} ?> >
+
+  <?php generateNav(); ?>
       <center>
       <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="mt-5">
         <b><label for="background">Color de Fondo</label><b>

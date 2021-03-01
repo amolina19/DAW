@@ -63,10 +63,11 @@
         $_SESSION['usuario'] = "Invitado";
         $_SESSION['password'] = null;
         $_SESSION['fecha'] = date("Y-m-d H:i:s");
-        header("Location: aplicacion.php");
+        header("Location: informacion.php");
     }
 
     function setUserSession($user,$password){
+        $_SESSION['invitado'] == false;
         $_SESSION['usuario'] = $user;
         $_SESSION['password'] = $password;
         $_SESSION['fecha'] = date("Y-m-d H:i:s");

@@ -1,7 +1,8 @@
 <?php
 
     include_once 'funciones.inc.php';
-
+    session_start();
+    
     if(isset($_POST["volver"])){
         header("Location: aplicacion.php");
     }
@@ -21,15 +22,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body <?php if(isset($_COOKIE ['background'])){setBackground();} ?> >
-
+    <?php generateNav(); ?>
     <div class="container">
         <center>
-        <div class="mt-2">
-            <form method="post">
-                <input type="submit" class="btn btn-primary" name="volver" value="Volver">
-            </form>
-        </div>
-        
         <div class="mt-4">
             <h1>Información</h1>
         </div>
