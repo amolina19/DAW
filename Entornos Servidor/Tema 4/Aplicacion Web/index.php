@@ -8,14 +8,17 @@
   if(isset($_POST["enviar"])){
     $usuario = $_POST['usuario'];
     $password = $_POST['password'];
+    //echo returnPasswordUser($usuario);
+
+    if(checkUserLogin($password,returnPasswordUser($usuario))){
+      setUserSession($usuario,$password);
+    }
   }
 
 
   //Invitado
   if(isset($_POST["invitado"])){
-    $_SESSION['invitado'] = true;
-    $_SESSION['usuario'] = "Invitado";
-    $_SESSION['password'] = null;
+    setInvitado();
   }
 
 ?>
@@ -32,7 +35,7 @@
    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
-  <body>
+  <body <?php if(isset($_COOKIE ['background'])){setBackground();} ?>>
       <div class="container">
         <div class="row mt-5"></div>
 

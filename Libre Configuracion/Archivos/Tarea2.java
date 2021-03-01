@@ -34,7 +34,6 @@ public class Tarea2 {
             fr = new FileReader(file);
             System.out.println(getText(fr));
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         
