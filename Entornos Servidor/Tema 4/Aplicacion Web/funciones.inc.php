@@ -87,23 +87,15 @@
     }
 
     function generateNav(){
-        
+        echo "<nav class='navbar navbar-expand-sm navbar-light bg-light'>";
         if(isset($_SESSION['password'])){
-            echo "<nav class='navbar navbar-expand-sm navbar-light bg-light'>";
-            echo "<a class='navbar-brand' href='informacion.php'>Información</a>";
             echo "<a class='navbar-brand' href='preferencias.php'>Preferencias</a>";
-            echo "<a class='navbar-brand' href='disconnectUser();'>Cerrar Sesión</a>";
-            echo "Usuario: ".$_SESSION['usuario'];
-            echo " Logeado en: ".$_SESSION['fecha'];
-            echo "</nav>";
-        }else if($_SESSION['invitado'] === true){
-            echo "<nav class='navbar navbar-expand-sm navbar-light bg-light'>";
-            echo "<a class='navbar-brand' href='informacion.php'>Información</a>";
-            echo "<a class='navbar-brand' href='disconnectUser();'>Cerrar Sesión</a>";
-            echo "Usuario: ".$_SESSION['usuario'];
-            echo " Logeado en: ".$_SESSION['fecha'];
-            echo "</nav>";
         }
+        echo "<a class='navbar-brand' href='informacion.php'>Información</a>";
+        echo "<a class='navbar-brand' href='disconnectUser();'>Cerrar Sesión</a>";
+        echo "<div class='mr-3'>Usuario:<b> ".$_SESSION['usuario']."</b></div>";
+        echo "<div>Logeado el:<b> ".$_SESSION['fecha']."</b></div>";
+        echo "</nav>";
     }
 
 ?>
