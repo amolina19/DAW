@@ -8,10 +8,6 @@ var limpiarTodo;
 var guardia;
 var insertarGuard;
 
-var arrayGuardias = new Map();
-var arrayProfesores = new Map();
-var nguardias = new Map();
-
 window.onload = function (){
 
     indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
@@ -31,9 +27,8 @@ window.onload = function (){
     limpiarTodo.onclick = function(){
         limpiar();
     }
-    nGuardiasProfesores();
     updateTables();
-    
+    //insertarGuardias(database);
 
 }
 
@@ -73,13 +68,12 @@ function insertar(database){
     var request = active.transaction(["Profesor"], "readwrite");
     var objectStore =  request.objectStore("Profesor");
     objectStore.add(item);
-    //created: new Date().getTime()
-    
 }
 
 function insertarGuardia(database){
+
+    let dialogo = confirm("¿Quieres asignar la guardia a un profesor?");
     var idGuardia = Number(document.getElementById("idguardia").value);
-    //var idProfesor = document.getElementById("idprofesorguardia").value;
     var ausente = document.getElementById("ausente").value;
 
     if(ausente == "true"){
@@ -89,14 +83,27 @@ function insertarGuardia(database){
     }
     var fecha = document.getElementById("fechaguardia").value;
     var hora = Number(document.getElementById("horaguardia").value);
+
+    if(dialogo){
+        let id = prompt("Introduce el ID del profesor a asignar");
+        var item = {
+            id_guardia: idGuardia,
+            id_profesor: id,
+            ausente: ausente,
+            fecha: fecha,
+            hora: hora
+        };
+    }else{
+        var item = {
+            id_guardia: idGuardia,
+            id_profesor: undefined,
+            ausente: ausente,
+            fecha: fecha,
+            hora: hora
+        };
+    }
     
-    var item = {
-        id_guardia: idGuardia,
-        id_profesor: undefined,
-        ausente: ausente,
-        fecha: fecha,
-        hora: hora
-    };
+    
 
     var active = database.result;
     var request = active.transaction(["Guardias"], "readwrite");
@@ -107,6 +114,7 @@ function insertarGuardia(database){
 
 function insertarGuardias(database){
     var guardias = [
+        {id_guardia: 0,id_profesor: 5, ausente: false, fecha: "14/5/2020", hora: 3},
         {id_guardia: 1,id_profesor: 2, ausente: true, fecha: "11/5/2020", hora: 3},
         {id_guardia: 2,id_profesor: 1, ausente: false, fecha: "9/3/2020", hora: 2},
         {id_guardia: 3,id_profesor: 3, ausente: false, fecha: "11/2/2020", hora: 4},
@@ -160,7 +168,8 @@ function openDB(){
 
 }
 
-function nGuardiasProfesores(){
+function nGuardiasProfesores(id_profesor){
+    var hechas = 0;
     var database = indexedDB.open("Guardia", 1);
         database.onsuccess = function(event) {
         var db = event.target.result;
@@ -174,31 +183,30 @@ function nGuardiasProfesores(){
             if (result === null) {
                 return;
             }
-            //
-            
-            //alert(result);
             elements.push(result.value);
             result.continue();
             
         };
         data.oncomplete = function() {
-            
+            let value = 0;
             for (var key in elements) {
 
                 guardia = {
                     id_guardia: elements[key].id_guardia,
                     id_profesor: elements[key].id_profesor,
                 };
-                nguardias.delete(Number(guardia.id_profesor));
-                nguardias.set(Number(guardia.id_profesor),Number(nguardias.get(guardia.id_profesor)+1));
+                if(id_profesor == guardia.id_profesor){
+                    value += Number(1);
+                }
             }
-            console.log(nguardias);
+            hechas = value;
+            document.getElementById("gpid-"+id_profesor).innerHTML = hechas;
         };
     }
 }
 
 function generateGuardiaTable(idProfesor){
-    //alert(idProfesor);
+   
     var database = indexedDB.open("Guardia", 1);
         database.onsuccess = function(event) {
         var db = event.target.result;
@@ -212,9 +220,6 @@ function generateGuardiaTable(idProfesor){
             if (result === null) {
                 return;
             }
-            //
-            
-            //alert(result);
             elements.push(result.value);
             result.continue();
             
@@ -236,7 +241,6 @@ function generateGuardiaTable(idProfesor){
                     fecha: elements[key].fecha,
                     hora: elements[key].hora
                 };
-                //arrayGuardias.set(guardia.id_profesor,nguardiashechas);
 
                 if(guardia.id_profesor == idProfesor){
                     
@@ -282,6 +286,7 @@ function generateProfesorTable(){
     data.oncomplete = function() {
                     
         var outerHTML = "";
+        var profeID = "";
         outerHTML += "<table>";
         outerHTML += "<th>ID</th><th>Profesor</th><th>Visualizar</th><th>Realizadas</th>";
         outerHTML += "<tr>";
@@ -292,21 +297,30 @@ function generateProfesorTable(){
                 nombre: elements[key].nombre,
                 guardias: undefined
             }
-            arrayProfesores.set(Number(profesor.id_profesor),profesor);
-            nguardias.set(profesor.id_profesor,0);
+            profeID = profesor.id_profesor;
 
             outerHTML += "<td> "+ profesor.id_profesor +"</td>";
             outerHTML += "<td> "+ profesor.nombre +"</td>";
             if(profesor.nombre != undefined && profesor.nombre != ""){
                 outerHTML += "<td> <button onclick='generateGuardiaTable(this.id);' id='"+profesor.id_profesor+"'>Visualizar</button></td>";
             }
-            outerHTML += "</tr>";                       
+            outerHTML += "<td id='gpid-"+profesor.id_profesor+"'></td>";
+            outerHTML += "</tr>";
+            document.getElementById("profesor").innerHTML = outerHTML;
+            nGuardiasProfesores(profeID);                       
         }
         outerHTML += "</table>";
-        
         elements = [];
         document.getElementById("profesor").innerHTML = outerHTML;
-        console.log(arrayProfesores);
     };
 };
+}
+
+function obtenerGuardiasDeProfesores(){
+
+    var elementos = document.querySelectorAll('[id^=gpid]');
+    alert(elementos.length);
+    for(i=0; i<elementos.length;i++){
+        console.log(elementos[i]);
+    }
 }
