@@ -15,7 +15,7 @@ public class Leer_Bytes_Imagen {
     public static void main(String[] args) {
 
         try {
-            file = new File(PATH + "imagen.png");
+            file = new File(PATH + "manosunidas.png");
             fis = new FileInputStream(file);
             leerImagen(fis);
         } catch (FileNotFoundException e) {
@@ -26,7 +26,7 @@ public class Leer_Bytes_Imagen {
     public static void leerImagen(FileInputStream fis) {
         
         try {
-            fos = new FileOutputStream(System.getProperty("user.home")+"/Escritorio/manosunidas.png");
+            fos = new FileOutputStream(System.getProperty("user.home")+"/Escritorio/manosunidasclonada.png");
             int i;
             bytes = new int[(int) file.length()];
             int count = 0;
