@@ -31,6 +31,7 @@ public class Leer_Bytes_Imagen {
             bytes = new int[(int) file.length()];
             int count = 0;
             while((i = fis.read()) != -1){
+                System.out.print((char) i);
                 bytes[count] = i;
                 count++;
                 //fos.write(i);
