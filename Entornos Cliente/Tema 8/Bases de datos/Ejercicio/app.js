@@ -374,12 +374,13 @@ function updateGuardia(idGuardiaUpdate){
                 if(guardia.id_guardia == idGuardiaUpdate){
                     
                     guardia.id_profesor = profesorID;
-                    //alert(guardia.id_profesor);
+                    alert(JSON.stringify(guardia));
+                    objectStorage.put(JSON.stringify(guardia));
                     
                 }     
             }
         };
-        objectStorage.put(JSON.stringify(guardia));
+        
     }
 
    
