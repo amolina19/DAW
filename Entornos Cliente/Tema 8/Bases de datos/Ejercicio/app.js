@@ -28,7 +28,7 @@ window.onload = function (){
         limpiar();
     }
     updateTables();
-    //insertarGuardias(database);
+    insertarGuardias(database);
 
 }
 
@@ -103,7 +103,6 @@ function insertarGuardia(database){
         };
     }
     
-    
 
     var active = database.result;
     var request = active.transaction(["Guardias"], "readwrite");
@@ -143,12 +142,12 @@ function openDB(){
 
     database.onupgradeneeded = function (e) {
         var active = database.result;
-        profesor = active.createObjectStore("Profesor", {keyPath : 'id',autoIncrement : true });
+        profesor = active.createObjectStore("Profesor", {keyPath : 'id_profesor',autoIncrement : true });
         profesor.createIndex('id_profesor', 'id_profesor', { unique : true });
         profesor.createIndex('nombre', 'nombre', { unique : false });
         profesor.createIndex('guardias', 'guardias', { unique : false });
 
-        guardia = active.createObjectStore("Guardias", {keyPath : 'id',autoIncrement : true });
+        guardia = active.createObjectStore("Guardias", {keyPath : 'id_guardia',autoIncrement : true });
         guardia.createIndex('id_guardia', 'id_guardia', { unique : true });
         guardia.createIndex('id_profesor', 'id_profesor', { unique : false });
         guardia.createIndex('ausente', 'ausente', { unique : false });
@@ -227,9 +226,15 @@ function generateGuardiaTable(idProfesor){
 
         data.oncomplete = function() {
             let nguardiashechas = 0;
+            var outerHTML2 = "";
             var outerHTML = "";
+
+            outerHTML2 += "<table>";
+            outerHTML2 += "<th>ID Guardia</th><th>Ausente</th><th>Fecha</th><th>Hora</th>";
+            outerHTML2 += "<tr>";
+
             outerHTML += "<table>";
-            outerHTML += "<th>Ausente</th><th>Fecha</th><th>Hora</th>";
+            outerHTML += "<th>ID Guardia</th><th>Fecha</th><th>Hora</th><th></th>";
             outerHTML += "<tr>";
             
             for (var key in elements) {
@@ -244,20 +249,36 @@ function generateGuardiaTable(idProfesor){
 
                 if(guardia.id_profesor == idProfesor){
                     
-                    if(guardia.ausente == true){
-                        outerHTML += "<td> SI </td>";
-                    }else{
-                        outerHTML += "<td> NO </td>";
-                    }
+                    outerHTML += "<td> "+ guardia.id_guardia +"</td>";
+                    
                     outerHTML += "<td> "+ guardia.fecha +"</td>";
                     outerHTML += "<td> "+ guardia.hora +"</td>";
+                    if(guardia.id_profesor == undefined){
+                        outerHTML += "<td><input type='submit' value='Asignar Profesor' id='" + guardia.id_guardia +"' onclick='updateGuardia(this.id);'></td>";
+                    }
+                    
                     outerHTML += "</tr>";  
+
+                    
+                }else{
+
+                    outerHTML2 += "<td> "+ guardia.id_guardia +"</td>";
+                    if(guardia.ausente == true){
+                        outerHTML2 += "<td> SI </td>";
+                    }else{
+                        outerHTML2 += "<td> NO </td>";
+                    }
+                    outerHTML2 += "<td> "+ guardia.fecha +"</td>";
+                    outerHTML2 += "<td> "+ guardia.hora +"</td>";
+                    outerHTML2 += "</tr>"; 
                 }
                                     
             }
             
             outerHTML += "</table>";
+            outerHTML2 += "</table>";
             elements = [];
+            document.getElementById("guardianoasignada").innerHTML = outerHTML2;
             document.getElementById("guardias").innerHTML = outerHTML;
         };
     };
@@ -266,54 +287,102 @@ function generateGuardiaTable(idProfesor){
 function generateProfesorTable(){
     var database = indexedDB.open("Guardia", 1);
     database.onsuccess = function(event) {
-    var db = event.target.result;
-    var data = db.transaction(["Profesor"], "readonly");
-    var objectStorage = data.objectStore("Profesor");
-    var elements = [];
+        var db = event.target.result;
+        var data = db.transaction(["Profesor"], "readonly");
+        var objectStorage = data.objectStore("Profesor");
+        var elements = [];
 
-    objectStorage.openCursor().onsuccess = function (e) {
-                    
-        var result = e.target.result;
-        if (result === null) {
-            return;
-        }
-        
-        elements.push(result.value);
-        result.continue();
-        
-    };
-
-    data.oncomplete = function() {
-                    
-        var outerHTML = "";
-        var profeID = "";
-        outerHTML += "<table>";
-        outerHTML += "<th>ID</th><th>Profesor</th><th>Visualizar</th><th>Realizadas</th>";
-        outerHTML += "<tr>";
-        for (var key in elements) {
-
-            let profesor = {
-                id_profesor: elements[key].id_profesor,
-                nombre: elements[key].nombre,
-                guardias: undefined
+        objectStorage.openCursor().onsuccess = function (e) {
+                        
+            var result = e.target.result;
+            if (result === null) {
+                return;
             }
-            profeID = profesor.id_profesor;
+            
+            elements.push(result.value);
+            result.continue();
+            
+        };
 
-            outerHTML += "<td> "+ profesor.id_profesor +"</td>";
-            outerHTML += "<td> "+ profesor.nombre +"</td>";
-            if(profesor.nombre != undefined && profesor.nombre != ""){
-                outerHTML += "<td> <button onclick='generateGuardiaTable(this.id);' id='"+profesor.id_profesor+"'>Visualizar</button></td>";
+        data.oncomplete = function() {
+                        
+            var outerHTML = "";
+            var profeID = "";
+            outerHTML += "<table>";
+            outerHTML += "<th>ID</th><th>Profesor</th><th>Visualizar</th><th>Realizadas</th>";
+            outerHTML += "<tr>";
+            for (var key in elements) {
+
+                let profesor = {
+                    id_profesor: elements[key].id_profesor,
+                    nombre: elements[key].nombre,
+                    guardias: undefined
+                }
+                profeID = profesor.id_profesor;
+
+                outerHTML += "<td> "+ profesor.id_profesor +"</td>";
+                outerHTML += "<td> "+ profesor.nombre +"</td>";
+                if(profesor.nombre != undefined && profesor.nombre != ""){
+                    outerHTML += "<td> <button onclick='generateGuardiaTable(this.id);' id='"+profesor.id_profesor+"'>Visualizar</button></td>";
+                }
+                outerHTML += "<td id='gpid-"+profesor.id_profesor+"'></td>";
+                outerHTML += "</tr>";
+                document.getElementById("profesor").innerHTML = outerHTML;
+                nGuardiasProfesores(profeID);                       
             }
-            outerHTML += "<td id='gpid-"+profesor.id_profesor+"'></td>";
-            outerHTML += "</tr>";
+            outerHTML += "</table>";
+            elements = [];
             document.getElementById("profesor").innerHTML = outerHTML;
-            nGuardiasProfesores(profeID);                       
-        }
-        outerHTML += "</table>";
-        elements = [];
-        document.getElementById("profesor").innerHTML = outerHTML;
+        };
     };
-};
+}
+
+function updateGuardia(idGuardiaUpdate){
+    alert(idGuardiaUpdate);
+    let profesorID = prompt("Introduce el ID de profesor para asignar la guardia");
+
+    let guardia = null;
+    var database = indexedDB.open("Guardia", 1);
+        database.onsuccess = function(event) {
+        var db = event.target.result;
+        var data = db.transaction(["Guardias"], "readwrite");
+        var objectStorage = data.objectStore("Guardias");
+        var elements = [];
+
+
+        objectStorage.openCursor().onsuccess = function (e) {
+                        
+            var result = e.target.result;
+            if (result === null) {
+                return;
+            }
+            elements.push(result.value);
+            result.continue();
+            
+        };
+        data.oncomplete = function() {
+            for (var key in elements) {
+
+                guardia = {
+                    id_guardia: elements[key].id_guardia,
+                    id_profesor: elements[key].id_profesor,
+                    ausente: elements[key].ausente,
+                    fecha: elements[key].fecha,
+                    hora: elements[key].hora
+                };
+
+                if(guardia.id_guardia == idGuardiaUpdate){
+                    
+                    guardia.id_profesor = profesorID;
+                    //alert(guardia.id_profesor);
+                    
+                }     
+            }
+        };
+        objectStorage.put(JSON.stringify(guardia));
+    }
+
+   
 }
 
 function obtenerGuardiasDeProfesores(){
