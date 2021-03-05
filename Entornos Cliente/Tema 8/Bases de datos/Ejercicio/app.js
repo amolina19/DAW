@@ -44,6 +44,7 @@ function limpiarProfesor(){
 
 function limpiarGuardia(){
     document.getElementById("idprofesorguardia").value = "";
+    document.getElementById("curso").value = "";
     document.getElementById("ausente").value = "";
     document.getElementById("horaguardia").value = "";
     document.getElementById("fechaguardia").value = "";
@@ -74,6 +75,7 @@ function insertarGuardia(database){
 
     let dialogo = confirm("¿Quieres asignar la guardia a un profesor?");
     var idGuardia = Number(document.getElementById("idguardia").value);
+    var curso = document.getElementById("curso").value.toUpperCase();
     var ausente = document.getElementById("ausente").value;
 
     if(ausente == "true"){
@@ -89,6 +91,7 @@ function insertarGuardia(database){
         var item = {
             id_guardia: idGuardia,
             id_profesor: id,
+            curso: curso,
             ausente: ausente,
             fecha: fecha,
             hora: hora
@@ -97,6 +100,7 @@ function insertarGuardia(database){
         var item = {
             id_guardia: idGuardia,
             id_profesor: undefined,
+            curso: curso,
             ausente: ausente,
             fecha: fecha,
             hora: hora
@@ -113,17 +117,17 @@ function insertarGuardia(database){
 
 function insertarGuardias(database){
     var guardias = [
-        {id_guardia: 0,id_profesor: 5, ausente: false, fecha: "14/5/2020", hora: 3},
-        {id_guardia: 1,id_profesor: 2, ausente: true, fecha: "11/5/2020", hora: 3},
-        {id_guardia: 2,id_profesor: 1, ausente: false, fecha: "9/3/2020", hora: 2},
-        {id_guardia: 3,id_profesor: 3, ausente: false, fecha: "11/2/2020", hora: 4},
-        {id_guardia: 4,id_profesor: 3, ausente: true, fecha: "4/1/2020", hora: 1},
-        {id_guardia: 5,id_profesor: 1, ausente: false, fecha: "18/3/2020", hora: 1},
-        {id_guardia: 6,id_profesor: 2, ausente: false, fecha: "7/4/2020", hora: 4},
-        {id_guardia: 7,id_profesor: 1, ausente: true, fecha: "14/9/2020", hora: 5},
-        {id_guardia: 8,id_profesor: 4, ausente: false, fecha: "21/11/2020", hora: 6},
-        {id_guardia: 9,id_profesor: 2, ausente: false, fecha: "12/12/2020", hora: 5},
-        {id_guardia: 10,id_profesor: 4, ausente: true, fecha: "16/10/2020", hora: 6}
+        {id_guardia: 0,id_profesor: 5, curso: "1A", ausente: false, fecha: "14/5/2020", hora: 3},
+        {id_guardia: 1,id_profesor: 2, curso: "2B", ausente: true, fecha: "11/5/2020", hora: 3},
+        {id_guardia: 2,id_profesor: 1, curso: "3C", usente: false, fecha: "9/3/2020", hora: 2},
+        {id_guardia: 3,id_profesor: 3, curso: "1C", ausente: false, fecha: "11/2/2020", hora: 4},
+        {id_guardia: 4,id_profesor: 3, curso: "2D", ausente: true, fecha: "4/1/2020", hora: 1},
+        {id_guardia: 5,id_profesor: 1, curso: "4A", ausente: false, fecha: "18/3/2020", hora: 1},
+        {id_guardia: 6,id_profesor: 2, curso: "4B", ausente: false, fecha: "7/4/2020", hora: 4},
+        {id_guardia: 7,id_profesor: 1, curso: "3C", ausente: true, fecha: "14/9/2020", hora: 5},
+        {id_guardia: 8,id_profesor: 4, curso: "2C", ausente: false, fecha: "21/11/2020", hora: 6},
+        {id_guardia: 9,id_profesor: 2, curso: "3A", ausente: false, fecha: "12/12/2020", hora: 5},
+        {id_guardia: 10,id_profesor: 4, curso: "1B", ausente: true, fecha: "16/10/2020", hora: 6}
     ];
 
     var database = indexedDB.open("Guardia", 1);
@@ -150,6 +154,7 @@ function openDB(){
         guardia = active.createObjectStore("Guardias", {keyPath : 'id_guardia',autoIncrement : true });
         guardia.createIndex('id_guardia', 'id_guardia', { unique : true });
         guardia.createIndex('id_profesor', 'id_profesor', { unique : false });
+        guardia.createIndex('curso', 'curso', { unique : false });
         guardia.createIndex('ausente', 'ausente', { unique : false });
         guardia.createIndex('fecha', 'fecha', { unique : false });
         guardia.createIndex('hora', 'hora', { unique : false });
@@ -230,11 +235,11 @@ function generateGuardiaTable(idProfesor){
             var outerHTML = "";
 
             outerHTML2 += "<table>";
-            outerHTML2 += "<th>ID Guardia</th><th>Ausente</th><th>Fecha</th><th>Hora</th>";
+            outerHTML2 += "<th>ID Guardia</th><th>Curso</th><th>Ausente</th><th>Fecha</th><th>Hora</th>";
             outerHTML2 += "<tr>";
 
             outerHTML += "<table>";
-            outerHTML += "<th>ID Guardia</th><th>Fecha</th><th>Hora</th><th></th>";
+            outerHTML += "<th>ID Guardia</th><th>Curso</th><th>Fecha</th><th>Hora</th><th></th>";
             outerHTML += "<tr>";
             
             for (var key in elements) {
@@ -242,6 +247,7 @@ function generateGuardiaTable(idProfesor){
                 guardia = {
                     id_guardia: elements[key].id_guardia,
                     id_profesor: elements[key].id_profesor,
+                    curso: elements[key].curso,
                     ausente: elements[key].ausente,
                     fecha: elements[key].fecha,
                     hora: elements[key].hora
@@ -250,7 +256,7 @@ function generateGuardiaTable(idProfesor){
                 if(guardia.id_profesor == idProfesor){
                     
                     outerHTML += "<td> "+ guardia.id_guardia +"</td>";
-                    
+                    outerHTML += "<td> "+ guardia.curso +"</td>";
                     outerHTML += "<td> "+ guardia.fecha +"</td>";
                     outerHTML += "<td> "+ guardia.hora +"</td>";
                     if(guardia.id_profesor == undefined){
@@ -263,6 +269,7 @@ function generateGuardiaTable(idProfesor){
                 }else{
 
                     outerHTML2 += "<td> "+ guardia.id_guardia +"</td>";
+                    outerHTML2 += "<td> "+ guardia.curso +"</td>";
                     if(guardia.ausente == true){
                         outerHTML2 += "<td> SI </td>";
                     }else{
@@ -338,7 +345,7 @@ function generateProfesorTable(){
 }
 
 function updateGuardia(idGuardiaUpdate){
-    alert(idGuardiaUpdate);
+    //alert(idGuardiaUpdate);
     let profesorID = prompt("Introduce el ID de profesor para asignar la guardia");
 
     let guardia = null;
@@ -366,6 +373,7 @@ function updateGuardia(idGuardiaUpdate){
                 guardia = {
                     id_guardia: elements[key].id_guardia,
                     id_profesor: elements[key].id_profesor,
+                    curso: elements[key].curso,
                     ausente: elements[key].ausente,
                     fecha: elements[key].fecha,
                     hora: elements[key].hora
@@ -374,23 +382,25 @@ function updateGuardia(idGuardiaUpdate){
                 if(guardia.id_guardia == idGuardiaUpdate){
                     
                     guardia.id_profesor = profesorID;
-                    alert(JSON.stringify(guardia));
-                    objectStorage.put(JSON.stringify(guardia));
-                    
+                    //alert(JSON.stringify(guardia));
+                    updateObject(guardia);
+                    setTimeout(updateTables, 1000);
                 }     
             }
         };
-        
     }
 
-   
+
 }
 
-function obtenerGuardiasDeProfesores(){
+function updateObject(object){
 
-    var elementos = document.querySelectorAll('[id^=gpid]');
-    alert(elementos.length);
-    for(i=0; i<elementos.length;i++){
-        console.log(elementos[i]);
-    }
+    var database = indexedDB.open("Guardia", 1);
+        database.onsuccess = function(event) {
+        var db = event.target.result;
+        var data = db.transaction(["Guardias"], "readwrite");
+        var objectStorage = data.objectStore("Guardias");
+
+        objectStorage.put(object);
+    };
 }
