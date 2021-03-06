@@ -1,5 +1,6 @@
 <?php
 
+    userExists("admin");
 
     function getConnection(){
         $user = "autoslocos";
@@ -20,7 +21,7 @@
 
     function getUserPassword($user){
         $conn = getConnection();
-        $sql = "SELECT password from User WHERE usuario LIKE '$user'";
+        $sql = "SELECT password from Users WHERE usuario LIKE '$user'";
         foreach ($conn->query($sql) as $row){
             if($row['password'] != null){
                 return $row['password'];
@@ -31,7 +32,7 @@
 
     function userExists($user){
         $conn = getConnection();
-        $sql = "SELECT usuario FROM User WHERE usuario LIKE '$user'";
+        $sql = "SELECT usuario FROM Users WHERE usuario LIKE '$user'";
         foreach ($conn->query($sql) as $row){
             if($row['usuario'] != null){
                 return true;
