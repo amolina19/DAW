@@ -7,7 +7,7 @@
     }
 
     if(isset($_POST['administrar'])){
-        
+        header('Location: admin.php');
     }
 
     if(isset($_POST['buscarbtn'])){
@@ -15,12 +15,14 @@
     }
 
     if(isset($_POST['login'])){
-        //Login
+        header('Location: login.php');
     }
 
     if(isset($_POST['registrarse'])){
-        //Register
+        header('Location: register.php');
     }
+
+    
 
 
 ?>

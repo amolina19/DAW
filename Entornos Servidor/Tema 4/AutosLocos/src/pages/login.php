@@ -1,6 +1,7 @@
 <?php
 
-
+  include_once dirname(__DIR__).'/logic/buttons.php';
+  include_once 'modules.php';
 
 
 ?>
@@ -12,15 +13,40 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/styles.css">
   </head>
   <body>
+
+    <?php generateMenu($_SESSION['username'],$_SESSION['password'],$_SESSION['type']);  ?>
   
-    <div class="container">
-      <div class="d-flex justify-content-center mt-5">
-          <div class="row">
-            <h1>Login In</h1>
+    <div class="container mt-5">
+
+          <form method="post">
+          <fieldset>
+          <div id="legend">
+            <legend>Iniciar Sesión</legend>
           </div>
-      </div>
+
+            <div class="form-group">
+              <label for="user">Usuario</label>
+              <input type="email" class="form-control" id="user" placeholder="Usuario">
+            </div>
+            <div class="form-group">
+              <label for="password">Contraseña</label>
+              <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
+            </div>
+            <button type="submit" class="btn btn-primary" name="iniciarsesion">Iniciar Sesion</button>
+            <button type="submit" class="btn btn-success" name="registrarse">Crear cuenta</button>
+
+            </fieldset>
+          </form>
+
+          <div class="row d-flex justify-content-center mt-2">
+            <!-- No se puede meter en buttons, ya que si hay algun error, se tiene que avisar al usuario -->
+            <?php if(isset($_POST['iniciarsesion'])){
+              echo "<span class='error'>Text<span>";
+            } ?>
+          </div>
     </div>
       
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

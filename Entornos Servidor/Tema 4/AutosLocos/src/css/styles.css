@@ -4,3 +4,24 @@ div .product{
     height:300px;
     background-color:rgb(218, 209, 209);
 }
+
+div.login{ 
+    background-color:rgb(196, 194, 194);
+    font-weight: bold;
+    height: 300px;
+    width: 600px;
+}
+
+span.error{
+    color:red;
+    font-weight:bold;
+}
+
+legend{ 
+    color:blue;
+    font-weight: bold;
+}
+
+label{
+    font-weight: bolder;
+}

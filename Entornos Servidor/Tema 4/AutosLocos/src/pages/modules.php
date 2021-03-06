@@ -46,7 +46,7 @@
     }
 
     function generateProduct(/*$product*/){
-        echo "<div class='col-md-3 col-sm-8 product'></div>";
+        echo "<div class='col-md-3 product mt-5 mt-md-0'></div>";
         echo "<div class='col-md-1'></div>";
     }
 

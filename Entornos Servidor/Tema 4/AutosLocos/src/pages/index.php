@@ -26,9 +26,12 @@
   </head>
   <body>
     
-    <?php echo generateMenu($_SESSION['username'],$_SESSION['password']); ?>
+    <?php generateMenu($_SESSION['username'],$_SESSION['password'],$_SESSION['type']); ?>
 
     <div class="container">
+      <?php generateRow(); ?>
+      <?php generateRow(); ?>
+      <?php generateRow(); ?>
       <?php generateRow(); ?>
     </div>
   

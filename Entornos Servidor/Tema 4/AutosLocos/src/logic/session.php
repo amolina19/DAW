@@ -13,6 +13,7 @@
 
     function deleteUserSession(){
         unset($_SESSION['username']);
+        unset($_SESSION['type']);
         unset($_COOKIE['username']);
         unset($_SESSION['password']);
         unset($_COOKIE['password']);
@@ -21,12 +22,14 @@
     function setUserTestSession(){
         $_SESSION['username'] = "test";
         $_SESSION['password'] = "test";
+        $_SESSION['type'] = "admin";
     }
 
     function loginOff(){
         //$_SESSION['password'] = null;
         ///$_COOKIE['password'] = null;
         unset($_SESSION['password']);
+        unset($_SESSION['type']);
         unset($_COOKIE['password']);
     }
 
