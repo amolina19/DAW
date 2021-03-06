@@ -19,7 +19,7 @@
     }
 
     function getUserPassword($user){
-        $conn = getPDODatabase();
+        $conn = getConnection();
         $sql = "SELECT password from User WHERE usuario LIKE '$user'";
         foreach ($conn->query($sql) as $row){
             if($row['password'] != null){
@@ -28,6 +28,17 @@
         }
         return false;
     }
+
+    function userExists($user){
+        $conn = getConnection();
+        $sql = "SELECT usuario FROM User WHERE usuario LIKE '$user'";
+        foreach ($conn->query($sql) as $row){
+            if($row['usuario'] != null){
+                return true;
+            }
+        }
+        return false;
+    }   
 
     //Filtrador de Busquedas
 
