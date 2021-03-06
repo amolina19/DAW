@@ -66,8 +66,14 @@ include_once 'modules.php';
         <div class="control-group">
             <!-- Button -->
             <div class="controls">
-                <button class="btn btn-success">Registrarse</button>
+                <button class="btn btn-success" name="crearcuenta">Registrarse</button>
             </div>
+        </div>
+
+        <div class="control-group mt-3">
+            <?php if(isset($_POST['crearcuenta'])){
+                checkRegister();
+            } ?>
         </div>
     </fieldset>
     </form>
