@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS Users(
     usuario varchar(64) NOT NULL,
     password varchar(64) NOT NULL,
     email varchar(255) NOT NULL,
+    imagen BLOB,
     type varchar(64) NOT NULL
 )ENGINE = InnoDB;
 

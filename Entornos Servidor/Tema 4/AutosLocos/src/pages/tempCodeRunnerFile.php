@@ -1,0 +1,2 @@
+<?php
+rc/pages/
