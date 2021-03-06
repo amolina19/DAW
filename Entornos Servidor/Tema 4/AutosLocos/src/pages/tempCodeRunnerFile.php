@@ -1,2 +1,2 @@
 <?php
-rc/pages/
+userCookieExists

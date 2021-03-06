@@ -1,5 +1,8 @@
 <?php
 
+    include_once 'session.php';
+    include_once 'database.php';
+
     //Menu Buttons
     if(isset($_POST['desconectar'])){
         deleteUserSession();
@@ -29,7 +32,18 @@
                     if(userExists($_POST['username'])){
                         echo "<span class='error'>Error el usuario ya existe.</span>";
                     }else{
-                        echo "<span class='success'>Registrado correctamente</span>";
+                        $user['username'] = $_POST['username'];
+                        $user['password'] = hashPassword($_POST['password']);
+                        $user['email'] = $_POST['email'];
+                        $user['type'] = "user";
+                        if(insertNewUser($user)){
+                            setUserSession($user);
+                            setCookieUser($user);
+                            echo "<span class='success'>Registrado correctamente</span>";
+                            return true;
+                        }else{
+                            echo "<span class='error'>Error al crear usuario</span>";
+                        }
                     }
                 }else{
                     echo "<span class='error'>Las contraseñas no coinciden.</span>";
@@ -40,6 +54,7 @@
         }else{
             echo "<span class='error'>Faltan campos para rellenar.</span>";
         }
+        return false;
     }
 
 ?>

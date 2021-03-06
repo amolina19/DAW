@@ -4,11 +4,15 @@
   include_once dirname(__DIR__).'/logic/buttons.php';
   include_once dirname(__DIR__).'/logic/database.php';
   include_once 'modules.php';
+
+  if(userCookieExists()){
+    session_start();
+  }
   //include_once 'login.php';
   //include_once 'perfil.php';
   //include_once 'view.php';
 
-
+  //echo $_SESSION['username']." ".$_SESSION['password']." ".$_SESSION['email']." ".$_SESSION['type'];
   //Test Purpose
   //deleteUserSession();
   //setUserTestSession();

@@ -7,7 +7,7 @@ FLUSH PRIVILEGES;
 CREATE TABLE IF NOT EXISTS Users(
     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     usuario varchar(64) NOT NULL,
-    password varchar(64) NOT NULL,
+    password varchar(255) NOT NULL,
     email varchar(255) NOT NULL,
     type varchar(64) NOT NULL
 )ENGINE = InnoDB;

@@ -73,7 +73,10 @@ include_once 'modules.php';
 
         <div class="control-group mt-3">
             <?php if(isset($_POST['crearcuenta'])){
-                checkRegister();
+                if(checkRegister()){
+                    echo $_SESSION['username']." ".$_SESSION['password']." ".$_SESSION['email']." ".$_SESSION['type'];
+                    header('Location: index.php');
+                };
             } ?>
         </div>
     </fieldset>

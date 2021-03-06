@@ -1,28 +1,47 @@
 <?php
 
-    session_start();
+    //session_start();
+
     
-    function checkUser(){
-        if($_SESSION['username'] === null || $_SESSION['username'] === "" && $_SESSION['password'] === null || $_SESSION['password'] === ""){
-            if($_COOKIE['username'] === null || $_COOKIE['username'] === "" && $_COOKIE['password'] === null || $_COOKIE['password'] === ""){
-                return false;
-            }
+
+    function userCookieExists(){
+        echo $_COOKIE['username'];
+        if($_COOKIE['username'] !== null && $_COOKIE['password'] !== null){
+            setUserSession($user);
+            return true;
         }
-        return true;
+        echo "Cookie no existe";
+        return false;
     }
+    
 
     function deleteUserSession(){
         unset($_SESSION['username']);
         unset($_SESSION['type']);
-        unset($_COOKIE['username']);
         unset($_SESSION['password']);
+        unset($_COOKIE['username']);
         unset($_COOKIE['password']);
     }
 
-    function setUserTestSession(){
-        $_SESSION['username'] = "test";
-        $_SESSION['password'] = "test";
-        $_SESSION['type'] = "admin";
+    function setCookieUser($user){
+        setcookie('username',$user['username']);
+        setcookie('password',$user['password']);
+    }
+
+    function getCookieUser(){
+        if(isset($_COOKIE['username']) && isset($_COOKIE['password'])){
+
+        }else{
+            $_COOKIE['username'] = $_SESSION['username'];
+            $_COOKIE['password'] = $_SESSION['password'];
+        }
+    }
+
+    function setUserSession($user){
+        $_SESSION['username'] = $user['username;'];
+        $_SESSION['password'] = $user['password'];
+        $_SESSION['email'] = $user['email'];
+        $_SESSION['type'] = $user['type'];
     }
 
     function loginOff(){

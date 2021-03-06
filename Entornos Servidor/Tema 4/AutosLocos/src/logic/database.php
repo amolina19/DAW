@@ -1,7 +1,5 @@
 <?php
 
-    userExists("admin");
-
     function getConnection(){
         $user = "autoslocos";
         $host = "localhost";
@@ -39,7 +37,33 @@
             }
         }
         return false;
-    }   
+    }
+
+    function hashPassword($password){
+        return password_hash($password, PASSWORD_DEFAULT);
+    }
+    
+    function insertNewUser($user){
+        $conn = getConnection();
+        
+        try{
+            $gsent = $conn->prepare("INSERT INTO Users (usuario,password,email,type) VALUES(:usuario,:password,:email,:type)");
+            $gsent->bindParam(":usuario", $user['username']);
+            $gsent->bindParam(":password", $user['password']);
+            $gsent->bindParam(":email",$user['email']);
+            $gsent->bindParam(":type",$user['type']);
+            
+            if($gsent->execute()){
+                return true;
+            }
+
+            return false;
+        }catch(PDOException $e){
+            die("Connection to database failed: " . $e->getMessage());
+            echo "Connection to database failed:".$e->getMessage();
+            return false;
+        }
+    }
 
     //Filtrador de Busquedas
 
