@@ -119,7 +119,7 @@ function insertarGuardias(database){
     var guardias = [
         {id_guardia: 0,id_profesor: 5, curso: "1A", ausente: false, fecha: "14/5/2020", hora: 3},
         {id_guardia: 1,id_profesor: 2, curso: "2B", ausente: true, fecha: "11/5/2020", hora: 3},
-        {id_guardia: 2,id_profesor: 1, curso: "3C", usente: false, fecha: "9/3/2020", hora: 2},
+        {id_guardia: 2,id_profesor: 1, curso: "3C", ausente: false, fecha: "9/3/2020", hora: 2},
         {id_guardia: 3,id_profesor: 3, curso: "1C", ausente: false, fecha: "11/2/2020", hora: 4},
         {id_guardia: 4,id_profesor: 3, curso: "2D", ausente: true, fecha: "4/1/2020", hora: 1},
         {id_guardia: 5,id_profesor: 1, curso: "4A", ausente: false, fecha: "18/3/2020", hora: 1},

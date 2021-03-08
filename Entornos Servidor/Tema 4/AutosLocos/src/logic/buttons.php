@@ -24,6 +24,10 @@
         header('Location: register.php');
     }
 
+    if(isset($_POST['volver'])){
+        header('Location: index.php');
+    }
+
     function checkRegister(){
 
         if($_POST['username'] !== "" && $_POST['email'] !== "" && $_POST['password'] !== "" && $_POST['password_confirm'] !== ""){

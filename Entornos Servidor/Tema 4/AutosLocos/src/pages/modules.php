@@ -32,6 +32,27 @@
         echo  "</nav>";
     }
 
+    function generateAdminMenu(){
+        echo "<nav class='navbar navbar-expand-md navbar-light bg-light'>";
+        echo  "<a class='navbar-brand' href='index.php'>AutosLocos</a>";
+        echo  "<button class='navbar-toggler d-lg-none' type='button' data-toggle='collapse' data-target='#collapsibleNavId' aria-controls='collapsibleNavId' aria-expanded='false' aria-label='Toggle navigation'>";
+        echo      "<span class='navbar-toggler-icon'></span>";
+        echo   "</button>";
+        echo  "<div class='collapse navbar-collapse' id='collapsibleNavId'>";
+        echo      "<ul class='navbar-nav mr-auto mt-2 mt-lg-0'></ul>";
+         
+        echo   "<form class='form-inline my-2 my-lg-0' method='post'>";
+        if(isset($_SESSION['username']) && isset($_SESSION['password'])){
+            if($_SESSION['username'] !== null && $_SESSION['password'] !== null && $_SESSION['type'] === 'admin'){
+                echo    "<button class='btn btn-danger mr-2' name='desconectar'>Desconectar</button>";
+                echo    "<button class='btn btn-warning mr-2' name='volver'>Volver</button>";
+            }
+        }
+        echo  "</form>";
+        echo  "</div>";
+        echo  "</nav>";
+    }
+
 
     function generateContent($filtro){
 
