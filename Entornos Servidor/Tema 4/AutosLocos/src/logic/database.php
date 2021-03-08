@@ -28,6 +28,21 @@
         return false;
     }
 
+    function returnUserData($user){
+        $conn = getConnection();
+        $sql = "SELECT id,usuario,password,email,type FROM Users WHERE usuario LIKE '$user'";
+        foreach ($conn->query($sql) as $row){
+            if($row['usuario'] === $user){
+                $data['id'] = $row['id'];
+                $data['username'] = $row['usuario'];
+                $data['password'] = $row['password'];
+                $data['email'] = $row['email'];
+                $data['type'] = $row['type'];
+                return $data;
+            }
+        }
+    }
+
     function userExists($user){
         $conn = getConnection();
         $sql = "SELECT usuario FROM Users WHERE usuario LIKE '$user'";

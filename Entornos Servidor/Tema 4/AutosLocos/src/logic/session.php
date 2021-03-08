@@ -1,31 +1,28 @@
 <?php
-
-    //session_start();
-
-    
+    session_start();
+    include_once 'database.php';
+    userCookieExists();
 
     function userCookieExists(){
-        echo $_COOKIE['username'];
-        if($_COOKIE['username'] !== null && $_COOKIE['password'] !== null){
-            setUserSession($user);
-            return true;
-        }
-        echo "Cookie no existe";
-        return false;
-    }
-    
+        //echo $_COOKIE['username'];
+        if($_COOKIE['username'] !== null && isset($_COOKIE['password'])){
 
-    function deleteUserSession(){
-        unset($_SESSION['username']);
-        unset($_SESSION['type']);
-        unset($_SESSION['password']);
-        unset($_COOKIE['username']);
-        unset($_COOKIE['password']);
+            if(password_verify($_COOKIE['password'],getUserPassword($_COOKIE['password']))){
+                setUserSession($_COOKIE['username']);
+                return true;
+            }
+        }
+        //echo "Cookie no existe";
+        return false;
     }
 
     function setCookieUser($user){
         setcookie('username',$user['username']);
         setcookie('password',$user['password']);
+    }
+
+    function deleteCookieUser(){
+        setcookie('username',"",time()-3600);
     }
 
     function getCookieUser(){
@@ -38,18 +35,42 @@
     }
 
     function setUserSession($user){
-        $_SESSION['username'] = $user['username;'];
-        $_SESSION['password'] = $user['password'];
-        $_SESSION['email'] = $user['email'];
-        $_SESSION['type'] = $user['type'];
+
+        $data = returnUserData($user);
+        $_SESSION['username'] = $data['username'];
+        $_SESSION['password'] = $data['password'];
+        $_SESSION['email'] = $data['email'];
+        $_SESSION['type'] = $data['type'];
+        setCookieUser($data);
+    }
+
+    function login($username,$password){
+        if(userExists($username)){
+            if(password_verify($password,getUserPassword($username))){
+                return true;
+            }
+        }
+        
+        return false;
     }
 
     function loginOff(){
-        //$_SESSION['password'] = null;
-        ///$_COOKIE['password'] = null;
-        unset($_SESSION['password']);
-        unset($_SESSION['type']);
-        unset($_COOKIE['password']);
+        deleteUserSession();
+    }
+
+    function deleteUserSession(){
+        setcookie('password','', time()-3600);
+        setcookie('password','', time()-3600,"/");
+        session_destroy();
+        header("Location: index.php");
+        //deleteCookieUser();
+    }
+
+    function noErasTu(){
+        if(isset($_COOKIE['username']) && $_COOKIE['username'] !==  ""){
+            return true;
+        }
+        return false;
     }
 
 ?>

@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS Vehicles(
 )ENGINE = InnoDB;
 
 
-INSERT INTO Users(usuario,password,email,type) VALUES('usuario','usuario','test@mail.com','user');
-INSERT INTO Users(usuario,password,email,type) VALUES('admin','admin','admin@mail.com','admin');
+INSERT INTO `Users` VALUES (1,'user','$2y$10$ig/IF2hBipNpCH5NcYnYhe24BPx4BtpaRK8r33D2rU4QwmuNB2D3C','user@gmail.com','user')(2,'admin','$2y$10$uA6z7bsKGK02sTCPaBB80uqLpwZ4CSenEtnTsq8.HYBtnzHD1mLEO','admin@gmail.com','admin');
+
 
 

@@ -1,6 +1,7 @@
 <?php
 
 include_once dirname(__DIR__).'/logic/buttons.php';
+include_once dirname(__DIR__).'/logic/session.php';
 include_once dirname(__DIR__).'/logic/database.php';
 include_once 'modules.php';
 
@@ -20,7 +21,7 @@ include_once 'modules.php';
   </head>
   <body>
 
-  <?php generateMenu($_SESSION['username'],$_SESSION['password'],$_SESSION['type']);  ?>
+  <?php generateMenu();  ?>
 
   <div class="container d-flex justify-content-center mt-5">
     <form class="form-horizontal" method="post">
@@ -32,7 +33,7 @@ include_once 'modules.php';
         <!-- Username -->
             <label class="control-label"  for="username">Usuario</label>
             <div class="controls">
-                <input type="text" id="username" name="username" placeholder="" class="input-xlarge form-control" value="<?php echo $_POST['username'] ?>">
+                <input type="text" id="username" name="username" placeholder="" class="input-xlarge form-control" value="<?php if(isset($_POST['username'])){ echo $_POST['username'];} ?>">
                 <p class="help-block">El nombre de usuario puede contener cualquier letra o número, sin espacios</p>
             </div>
         </div>
@@ -41,7 +42,7 @@ include_once 'modules.php';
             <!-- E-mail -->
             <label class="control-label" for="email">E-mail</label>
             <div class="controls">
-                <input type="text" id="email" name="email" placeholder="" class="input-xlarge form-control" value="<?php echo $_POST['email'] ?>">
+                <input type="text" id="email" name="email" placeholder="" class="input-xlarge form-control" value="<?php if(isset($_POST['email'])){ echo $_POST['email'];} ?>">
                 <p class="help-block">Por favor proporcione su correo electrónico</p>
             </div>
         </div>
@@ -50,7 +51,7 @@ include_once 'modules.php';
             <!-- Password-->
             <label class="control-label" for="password">Contraseña</label>
             <div class="controls">
-                <input type="password" id="password" name="password" placeholder="" class="input-xlarge form-control" value="<?php echo $_POST['password'] ?>">
+                <input type="password" id="password" name="password" placeholder="" class="input-xlarge form-control" value="<?php if(isset($_POST['password'])){ echo $_POST['password'];} ?>">
                 <p class="help-block">La contraseña debe tener al menos 4 caracteres</p>
             </div>
         </div>
@@ -59,7 +60,7 @@ include_once 'modules.php';
             <!-- Password -->
             <label class="control-label"  for="password_confirm">Reintroduce contraseña</label>
             <div class="controls">
-                <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge form-control" value="<?php echo $_POST['password_confirm'] ?>">
+                <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge form-control" value="<?php if(isset($_POST['password_confirm'])){ echo $_POST['password_confirm'];} ?>">
                 <p class="help-block">Confirme la contraseña</p>
             </div>
         </div>
@@ -74,8 +75,8 @@ include_once 'modules.php';
         <div class="control-group mt-3">
             <?php if(isset($_POST['crearcuenta'])){
                 if(checkRegister()){
-                    echo $_SESSION['username']." ".$_SESSION['password']." ".$_SESSION['email']." ".$_SESSION['type'];
-                    header('Location: index.php');
+                    //echo $_SESSION['username']." ".$_SESSION['password']." ".$_SESSION['email']." ".$_SESSION['type'];
+                    header('Location: login.php');
                 };
             } ?>
         </div>

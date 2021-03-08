@@ -5,7 +5,7 @@
 
     //Menu Buttons
     if(isset($_POST['desconectar'])){
-        deleteUserSession();
+        loginOff();
     }
 
     if(isset($_POST['administrar'])){
@@ -27,7 +27,8 @@
     function checkRegister(){
 
         if($_POST['username'] !== "" && $_POST['email'] !== "" && $_POST['password'] !== "" && $_POST['password_confirm'] !== ""){
-            if(str_contains($_POST['email'],"@") && str_contains($_POST['email'],".")){
+            //echo $_POST['username'].$_POST['email'].$_POST['password'];
+            if(strpos($_POST['email'],"@") >= 1 && strpos($_POST['email'],".") >= 1){
                 if($_POST['password'] === $_POST['password_confirm']){
                     if(userExists($_POST['username'])){
                         echo "<span class='error'>Error el usuario ya existe.</span>";
@@ -37,7 +38,7 @@
                         $user['email'] = $_POST['email'];
                         $user['type'] = "user";
                         if(insertNewUser($user)){
-                            setUserSession($user);
+                            returnUserData($user['username']);
                             setCookieUser($user);
                             echo "<span class='success'>Registrado correctamente</span>";
                             return true;

@@ -30,7 +30,7 @@
   </head>
   <body>
     
-    <?php generateMenu($_SESSION['username'],$_SESSION['password'],$_SESSION['type']); ?>
+    <?php generateMenu(); ?>
 
     <div class="container">
       <?php generateRow(); ?>

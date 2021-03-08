@@ -17,7 +17,7 @@
   </head>
   <body>
 
-    <?php generateMenu($_SESSION['username'],$_SESSION['password'],$_SESSION['type']);  ?>
+    <?php generateMenu();  ?>
   
     <div class="container mt-5">
 
@@ -28,12 +28,19 @@
           </div>
 
             <div class="form-group">
+
+              <?php
+              
+                if(noErasTu()){
+                  echo "<div>No eras tu <b> ".$_COOKIE['username']."?</b></div>";
+                }
+              ?>
               <label for="user">Usuario</label>
-              <input type="email" class="form-control" id="user" placeholder="Usuario">
+              <input type="text" class="form-control" id="user" placeholder="Usuario" name="username" value="<?php  if(isset($_POST['username'])){ echo $_POST['username'];} ?>">
             </div>
             <div class="form-group">
               <label for="password">Contraseña</label>
-              <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
+              <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" value="<?php if(isset($_POST['password'])){ echo $_POST['password'];} ?>">
             </div>
             <button type="submit" class="btn btn-primary" name="iniciarsesion">Iniciar Sesion</button>
             <button type="submit" class="btn btn-success" name="registrarse">Crear cuenta</button>
@@ -44,7 +51,14 @@
           <div class="row d-flex justify-content-center mt-2">
             <!-- No se puede meter en buttons, ya que si hay algun error, se tiene que avisar al usuario -->
             <?php if(isset($_POST['iniciarsesion'])){
-              echo "<span class='error'>Text<span>";
+
+                if(login($_POST['username'],$_POST['password'])){
+                  setUserSession($_POST['username']);
+                  header("Location: index.php");
+                }else{
+                  echo "<span class='error'>Usuario o contraseña incorrectos</span>";
+                }
+                
             } ?>
           </div>
     </div>
