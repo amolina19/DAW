@@ -105,8 +105,8 @@ class User{
             $this->contacto_tlf = $contacto_tlf;
         }
 
-        function setContactoimagen($contacto_imagen){
-            $this->contacto_imagen = $contacto_imagen;
+        function setContactoEmail($contacto_email){
+            $this->contacto_email = $contacto_email;
         }
     }
     
