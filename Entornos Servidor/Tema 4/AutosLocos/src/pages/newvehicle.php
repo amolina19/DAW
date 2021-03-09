@@ -90,6 +90,9 @@ include_once 'modules.php';
             echo "<span class='error'>Te faltan campos por rellenar</span>";
         }else{
             $vehiculo = new Vehiculo();
+            $vehiculo->setReservado(intval(false));
+            $vehiculo->setUsuarioReserva(null);
+            $vehiculo->setDiaReservado(null);
             $vehiculo->setNombre($_POST['nombreVehiculo']);
             $vehiculo->setMarca($_POST['marcaVehiculo']);
             $vehiculo->setAnno($_POST['annoVehiculo']);
@@ -103,7 +106,7 @@ include_once 'modules.php';
             $image = $_FILES["imagenVehiculo"]['tmp_name'];
             $fileName = $_FILES["imagenVehiculo"]['name'];
             $vehiculo->setImagen($image);
-            //insertVehicle($vehiculo);
+            insertVehicle($vehiculo);
         }
             
     } ?>

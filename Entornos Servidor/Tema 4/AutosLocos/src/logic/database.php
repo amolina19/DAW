@@ -23,6 +23,7 @@ class User{
     class Vehiculo {
         public $id;
         public $reservado;
+        public $usuario_reserva;
         public $dia_reservado;
         public $nombre;
         public $precio;
@@ -36,9 +37,10 @@ class User{
         public $contacto_tlf;
         public $contacto_imagen;
 
-        function setData($id,$reservado,$dia_reservado,$precio,$nombre,$imagen,$km,$caracteristicas,$color,$marca,$modelo,$anno,$contacto_tlf,$contacto_imagen){
+        function setData($id,$reservado,$usuario_reserva,$dia_reservado,$precio,$nombre,$imagen,$km,$caracteristicas,$color,$marca,$modelo,$anno,$contacto_tlf,$contacto_imagen){
             $this->id = $id;
             $this->reservado = $reservado;
+            $this->usuario_reserva = $reservado;
             $this->dia_reservado = $dia_reservado;
             $this->nombre = $nombre;
             $this->precio = $precio;
@@ -61,6 +63,10 @@ class User{
             $this->reservado = $reservado;
         }
 
+        function setUsuarioReserva($usuario_reserva){
+            $this->usuario_reserva = $usuario_reserva;
+        }
+
         function setDiaReservado($dia_reservado){
             $this->dia_reservado = $dia_reservado;
         }
@@ -70,7 +76,7 @@ class User{
         }
 
         function setPrecio($precio){
-            $this->precio = $precio;
+            $this->precio = (double) $precio;
         }
 
         function setImagen($imagen){
@@ -246,22 +252,28 @@ class User{
         $conn = getConnection();
         
         try{
-            $gsent = $conn->prepare("INSERT INTO Vehicles (nombre,precio,imagen,km,caracteristicas,color,marca,modelo,anno,contacto_tlf,contacto_imagen) 
-            VALUES(:nombre,:precio,:imagen,:km,:caracteristicas,:color,:marca,:modelo,:anno,:contacto_tlf,:contacto_imagen)");
-            $gsent->bindParam(":nombre", $vehiculo['nombre']);
-            $gsent->bindParam(":precio", $vehiculo['precio']);
-            $gsent->bindParam(":imagen",$vehiculo['imagen']);
-            $gsent->bindParam(":km",$vehiculo['km']);
-            $gsent->bindParam(":caracteristicas",$vehiculo['caracteristicas']);
-            $gsent->bindParam(":color",$vehiculo['color']);
-            $gsent->bindParam(":marca",$vehiculo['marca']);
-            $gsent->bindParam(":modelo",$vehiculo['modelo']);
-            $gsent->bindParam(":anno",$vehiculo['anno']);
-            $gsent->bindParam(":contacto_tlf",$vehiculo['contacto_tlf']);
-            $gsent->bindParam(":contacto_imagen",$vehiculo['contacto_imagen']);
+            $gsent = $conn->prepare("INSERT INTO Vehicles (reservado,usuario_reserva,dia_reservado,nombre,precio,imagen,km,caracteristicas,color,marca,modelo,anno,contacto_tlf,contacto_email) 
+            VALUES(:reservado,:usuario_reserva,:dia_reservado,:nombre,:precio,:imagen,:km,:caracteristicas,:color,:marca,:modelo,:anno,:contacto_tlf,:contacto_email)");
+            $gsent->bindParam(":reservado", $vehiculo->reservado);
+            $gsent->bindParam(":usuario_reserva",$vehiculo->usuario_reserva);
+            $gsent->bindParam(":dia_reservado", $vehiculo->dia_reservado);
+            $gsent->bindParam(":nombre", $vehiculo->nombre);
+            $gsent->bindParam(":precio", $vehiculo->precio);
+            $gsent->bindParam(":imagen",$vehiculo->imagen);
+            $gsent->bindParam(":km",$vehiculo->km);
+            $gsent->bindParam(":caracteristicas",$vehiculo->caracteristicas);
+            $gsent->bindParam(":color",$vehiculo->color);
+            $gsent->bindParam(":marca",$vehiculo->marca);
+            $gsent->bindParam(":modelo",$vehiculo->modelo);
+            $gsent->bindParam(":anno",$vehiculo->anno);
+            $gsent->bindParam(":contacto_tlf",$vehiculo->contacto_tlf);
+            $gsent->bindParam(":contacto_email",$vehiculo->contacto_email);
             
             if($gsent->execute()){
+                echo "SE ISO";
                 return true;
+            }else{
+                ECHO "ERRORRRR";
             }
 
             return false;
