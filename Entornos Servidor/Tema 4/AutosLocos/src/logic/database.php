@@ -19,6 +19,37 @@
             var_dump(get_object_vars($this));
         }
     }
+
+    class Vehiculo {
+        public $id;
+        public $reservado;
+        public $dia_reservado;
+        public $precio;
+        public $imagen;
+        public $km;
+        public $caracteristicas;
+        public $color;
+        public $marca;
+        public $modelo;
+        public $year;
+        public $contacto_tlf;
+        public $contacto_email;
+
+        function setData($id,$reservado,$dia_reservado,$precio,$imagen,$km,$caracteristicas,$color,$marca,$modelo,$year,$contacto_tlf,$contacto_email){
+            $this->id = $id;
+            $this->reservado = $reservado;
+            $this->dia_reservado = $dia_reservado;
+            $this->precio = $precio;
+            $this->imagen = $imagen;
+            $this->km = $km;
+            $this->color = $color;
+            $this->marca = $marca;
+            $this->modelo = $modelo;
+            $this->year = $year;
+            $this->contacto_tlf = $contacto_tlf;
+            $this->contacto_email = $contacto_email;
+        }
+    }
     
 
     function getConnection(){
@@ -124,6 +155,11 @@
     function deleteUser($id){
         $conn = getConnection();
         $sql = "SELECT * FROM Users";
+    }
+
+
+    function subirVehiculo($vehiculo){
+
     }
 
     //Filtrador de Busquedas

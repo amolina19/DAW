@@ -14,8 +14,8 @@
         if(isset($_SESSION['username']) && isset($_SESSION['password'])){
             if($_SESSION['username'] !== null && $_SESSION['password'] !== null){
                 echo    "<button class='btn btn-danger mr-2' name='desconectar'>Desconectar</button>";
-                echo    "<button class='btn btn-success mr-2' name='addvehiculo'>Añadir Vehiculo</button>";
                 if($_SESSION['type'] === 'admin'){
+                    echo    "<button class='btn btn-success mr-2' name='addvehiculo'>Añadir Vehiculo</button>";
                     echo    "<button class='btn btn-warning mr-2' name='administrar'>Administrar</button>";
                 }
             }
@@ -51,10 +51,11 @@
         echo   "<form class='form-inline my-2 my-lg-0' method='post'>";
         if(isset($_SESSION['username']) && isset($_SESSION['password'])){
             if($_SESSION['username'] !== null && $_SESSION['password'] !== null && $_SESSION['type'] === 'admin'){
+                echo   "<button class='btn btn-success mr-2' name='addvehiculo'>Añadir Vehiculo</button>";
                 echo   "<button type='submit' name='moduser' class='mr-2 border-0'><img height='40px' src='../images/usuarios.svg'></button>";
                 echo   "<button type='submit' name='modvehiculo' class='mr-2 border-0'><img height='40px' src='../images/vehiculos.svg'></button>";
-                echo    "<button class='btn btn-warning mr-2' name='volver'>Volver</button>";
-                echo    "<button class='btn btn-danger mr-2' name='desconectar'>Desconectar</button>";
+                echo   "<button class='btn btn-warning mr-2' name='volver'>Volver</button>";
+                echo   "<button class='btn btn-danger mr-2' name='desconectar'>Desconectar</button>";
                 
             }
         }
@@ -85,7 +86,7 @@
         echo "<div class='card mr-2 mr-2 mb-4 mb-md-0 mt-0 mt-md-4' style='width: 18rem;'>";
         echo "<img class='card-img-top' src='https://soymotor.com/sites/default/files/imagenes/noticia/bugatti-chiron-super-sport-300-exterior-soymotor.jpg' alt='Card image cap'>";
         echo "<div class='card-body'>";
-        echo "<h5 class='card-title'>Card title</h5>";
+        echo "<h5 class='card-title'>Buggati Veyron</h5>";
         echo "<p class='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p>";
         echo "<input type='submit' class='btn btn-success mr-2' value='Reservar'>";
         echo "<input type='submit' class='btn btn-primary' value='+Info'>";
