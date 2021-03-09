@@ -2,7 +2,7 @@
 
 include_once dirname(__DIR__).'/logic/buttons.php';
 include_once dirname(__DIR__).'/logic/session.php';
-include_once dirname(__DIR__).'/logic/database.php';
+//include_once dirname(__DIR__).'/logic/database.php';
 include_once 'modules.php';
 
 
@@ -16,7 +16,7 @@ include_once 'modules.php';
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-
+    <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
@@ -83,6 +83,30 @@ include_once 'modules.php';
     </div>
     <button class="btn btn-primary mb-5" type="submit" name="addnewvehicle">Añadir Vehiculo</button>
     </form>
+
+    <?php if(isset($_POST['addnewvehicle'])){
+
+        if(!isset($_POST['nombreVehiculo']) && !isset($_POST['marcaVehiculo']) && !isset($_POST['annoVehiculo']) && !isset($_POST['precio']) && !isset($_POST['kilometros']) && !isset($_POST['color']) && !isset($_POST['telefonoContacto']) && !isset($_POST['emailContacto']) && !isset($_POST['caracteristicas']) && !isset($_FILES['imagenVehiculo'])){
+            echo "<span class='error'>Te faltan campos por rellenar</span>";
+        }else{
+            $vehiculo = new Vehiculo();
+            $vehiculo->setNombre($_POST['nombreVehiculo']);
+            $vehiculo->setMarca($_POST['marcaVehiculo']);
+            $vehiculo->setAnno($_POST['annoVehiculo']);
+            $vehiculo->setPrecio($_POST['precio']);
+            $vehiculo->setKm($_POST['kilometros']);
+            $vehiculo->setColor($_POST['color']);
+            $vehiculo->setContactoTelefono($_POST['telefonoContacto']);
+            $vehiculo->setContactoEmail($_POST['emailContacto']);
+            $vehiculo->setCaracteristicas($_POST['caracteristicas']);
+
+            $image = $_FILES["imagenVehiculo"]['tmp_name'];
+            $fileName = $_FILES["imagenVehiculo"]['name'];
+            $vehiculo->setImagen($image);
+            //insertVehicle($vehiculo);
+        }
+            
+    } ?>
   </div>
       
 

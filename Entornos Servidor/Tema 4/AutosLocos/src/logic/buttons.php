@@ -42,10 +42,6 @@
         header('Location: newvehicle.php');
     }
 
-    if(isset($_POST['addnewvehicle'])){
-        echo "SUBIDO";
-    }
-
     if(isset($_POST['eliminar-'])){
         foreach ($_POST['eliminar-'] as $key => $value) {
             echo $key;

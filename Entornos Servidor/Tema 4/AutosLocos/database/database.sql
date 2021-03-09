@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS Vehicles(
     reservado TINYINT NOT NULL,
     usuario_reserva INT,
     dia_reservado DATETIME,
+    nombre varchar(64),
     precio DOUBLE,
     imagen BLOB,
     km varchar(64),
@@ -24,7 +25,7 @@ CREATE TABLE IF NOT EXISTS Vehicles(
     color varchar(64),
     marca varchar(64),
     modelo varchar(64),
-    year varchar(64),
+    anno varchar(64),
     contacto_tlf varchar(64),
     contacto_email varchar(64),
     CONSTRAINT FK_UsuarioReserva FOREIGN KEY (usuario_reserva) REFERENCES Users(id)
