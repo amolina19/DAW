@@ -28,6 +28,22 @@
         header('Location: index.php');
     }
 
+    if(isset($_POST['perfil'])){
+        header('Location: profile.php');
+    }
+
+    if(isset($_POST['editar-'])){
+        foreach ($_POST['editar-'] as $key => $value) {
+            echo $key;
+        }
+    }
+
+    if(isset($_POST['eliminar-'])){
+        foreach ($_POST['eliminar-'] as $key => $value) {
+            echo $key;
+        }
+    }
+
     function checkRegister(){
 
         if($_POST['username'] !== "" && $_POST['email'] !== "" && $_POST['password'] !== "" && $_POST['password_confirm'] !== ""){
@@ -61,5 +77,3 @@
         }
         return false;
     }
-
-?>

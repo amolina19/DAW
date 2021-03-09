@@ -19,6 +19,8 @@ CREATE TABLE IF NOT EXISTS Vehicles(
     dia_reservado DATETIME,
     precio DOUBLE,
     imagen BLOB,
+    km varchar(64),
+    caracteristicas varchar(1000),
     color varchar(64),
     marca varchar(64),
     modelo varchar(64),
@@ -29,7 +31,8 @@ CREATE TABLE IF NOT EXISTS Vehicles(
 )ENGINE = InnoDB;
 
 
-INSERT INTO `Users` VALUES (1,'user','$2y$10$ig/IF2hBipNpCH5NcYnYhe24BPx4BtpaRK8r33D2rU4QwmuNB2D3C','user@gmail.com','user')(2,'admin','$2y$10$uA6z7bsKGK02sTCPaBB80uqLpwZ4CSenEtnTsq8.HYBtnzHD1mLEO','admin@gmail.com','admin');
+INSERT INTO `Users` VALUES (1,'user','$2y$10$ig/IF2hBipNpCH5NcYnYhe24BPx4BtpaRK8r33D2rU4QwmuNB2D3C','user@gmail.com','user');
+INSERT INTO `Users` VALUES (2,'admin','$2y$10$uA6z7bsKGK02sTCPaBB80uqLpwZ4CSenEtnTsq8.HYBtnzHD1mLEO','admin@gmail.com','admin');
 
 
 

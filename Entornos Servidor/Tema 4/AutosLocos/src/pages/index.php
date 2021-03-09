@@ -32,7 +32,7 @@
     
     <?php generateMenu(); ?>
 
-    <div class="container">
+    <div class="container-fluid">
       <?php generateRow(); ?>
       <?php generateRow(); ?>
       <?php generateRow(); ?>

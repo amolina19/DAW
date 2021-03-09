@@ -30,3 +30,16 @@ label{
     color: green;
     font-weight: bold;
 }
+
+.column{
+    float:left;
+    width: 100%;
+    padding: 10px;
+    border: 1px black solid;
+}
+
+.row:after{
+    content: "";
+    display: table;
+    clear: both;
+}

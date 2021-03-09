@@ -1,5 +1,26 @@
 <?php
 
+    class User{
+        public $id;
+        public $username;
+        private $password;
+        public $email;
+        public $type;
+
+        function setData($id, $username, $password, $email, $type){
+            $this->id = $id;
+            $this->username = $username;
+            $this->password = $password;
+            $this->email = $email;
+            $this->type = $type;
+        }
+
+        function dumpUserData(){
+            var_dump(get_object_vars($this));
+        }
+    }
+    
+
     function getConnection(){
         $user = "autoslocos";
         $host = "localhost";
@@ -78,6 +99,31 @@
             echo "Connection to database failed:".$e->getMessage();
             return false;
         }
+    }
+
+
+    //Admin Panel
+    function getAllUsers($type){
+        $conn = getConnection();
+        $users = array();
+        if($type === 'all'){
+            $sql = "SELECT * FROM Users";
+        }else if($type === 'admin'){
+            $sql = "SELECT * FROM Users WHERE type LIKE 'admin'";
+        }else if($type === 'users'){
+            $sql = "SELECT * FROM Users WHERE type LIKE 'user'";
+        }
+        foreach($conn->query($sql) as $row){
+            $user = new User();
+            $user->setData($row['id'],$row['usuario'],$row['password'],$row['email'],$row['type']);
+            array_push($users,$user);
+        }
+        return $users;
+    }
+
+    function deleteUser($id){
+        $conn = getConnection();
+        $sql = "SELECT * FROM Users";
     }
 
     //Filtrador de Busquedas
