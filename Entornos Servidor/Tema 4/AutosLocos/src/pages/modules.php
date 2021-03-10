@@ -2,7 +2,8 @@
 
     function generateMenu(){
         echo "<nav class='navbar navbar-expand-md navbar-light bg-light'>";
-        echo  "<a class='navbar-brand' href='index.php'>AutosLocos</a>";
+        echo  "<img src='../images/logo.svg' width='50px' height='50px'>";
+        echo  "<a class='navbar-brand pl-3' href='index.php'><b>AutosLocos</b></a>";
         echo  "<button class='navbar-toggler d-lg-none' type='button' data-toggle='collapse' data-target='#collapsibleNavId' aria-controls='collapsibleNavId' aria-expanded='false' aria-label='Toggle navigation'>";
         echo      "<span class='navbar-toggler-icon'></span>";
         echo   "</button>";
@@ -42,7 +43,8 @@
 
     function generateAdminMenu(){
         echo "<nav class='navbar navbar-expand-md navbar-light bg-light'>";
-        echo  "<a class='navbar-brand' href='index.php'>AutosLocos</a>";
+        echo   "<img src='../images/logo.svg' width='50px' height='50px'>";
+        echo  "<a class='navbar-brand pl-3' href='index.php'><b>AutosLocos</b></a>";
         echo  "<button class='navbar-toggler d-lg-none' type='button' data-toggle='collapse' data-target='#collapsibleNavId' aria-controls='collapsibleNavId' aria-expanded='false' aria-label='Toggle navigation'>";
         echo      "<span class='navbar-toggler-icon'></span>";
         echo   "</button>";
