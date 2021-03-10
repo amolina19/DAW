@@ -77,10 +77,12 @@
             $count++;
         }
         //echo $rows;
-        generateColumns($rows,$vehicles);
+        //generateColumns($rows,$vehicles);
+        generateView($vehicles);
         
     }
 
+    /*
     function generateColumns($rows,$vehicles){
         $vehicleCount = 0;
         $count = sizeof($vehicles);
@@ -101,6 +103,15 @@
             echo "</div>";
         }
         
+    }
+    */
+    
+    function generateView($vehicles){
+        echo "<div class='row justify-content-left ml-5'>";
+        for($i=0;$i<sizeof($vehicles);$i++){
+            generateProduct($vehicles[$i]);
+        }
+        echo "</div>";
     }
 
     function generateProduct($vehicle){
