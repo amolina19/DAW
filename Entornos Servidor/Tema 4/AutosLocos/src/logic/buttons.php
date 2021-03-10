@@ -48,6 +48,10 @@
         }
     }
 
+    if(isset($_POST['moduser']) && getActualPage() !== 'admin.php'){
+        header('Location: admin.php');
+    }
+
     function checkRegister(){
 
         if($_POST['username'] !== "" && $_POST['email'] !== "" && $_POST['password'] !== "" && $_POST['password_confirm'] !== ""){

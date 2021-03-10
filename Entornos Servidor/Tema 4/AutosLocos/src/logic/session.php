@@ -3,6 +3,11 @@
     include_once 'database.php';
     userCookieExists();
 
+
+    function getActualPage(){
+        return substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);  
+    }
+
     function userCookieExists(){
         //echo $_COOKIE['username'];
         if($_COOKIE['username'] !== null && isset($_COOKIE['password'])){

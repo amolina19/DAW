@@ -1,9 +1,9 @@
 <?php
 
-include_once dirname(__DIR__).'/logic/buttons.php';
-include_once dirname(__DIR__).'/logic/session.php';
-//include_once dirname(__DIR__).'/logic/database.php';
 include_once 'modules.php';
+include_once dirname(__DIR__).'/logic/session.php';
+include_once dirname(__DIR__).'/logic/buttons.php';
+include_once dirname(__DIR__).'/logic/database.php';
 
 
 ?>
@@ -30,8 +30,8 @@ include_once 'modules.php';
     <form method="POST" enctype="multipart/form-data">
     <div class="form-row">
         <div class="col-md-4 mb-3">
-            <label><b>Nombre</b></label>
-            <input type="text" class="form-control" placeholder="Nombre del vehiculo" name="nombreVehiculo" required>
+            <label><b>Modelo</b></label>
+            <input type="text" class="form-control" placeholder="Modelo del vehiculo" name="modeloVehiculo" required>
         </div>
         <div class="col-md-4 mb-3">
             <label><b>Marca</b></label>
@@ -93,8 +93,8 @@ include_once 'modules.php';
             $vehiculo->setReservado(intval(false));
             $vehiculo->setUsuarioReserva(null);
             $vehiculo->setDiaReservado(null);
-            $vehiculo->setNombre($_POST['nombreVehiculo']);
             $vehiculo->setMarca($_POST['marcaVehiculo']);
+            $vehiculo->setModelo($_POST['modeloVehiculo']);
             $vehiculo->setAnno($_POST['annoVehiculo']);
             $vehiculo->setPrecio($_POST['precio']);
             $vehiculo->setKm($_POST['kilometros']);
@@ -103,7 +103,7 @@ include_once 'modules.php';
             $vehiculo->setContactoEmail($_POST['emailContacto']);
             $vehiculo->setCaracteristicas($_POST['caracteristicas']);
 
-            $image = $_FILES["imagenVehiculo"]['tmp_name'];
+            $image = file_get_contents($_FILES['imagenVehiculo']['tmp_name']);
             $fileName = $_FILES["imagenVehiculo"]['name'];
             $vehiculo->setImagen($image);
             insertVehicle($vehiculo);

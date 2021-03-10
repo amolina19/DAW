@@ -37,12 +37,11 @@ class User{
         public $contacto_tlf;
         public $contacto_imagen;
 
-        function setData($id,$reservado,$usuario_reserva,$dia_reservado,$precio,$nombre,$imagen,$km,$caracteristicas,$color,$marca,$modelo,$anno,$contacto_tlf,$contacto_imagen){
+        function setData($id,$reservado,$usuario_reserva,$dia_reservado,$precio,$imagen,$km,$caracteristicas,$color,$marca,$modelo,$anno,$contacto_tlf,$contacto_email){
             $this->id = $id;
             $this->reservado = $reservado;
-            $this->usuario_reserva = $reservado;
+            $this->usuario_reserva = $usuario_reserva;
             $this->dia_reservado = $dia_reservado;
-            $this->nombre = $nombre;
             $this->precio = $precio;
             $this->imagen = $imagen;
             $this->km = $km;
@@ -52,7 +51,7 @@ class User{
             $this->modelo = $modelo;
             $this->anno = $anno;
             $this->contacto_tlf = $contacto_tlf;
-            $this->contacto_imagen = $contacto_imagen;
+            $this->contacto_email = $contacto_email;
         }
 
         function setId($id){
@@ -69,10 +68,6 @@ class User{
 
         function setDiaReservado($dia_reservado){
             $this->dia_reservado = $dia_reservado;
-        }
-
-        function setNombre($nombre){
-            $this->nombre = $nombre;
         }
 
         function setPrecio($precio){
@@ -222,20 +217,18 @@ class User{
         $sql = "SELECT * FROM Users";
     }
 
-    //Admin Panel
-    function getAllvehiculos($type){
+    function getAllvehiculos($filtro){
         $conn = getConnection();
         $vehiculos = array();
-        if($type === 'all'){
-            $sql = "SELECT * FROM Users";
-        }else if($type === 'admin'){
-            $sql = "SELECT * FROM Users WHERE type LIKE 'admin'";
-        }else if($type === 'users'){
-            $sql = "SELECT * FROM Users WHERE type LIKE 'user'";
+        if(isset($_SESSION['type']) && $_SESSION['type'] === 'admin'){
+            $sql = "SELECT * FROM Vehicles";
+        }else{
+            $sql = "SELECT * FROM Vehicles WHERE reservado LIKE '0'";
         }
+
         foreach($conn->query($sql) as $row){
-            $vehiculo = new vehiculo();
-            $vehiculo->setData($row['id'],$row['usuario'],$row['precio'],$row['imagen'],$row['km']);
+            $vehiculo = new Vehiculo();
+            $vehiculo->setData($row['id'],$row['reservado'],$row['usuario_reserva'],$row['dia_reservado'],$row['precio'],$row['imagen'],$row['km'],$row['caracteristicas'],$row['color'],$row['marca'],$row['modelo'],$row['anno'],$row['contacto_tlf'],$row['contacto_email']);
             array_push($vehiculos,$vehiculo);
         }
         return $vehiculos;
@@ -248,16 +241,15 @@ class User{
 
 
     function insertVehicle($vehiculo){
-        echo print_r($vehiculo);
+        //echo print_r($vehiculo);
         $conn = getConnection();
         
         try{
-            $gsent = $conn->prepare("INSERT INTO Vehicles (reservado,usuario_reserva,dia_reservado,nombre,precio,imagen,km,caracteristicas,color,marca,modelo,anno,contacto_tlf,contacto_email) 
-            VALUES(:reservado,:usuario_reserva,:dia_reservado,:nombre,:precio,:imagen,:km,:caracteristicas,:color,:marca,:modelo,:anno,:contacto_tlf,:contacto_email)");
+            $gsent = $conn->prepare("INSERT INTO Vehicles (reservado,usuario_reserva,dia_reservado,precio,imagen,km,caracteristicas,color,marca,modelo,anno,contacto_tlf,contacto_email) 
+            VALUES(:reservado,:usuario_reserva,:dia_reservado,:precio,:imagen,:km,:caracteristicas,:color,:marca,:modelo,:anno,:contacto_tlf,:contacto_email)");
             $gsent->bindParam(":reservado", $vehiculo->reservado);
             $gsent->bindParam(":usuario_reserva",$vehiculo->usuario_reserva);
             $gsent->bindParam(":dia_reservado", $vehiculo->dia_reservado);
-            $gsent->bindParam(":nombre", $vehiculo->nombre);
             $gsent->bindParam(":precio", $vehiculo->precio);
             $gsent->bindParam(":imagen",$vehiculo->imagen);
             $gsent->bindParam(":km",$vehiculo->km);
@@ -270,10 +262,7 @@ class User{
             $gsent->bindParam(":contacto_email",$vehiculo->contacto_email);
             
             if($gsent->execute()){
-                echo "SE ISO";
                 return true;
-            }else{
-                ECHO "ERRORRRR";
             }
 
             return false;

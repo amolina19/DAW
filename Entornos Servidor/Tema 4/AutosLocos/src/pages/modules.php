@@ -64,30 +64,45 @@
         echo  "</nav>";
     }
 
+    function generateVehicleList($filtro){
+        $vehicles = getAllvehiculos($filtro);
+        //var_dump($vehicles);
+        $rows = sizeof($vehicles)/4;
+        if($rows <= 4){
+            generateColumns(1,$vehicles);
+        }else{
+            generateColumns($rows+1);
+        }
+    }
 
-    function generateContent($filtro){
+    function generateColumns($rows,$vehicles){
+        $vehicleCount = 0;
+        
+        for($i=0;$i<$rows;$i++){
 
-        switch($filtro){
+            echo "<div class='row justify-content-center'>";
 
+            $z = 4;
+            if(sizeof($vehicles) < 4){
+                $z = sizeof($vehicles);
+            }
+            for($x=0;$x<$z;$x++){
+                generateProduct($vehicles[$vehicleCount]);
+                $vehicleCount++;
+            }
+            echo "</div>";
         }
         
     }
 
-    function generateRow(){
-        echo "<div class='row justify-content-center'>";
-        generateProduct();
-        generateProduct();
-        generateProduct();
-        generateProduct();
-        echo "</div>";
-    }
-
-    function generateProduct(/*$product*/){
+    function generateProduct($vehicle){
         echo "<div class='card mr-2 mr-2 mb-4 mb-md-0 mt-0 mt-md-4' style='width: 18rem;'>";
-        echo "<img class='card-img-top' src='https://soymotor.com/sites/default/files/imagenes/noticia/bugatti-chiron-super-sport-300-exterior-soymotor.jpg' alt='Card image cap'>";
+        echo "<img class='card-img-top' src='data:image/jpg;charset=utf-8;base64,".base64_encode($vehicle->imagen)."' height='200px' alt='Coche'>";
         echo "<div class='card-body'>";
-        echo "<h5 class='card-title'>Buggati Veyron</h5>";
-        echo "<p class='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p>";
+        echo "<h5 class='card-title'><b>".$vehicle->marca." ".$vehicle->modelo."</b></h5>";
+        echo "<p class='card-text'>Precio: <b>".$vehicle->precio."€</b></p>";
+        echo "<p class='card-text'>Kilometros: <b>".$vehicle->km."</b></p>";
+        echo "<p class='card-text'>Año:<b> ".$vehicle->anno."</b></p>";
         echo "<input type='submit' class='btn btn-success mr-2' value='Reservar'>";
         echo "<input type='submit' class='btn btn-primary' value='+Info'>";
         echo "</div></div>";

@@ -39,14 +39,14 @@
       
       if(isset($_POST['filtrarpor'])){
         generateUsersListView($_POST['filtrarusuarios']);
-        echo "test1";
+        //echo "test1";
       }else if(isset($_POST['moduser'])){
         generateUsersListView(('all'));
-        echo "test2";
+        //echo "test2";
       }else if(isset($_POST['modvehiculo'])){
-        echo "test3";
+        //echo "test3";
       }else{
-        echo "test4";
+        //echo "test4";
         generateUsersListView('all');
       }
     } 
