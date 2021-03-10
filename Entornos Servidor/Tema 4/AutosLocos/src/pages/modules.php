@@ -110,7 +110,7 @@
     */
     
     function generateView($vehicles){
-        echo "<div class='row justify-content-left ml-5'>";
+        echo "<div class='row justify-content-left ml-5 mt-4 mt-md-0'>";
         for($i=0;$i<sizeof($vehicles);$i++){
             generateProduct($vehicles[$i]);
         }
