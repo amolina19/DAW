@@ -13,7 +13,7 @@
 
         if(isset($_SESSION['username']) && isset($_SESSION['password'])){
             if($_SESSION['username'] !== null && $_SESSION['password'] !== null){
-                echo    "<button class='btn btn-danger mr-2' name='desconectar'>Desconectar</button>";
+                
                 if($_SESSION['type'] === 'admin'){
                     echo    "<button class='btn btn-success mr-2' name='addvehiculo'>Añadir Vehiculo</button>";
                     echo    "<button class='btn btn-warning mr-2' name='administrar'>Administrar</button>";
@@ -30,8 +30,9 @@
         if(isset($_SESSION['username']) && isset($_SESSION['password'])){
             echo   "<div class='row justify-content-center d-flex align-items-center'>";
             echo   "<button type='submit' name='perfil' class='ml-2 mr-2 border-0'><img src='../images/perfil.svg'></button>";
-            echo   "<b>".$_SESSION['username']."</b>";
+            echo   "<b class='pr-5'>".$_SESSION['username']."</b>";
             echo   "</div>";
+            echo   "<div><button class='btn btn-danger mr-2' name='desconectar'>Desconectar</button></div>";
         }
         
         echo  "</form>";
