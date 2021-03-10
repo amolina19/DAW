@@ -164,10 +164,10 @@
                 echo "<div class='row column mt-2 pt-2 pb-2 justify-content-center' style='background-color:#dddddd;'>";
                 $cellColor = 0;
             }
-            echo "<div class='col-md-1'><div class='text-center text-md-left '><b>ID:</b> ".$value->id."</div></div>";
-            echo "<div class='col-md-2'><div class='text-center text-md-left text-truncate'><b>Usuario:</b> ".$value->username."</div></div>";
-            echo "<div class='col-md-2'><div class='text-center text-md-left text-truncate'><b>Email:</b> ".$value->email."</div></div>";
-            echo "<div class='col-md-1'><div class='text-center text-md-left '><b>Tipo:</b> ".$value->type."</div></div>";
+            echo "<div class='col-md-1'><div class='text-center text-md-left '><b>ID:</b><br> ".$value->id."</div></div>";
+            echo "<div class='col-md-2'><div class='text-center text-md-left '><b>Usuario:</b><br> ".$value->username."</div></div>";
+            echo "<div class='col-md-2'><div class='text-center text-md-left '><b>Email:</b><br> ".$value->email."</div></div>";
+            echo "<div class='col-md-1'><div class='text-center text-md-left '><b>Tipo:</b><br> ".$value->type."</div></div>";
             echo "<div class='col-md-1'><div class='text-center text-md-left mb-2' ><input name='editar-[".$value->id."]' type='submit' value='Editar' class='btn btn-success'></div></div>";
             echo "<div class='col-md-1'><div class='text-center text-md-left ml-md-3 ml-0'><input name='eliminar-[".$value->id."]' type='submit' value='Eliminar' class='btn btn-danger'></div></div>";
             echo "</div>";
