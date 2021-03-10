@@ -119,7 +119,7 @@
 
     function generateProduct($vehicle){
         echo "<div class='card mr-2 mr-2 mb-4 mb-md-0 mt-0 mt-md-4' style='width: 18rem;'>";
-        echo "<img class='card-img-top' src='data:image/jpg;charset=utf-8;base64,".base64_encode($vehicle->imagen)."' height='200px' alt='Coche'>";
+        echo "<img class='card-img-top' src='data:image/jpg;charset=utf-8;base64,".base64_encode($vehicle->imagen)."' height='200px' alt='".$vehicle->modelo."'>";
         echo "<div class='card-body'>";
         echo "<h5 class='card-title'><b>".$vehicle->marca." ".$vehicle->modelo."</b></h5>";
         echo "<p class='card-text'>Precio: <b>".$vehicle->precio."€</b></p>";
