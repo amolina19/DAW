@@ -22,7 +22,8 @@
 
   <?php 
     if($_SESSION['type'] === 'admin' && $_SESSION['id'] !== null && $_SESSION['username'] != null && $_SESSION['password'] !== null){
-        $vehicle = returnVehicleDataByID($_SESSION['editVehicle']);
+        $user = returnUserDataByID($_SESSION['editUser']);
+        unset($_SESSION['editUser']);
         generateAdminMenu();
         //print_r($user);
     
@@ -73,12 +74,13 @@
             <div class="col-md-2 mb-3">
                 <input type='submit' value='Guardar cambios' class='btn btn-success' name='guardarcambios'>
             </div>
-            <div class="col-md-1 mb-3">
-                <input type='submit' value='Volver' class='btn btn-warning' name='volver'>
-            </div>
             <div class="col-md-2 mb-3">
                 <input type='submit' value='Eliminar usuario' class='btn btn-danger' name='eliminarusuario'>
             </div>
+            <div class="col-md-1 mb-3">
+                <input type='submit' value='Volver' class='btn btn-warning' name='volver'>
+            </div>
+            
         </div>
         </form>
 
@@ -89,7 +91,7 @@
             }
 
             if(isset($_POST['volver'])){
-                header('Location: admin.php');
+                header('Location: admin_users.php');
             }
 
             if(isset($_POST['eliminarusuario'])){

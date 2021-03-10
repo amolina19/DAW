@@ -161,6 +161,19 @@ class User{
         }
     }
 
+    function returnUserDataByID($id){
+        $conn = getConnection();
+        $sql = "SELECT id,usuario,password,email,type FROM Users WHERE id LIKE '$id'";
+        foreach ($conn->query($sql) as $row){
+            $data['id'] = $row['id'];
+            $data['username'] = $row['usuario'];
+            $data['password'] = $row['password'];
+            $data['email'] = $row['email'];
+            $data['type'] = $row['type'];
+            return $data;
+        }
+    }
+
     function userExists($user){
         $conn = getConnection();
         $sql = "SELECT usuario FROM Users WHERE usuario LIKE '$user'";
@@ -174,6 +187,28 @@ class User{
 
     function hashPassword($password){
         return password_hash($password, PASSWORD_DEFAULT);
+    }
+
+    function editUser($user){
+        $conn = getConnection();
+        
+        try{
+            $gsent = $conn->prepare("INSERT INTO Users (usuario,password,email,type) VALUES(:usuario,:password,:email,:type)");
+            $gsent->bindParam(":usuario", $user['username']);
+            $gsent->bindParam(":password", $user['password']);
+            $gsent->bindParam(":email",$user['email']);
+            $gsent->bindParam(":type",$user['type']);
+            
+            if($gsent->execute()){
+                return true;
+            }
+
+            return false;
+        }catch(PDOException $e){
+            die("Connection to database failed: " . $e->getMessage());
+            echo "Connection to database failed:".$e->getMessage();
+            return false;
+        }
     }
     
     function insertNewUser($user){
@@ -218,11 +253,6 @@ class User{
         return $users;
     }
 
-    function deleteUser($id){
-        $conn = getConnection();
-        $sql = "SELECT * FROM Users";
-    }
-
     function getAllvehiculos($filtro){
         $conn = getConnection();
         $vehiculos = array();
@@ -240,9 +270,36 @@ class User{
         return $vehiculos;
     }
 
-    function deletevehiculo($id){
+    function getAllvehiculosBuscador($filtro,$busqueda){
+        $busqueda = '%'.$busqueda.'%';
+        str_replace(" ","",$busqueda);
         $conn = getConnection();
-        $sql = "SELECT * FROM vehiculos";
+        $vehiculos = array();
+        if(isset($_SESSION['type']) && $_SESSION['type'] === 'admin'){
+            $sql = "SELECT * FROM Vehicles WHERE marca LIKE '".$busqueda."' OR modelo LIKE '".$busqueda."' OR color LIKE '".$busqueda."' OR anno LIKE '".$busqueda."' OR precio LIKE '".$busqueda."' OR km LIKE '".$busqueda."'";
+        }else{
+            $sql = "SELECT * FROM Vehicles WHERE reservado=='0' AND marca LIKE '".$busqueda."' OR modelo LIKE '".$busqueda."' OR color LIKE '".$busqueda."' OR anno LIKE '".$busqueda."' OR precio LIKE '".$busqueda."' OR km LIKE '".$busqueda."'";
+        }
+
+        foreach($conn->query($sql) as $row){
+            $vehiculo = new Vehiculo();
+            $vehiculo->setData($row['id'],$row['reservado'],$row['usuario_reserva'],$row['dia_reservado'],$row['precio'],$row['imagen'],$row['imagen_url'],$row['km'],$row['caracteristicas'],$row['color'],$row['marca'],$row['modelo'],$row['anno'],$row['contacto_tlf'],$row['contacto_email']);
+            array_push($vehiculos,$vehiculo);
+        }
+        return $vehiculos;
+    }
+
+    function deleteVehicle($id){
+        $conn = getConnection();
+        $sql = "DELETE FROM Vehicles WHERE id=".$id;
+        $conn->query($sql);
+    }
+
+    function deleteUser($id){
+        $conn = getConnection();
+        $sql = "DELETE FROM Users WHERE id=".$id;
+        //echo $sql;
+        $conn->query($sql);
     }
 
 

@@ -12,12 +12,18 @@
          
         echo   "<form class='form-inline my-2 my-lg-0' method='post'>";
 
+        if(getActualPage() === 'index.php'){
+            echo   "<input class='form-control mr-sm-2 mt-2 mt-sm-0' type='text' placeholder='Buscar por marca,modelo..' name='buscar'>";
+            echo   "<button class='btn btn-outline-success my-2 my-sm-0 mr-4' type='submit' name='buscarbtn'>Buscar</button>";
+        }
+        
+
         if(isset($_SESSION['username']) && isset($_SESSION['password'])){
             if($_SESSION['username'] !== null && $_SESSION['password'] !== null){
                 
                 if($_SESSION['type'] === 'admin'){
                     echo    "<button class='btn btn-success mr-2' name='addvehiculo'>Añadir Vehiculo</button>";
-                    echo    "<button class='btn btn-warning mr-2' name='administrar'>Administrar</button>";
+                    echo    "<button class='btn btn-warning mr-4' name='administrar'>Administrar</button>";
                 }
             }
         }else{
@@ -25,8 +31,7 @@
             echo   "<button class='btn btn-primary mr-2' name='registrarse'>Registrarse</button>";
         }
 
-        echo   "<input class='form-control mr-sm-2 mt-2 mt-sm-0' type='text' placeholder='Buscar vehiculo' name='buscar'>";
-        echo   "<button class='btn btn-outline-success my-2 my-sm-0 mr-4' type='submit' name='buscarbtn'>Buscar</button>";
+        
 
         if(isset($_SESSION['username']) && isset($_SESSION['password'])){
             echo   "<div class='row justify-content-center d-flex align-items-center'>";
@@ -67,8 +72,14 @@
         echo  "</nav>";
     }
 
-    function generateVehicleList($filtro){
-        $vehicles = getAllvehiculos($filtro);
+    function generateVehicleList($filtro,$busqueda){
+
+        if($busqueda === null){
+            $vehicles = getAllvehiculos($filtro);
+        }else{
+            $vehicles =getAllvehiculosBuscador($filtro,$busqueda);
+        }
+        
         //var_dump($vehicles);
         $rows = 1;
         $count = 1;
@@ -156,7 +167,7 @@
         }
 
         foreach ($users as $value) {
-                
+            echo "<form method='post'>";
             if($cellColor === 0){
                 echo "<div class='row column mt-2 pt-2 pb-2 justify-content-center' style='background-color:#ffffff;'>";
                 $cellColor = 1;
@@ -172,12 +183,13 @@
             echo "<div class='col-md-1'><div class='text-center text-md-left ml-md-3 ml-0'><input name='eliminar-[".$value->id."]' type='submit' value='Eliminar' class='btn btn-danger'></div></div>";
             echo "</div>";
         }
-        echo "</div>";
+        echo "</div></form>";
     }
 
 
     function generateVehiclesListView(){
         echo "<div class='container-fluid'>";
+        echo "<form method='post'>";
         $vehicles;
         $cellColor = 0; //0 Blanco y 1 Gris
 
@@ -214,7 +226,7 @@
             echo "<div class='col-md-1'><div class='text-center text-md-left ml-md-0 ml-0'><input name='eliminar-[".$value->id."]' type='submit' value='Eliminar' class='btn btn-danger'></div></div>";
             echo "</div>";
         }
-        echo "</div>";
+        echo "</form></div>";
     }
 
 

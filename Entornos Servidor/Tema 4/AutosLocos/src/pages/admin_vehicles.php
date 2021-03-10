@@ -17,40 +17,9 @@
   </head>
   <body>
 
-  <?php if($_SESSION['type'] === 'admin'){generateAdminMenu();}else{
+  <?php if($_SESSION['type'] === 'admin'){generateAdminMenu();generateVehiclesListView();}else{
     header("Location: index.php");
   } ?>
-
-  <?php if(!isset($_POST['editar-']) && !isset($_POST['eliminar-']) && !isset($_POST['modvehiculo'])){
-    echo "<form method='post'>";
-    echo "<div class='container-fluid'>";
-    echo "<div class='d-flex justify-content-center mt-2'>";
-    echo "<select name='filtrarusuarios' class='form-select'>";
-    echo "<option value='all'>Todos</option>";
-    echo "<option value='users'>Usuarios</option>";
-    echo "<option value='admin'>Administradores</option>";
-    echo "</select>";
-    echo "<input type='submit' class='btn btn-warning ml-2' value='Filtrar' name='filtrarpor'>";
-    echo "</div></div>";
-  } ?>
-
-  <?php if($_SESSION['type'] === 'admin'){
-    
-      
-      if(isset($_POST['filtrarpor'])){
-        generateUsersListView($_POST['filtrarusuarios']);
-        //echo "test1";
-      }else if(isset($_POST['moduser'])){
-        generateUsersListView(('all'));
-        //echo "test2";
-      }else if(isset($_POST['modvehiculo'])){
-        generateVehiclesListView();
-      }else{
-        //echo "test4";
-        generateUsersListView('all');
-      }
-    } 
-  ?>
 
   </form>
 

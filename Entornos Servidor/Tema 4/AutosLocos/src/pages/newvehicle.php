@@ -37,57 +37,50 @@ include_once dirname(__DIR__).'/logic/database.php';
         </div>
         <div class="col-md-4 mb-3">
             <label><b>Marca</b></label>
-            <input type="text" class="form-control" placeholder="Marca del vehiculo" id="marcaVehiculo" name="marcaVehiculo" value="<?php if(isset($_POST['marcaVehiculo'])){ echo $_POST['marcaVehiculo'];} ?>" required>
+            <input type="text" class="form-control" placeholder="Marca del vehiculo" name="marcaVehiculo" value="<?php if(isset($_POST['marcaVehiculo'])){ echo $_POST['marcaVehiculo'];} ?>" required>
         </div>
         <div class="col-md-4 mb-3">
             <label><b>Año</b></label>
-            <input type="text"  class="form-control" placeholder='<?php echo date("Y") ?>' id="annoVehiculo" name="annoVehiculo" value="<?php if(isset($_POST['annoVehiculo'])){ echo $_POST['annoVehiculo'];} ?>" required>
+            <input type="text"  class="form-control" placeholder='<?php echo date("Y") ?>' name="annoVehiculo" value="<?php if(isset($_POST['annoVehiculo'])){ echo $_POST['annoVehiculo'];} ?>" required>
         </div>
     </div>
     <div class="form-row">
-        <div class="col-md-6 mb-3">
+        <div class="col-md-4 mb-3">
             <label><b>Precio</b></label>
-            <input type="text" class="form-control" id="precio" name="precio" placeholder="Precio" value="<?php if(isset($_POST['precio'])){ echo $_POST['precio'];} ?>" required>
+            <input type="text" class="form-control" name="precio" placeholder="Precio" value="<?php if(isset($_POST['precio'])){ echo $_POST['precio'];} ?>" required>
         </div>
-        <div class="col-md-3 mb-3">
+        <div class="col-md-4 mb-3">
             <label><b>Kilometros</b></label>
-            <input type="text" class="form-control" id="kilometros" name="kilometros" placeholder="Kilometros" value="<?php if(isset($_POST['kilometros'])){ echo $_POST['kilometros'];} ?>" required>
+            <input type="text" class="form-control" name="kilometros" placeholder="Kilometros" value="<?php if(isset($_POST['kilometros'])){ echo $_POST['kilometros'];} ?>" required>
         </div>
-        <div class="col-md-3 mb-3">
+        <div class="col-md-4 mb-3">
             <label><b>Color</b></label>
-            <input type="text" class="form-control" id="color" name="color" placeholder="Color" value="<?php if(isset($_POST['color'])){ echo $_POST['color'];} ?>" required>
+            <input type="text" class="form-control" name="color" placeholder="Color" value="<?php if(isset($_POST['color'])){ echo $_POST['color'];} ?>" required>
         </div>
     </div>
 
     <div class="form-row">
         <div class="col-md-6 mb-3">
             <label><b>Contacto Telefono</b></label>
-            <input type="text" class="form-control" id="telefonoContacto" name="telefonoContacto" placeholder="Télefono" value="<?php if(isset($_POST['telefonoContacto'])){ echo $_POST['telefonoContacto'];} ?>" required>
+            <input type="text" class="form-control" name="telefonoContacto" placeholder="Télefono" value="<?php if(isset($_POST['telefonoContacto'])){ echo $_POST['telefonoContacto'];} ?>" required>
         </div>
-        <div class="col-md-3 mb-3">
+        <div class="col-md-6 mb-3">
             <label><b>Contacto Email</b></label>
-            <input type="text" class="form-control" id="emailContacto" name="emailContacto" placeholder="Email" value="<?php if(isset($_POST['emailContacto'])){ echo $_POST['emailContacto'];} ?>" required>
+            <input type="text" class="form-control" name="emailContacto" placeholder="Email" value="<?php if(isset($_POST['emailContacto'])){ echo $_POST['emailContacto'];} ?>" required>
         </div>
     </div>
 
     <div class="form-row">
-        <div class="col-md-6 mb-3">
+        <div class="col-md-12 mb-3">
             <label><b>Caracteristicas</b></label>
-            <textarea class="form-control" name="caracteristicas" id="caracteristicas" name="caracteristicas"></textarea>
+            <textarea class="form-control" name="caracteristicas"></textarea>
         </div>
     </div>
 
     <div class="form-row">
-        <div class="col-md-6 mb-3">
+        <div class="col-md-12 mb-3">
             <label><b>URL Imagen</b></label>
-            <input type="text" class="form-control" id="imagenURL" name="imagenURL" placeholder="Inserte URL de la imagen" value="<?php if(isset($_POST['imagenURL'])){ echo $_POST['imagenURL'];} ?>" required>
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="col-md-6 mb-3">
-            <label for="imagenVehiculo" class="btn btn-success"><b>Añadir imagen</b></label>
-            <input type="file" name="imagenVehiculo" id="imagenVehiculo" name="imagenVehiculo" style="visibility:hidden;">
+            <input type="text" class="form-control" name="imagenURL" placeholder="Inserte URL de la imagen" value="<?php if(isset($_POST['imagenURL'])){ echo $_POST['imagenURL'];} ?>" required>
         </div>
     </div>
     <button class="btn btn-primary mb-5" type="submit" name="addnewvehicle">Añadir Vehiculo</button>
@@ -95,7 +88,7 @@ include_once dirname(__DIR__).'/logic/database.php';
 
     <?php if(isset($_POST['addnewvehicle'])){
 
-        if(!isset($_POST['nombreVehiculo']) && !isset($_POST['marcaVehiculo']) && !isset($_POST['annoVehiculo']) && !isset($_POST['precio']) && !isset($_POST['kilometros']) && !isset($_POST['color']) && !isset($_POST['telefonoContacto']) && !isset($_POST['emailContacto']) && !isset($_POST['caracteristicas']) && !isset($_FILES['imagenVehiculo'])){
+        if(!isset($_POST['modeloVehiculo']) && !isset($_POST['marcaVehiculo']) && !isset($_POST['annoVehiculo']) && !isset($_POST['precio']) && !isset($_POST['kilometros']) && !isset($_POST['color']) && !isset($_POST['telefonoContacto']) && !isset($_POST['emailContacto']) && !isset($_POST['caracteristicas']) && !isset($_FILES['imagenURL'])){
             echo "<span class='error'>Te faltan campos por rellenar</span>";
         }else{
             $vehiculo = new Vehiculo();
@@ -113,10 +106,11 @@ include_once dirname(__DIR__).'/logic/database.php';
             $vehiculo->setContactoEmail($_POST['emailContacto']);
             $vehiculo->setCaracteristicas($_POST['caracteristicas']);
 
-            $image = file_get_contents($_FILES['imagenVehiculo']['tmp_name']);
-            $fileName = $_FILES["imagenVehiculo"]['name'];
-            $vehiculo->setImagen($image);
+            //$image = file_get_contents($_FILES['imagenVehiculo']['tmp_name']);
+            //$fileName = $_FILES["imagenVehiculo"]['name'];
+            //$vehiculo->setImagen($image);
             insertVehicle($vehiculo);
+            header('Location: admin_vehicles.php');
         }
             
     } ?>

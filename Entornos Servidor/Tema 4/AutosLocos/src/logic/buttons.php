@@ -9,7 +9,7 @@
     }
 
     if(isset($_POST['administrar'])){
-        header('Location: admin.php');
+        header('Location: admin_users.php');
     }
 
     if(isset($_POST['buscarbtn'])){
@@ -34,14 +34,40 @@
 
     if(isset($_POST['editar-'])){
         foreach ($_POST['editar-'] as $key => $value) {
-            echo $key;
+            $_SESSION['editUser'] = $key;
+            
+
+            if(getActualPage() === 'admin_users.php'){
+                header('Location: edituser.php');
+            }
+
+            if(getActualPage() === 'admin_vehicles.php'){
+                header('Location: editvehicle.php');
+            }
+        }
+    }
+
+    if(isset($_POST['eliminar-'])){
+        foreach ($_POST['eliminar-'] as $key => $value) {
+            if(getActualPage() === 'admin_users.php'){
+                deleteUser($key);
+            }
+            
+            if(getActualPage() === 'admin_vehicles.php'){
+                deleteVehicle($key);
+            }
         }
     }
 
     if(isset($_POST['reservar-'])){
         foreach ($_POST['reservar-'] as $key => $value) {
-            echo $key;
-            reservar($key,$_SESSION['id']);
+            //echo $key;
+            if(!isset($_SESSION['id'])){
+                header('Location: login.php');
+            }else{
+                reservar($key,$_SESSION['id']);
+            }
+            
         }
     }
 
@@ -55,14 +81,16 @@
         header('Location: newvehicle.php');
     }
 
-    if(isset($_POST['eliminar-'])){
-        foreach ($_POST['eliminar-'] as $key => $value) {
-            echo $key;
-        }
+    if(isset($_POST['moduser']) ){
+        header('Location: admin_users.php');
     }
 
-    if(isset($_POST['moduser']) && getActualPage() !== 'admin.php'){
-        header('Location: admin.php');
+    if(isset($_POST['moduser']) ){
+        header('Location: admin_users.php');
+    }
+
+    if(isset($_POST['modvehiculo'])){
+        header('Location: admin_vehicles.php');
     }
 
     function checkRegister(){
