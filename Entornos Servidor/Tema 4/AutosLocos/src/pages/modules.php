@@ -67,29 +67,37 @@
     function generateVehicleList($filtro){
         $vehicles = getAllvehiculos($filtro);
         //var_dump($vehicles);
-        $rows = sizeof($vehicles)/4;
-        if($rows <= 4){
-            generateColumns(1,$vehicles);
-        }else{
-            generateColumns($rows+1);
+        $rows = 1;
+        $count = 1;
+        for($k=0;$k<sizeof($vehicles);$k++){
+            if($count === 4){
+                $rows++;
+                $count = 1;
+            }
+            $count++;
         }
+        //echo $rows;
+        generateColumns($rows,$vehicles);
+        
     }
 
     function generateColumns($rows,$vehicles){
         $vehicleCount = 0;
+        $count = sizeof($vehicles);
         
         for($i=0;$i<$rows;$i++){
 
             echo "<div class='row justify-content-center'>";
-
+            
             $z = 4;
-            if(sizeof($vehicles) < 4){
-                $z = sizeof($vehicles);
+            if($count <= 4){
+                $z = $count;
             }
             for($x=0;$x<$z;$x++){
                 generateProduct($vehicles[$vehicleCount]);
                 $vehicleCount++;
             }
+            $count = $count-4;
             echo "</div>";
         }
         

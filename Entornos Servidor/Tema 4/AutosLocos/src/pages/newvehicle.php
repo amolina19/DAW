@@ -23,6 +23,8 @@ include_once dirname(__DIR__).'/logic/database.php';
 
   <?php if($_SESSION['type'] === 'admin'){
       generateAdminMenu();
+  }else{
+      header('Location: index.php');
   } ?>
 
   <div class="container mt-5">
@@ -31,40 +33,40 @@ include_once dirname(__DIR__).'/logic/database.php';
     <div class="form-row">
         <div class="col-md-4 mb-3">
             <label><b>Modelo</b></label>
-            <input type="text" class="form-control" placeholder="Modelo del vehiculo" name="modeloVehiculo" required>
+            <input type="text" class="form-control" placeholder="Modelo del vehiculo" name="modeloVehiculo" value="<?php if(isset($_POST['modeloVehiculo'])){ echo $_POST['modeloVehiculo'];} ?>" required>
         </div>
         <div class="col-md-4 mb-3">
             <label><b>Marca</b></label>
-            <input type="text" class="form-control" placeholder="Marca del vehiculo" id="marcaVehiculo" name="marcaVehiculo" required>
+            <input type="text" class="form-control" placeholder="Marca del vehiculo" id="marcaVehiculo" name="marcaVehiculo" value="<?php if(isset($_POST['marcaVehiculo'])){ echo $_POST['marcaVehiculo'];} ?>" required>
         </div>
         <div class="col-md-4 mb-3">
             <label><b>Año</b></label>
-            <input type="text"  class="form-control" placeholder='<?php echo date("Y") ?>' id="annoVehiculo" name="annoVehiculo" required>
+            <input type="text"  class="form-control" placeholder='<?php echo date("Y") ?>' id="annoVehiculo" name="annoVehiculo" value="<?php if(isset($_POST['annoVehiculo'])){ echo $_POST['annoVehiculo'];} ?>" required>
         </div>
     </div>
     <div class="form-row">
         <div class="col-md-6 mb-3">
             <label><b>Precio</b></label>
-            <input type="text" class="form-control" id="precio" name="precio" placeholder="Precio" required>
+            <input type="text" class="form-control" id="precio" name="precio" placeholder="Precio" value="<?php if(isset($_POST['precio'])){ echo $_POST['precio'];} ?>" required>
         </div>
         <div class="col-md-3 mb-3">
             <label><b>Kilometros</b></label>
-            <input type="text" class="form-control" id="kilometros" name="kilometros" placeholder="Kilometros" required>
+            <input type="text" class="form-control" id="kilometros" name="kilometros" placeholder="Kilometros" value="<?php if(isset($_POST['kilometros'])){ echo $_POST['kilometros'];} ?>" required>
         </div>
         <div class="col-md-3 mb-3">
             <label><b>Color</b></label>
-            <input type="text" class="form-control" id="color" name="color" placeholder="Color" required>
+            <input type="text" class="form-control" id="color" name="color" placeholder="Color" value="<?php if(isset($_POST['color'])){ echo $_POST['color'];} ?>" required>
         </div>
     </div>
 
     <div class="form-row">
         <div class="col-md-6 mb-3">
             <label><b>Contacto Telefono</b></label>
-            <input type="text" class="form-control" id="telefonoContacto" name="telefonoContacto" placeholder="Télefono" required>
+            <input type="text" class="form-control" id="telefonoContacto" name="telefonoContacto" placeholder="Télefono" value="<?php if(isset($_POST['telefonoContacto'])){ echo $_POST['telefonoContacto'];} ?>" required>
         </div>
         <div class="col-md-3 mb-3">
             <label><b>Contacto Email</b></label>
-            <input type="text" class="form-control" id="emailContacto" name="emailContacto" placeholder="Email" required>
+            <input type="text" class="form-control" id="emailContacto" name="emailContacto" placeholder="Email" value="<?php if(isset($_POST['emailContacto'])){ echo $_POST['emailContacto'];} ?>" required>
         </div>
     </div>
 
