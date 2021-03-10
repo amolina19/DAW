@@ -176,4 +176,46 @@
     }
 
 
+    function generateVehiclesListView(){
+        echo "<div class='container-fluid'>";
+        $vehicles;
+        $cellColor = 0; //0 Blanco y 1 Gris
+
+        $vehicles = getAllvehiculos('admin');
+        
+
+        foreach ($vehicles as $value) {
+                
+            if($cellColor === 0){
+                echo "<div class='row column mt-2 pt-2 pb-2 justify-content-center' style='background-color:#ffffff;'>";
+                $cellColor = 1;
+            }else{
+                echo "<div class='row column mt-2 pt-2 pb-2 justify-content-center' style='background-color:#dddddd;'>";
+                $cellColor = 0;
+            }
+            echo "<div class='col-md-1'><div class='text-center text-md-left '><b>ID:</b><br>".$value->id."</div></div>";
+            echo "<div class='col-md-1'><div class='text-center text-md-left '><b>Modelo:</b><br> ".$value->modelo."</div></div>";
+            echo "<div class='col-md-1'><div class='text-center text-md-left '><b>Año:</b><br>".$value->anno."</div></div>";
+            echo "<div class='col-md-1'><div class='text-center text-md-left '><b>Marca:</b><br> ".$value->marca."</div></div>";
+            echo "<div class='col-md-1'><div class='text-center text-md-left '><b>Precio:</b><br>".$value->precio."€</div></div>";
+            echo "<div class='col-md-1'><div class='text-center text-md-left '><b>Km:</b><br>".$value->km."</div></div>";
+            echo "<div class='col-md-1'><div class='text-center text-md-left '><b>Color:</b><br>".$value->color."</div></div>";
+            echo "<div class='col-md-1'><div class='text-center text-md-left '><b>Precio:</b><br>".$value->precio."</div></div>";
+            if($value->reservado === 1){
+                echo "<div class='col-md-1'><div class='text-center text-md-left '><b>Reservado:</b> SI </div></div>";
+                
+            }else{
+                echo "<div class='col-md-1'><div class='text-center text-md-left '><b>Reservado:</b> NO </div></div>";
+            }
+            echo "<div class='col-md-1'><div class='text-center text-md-left '><b>Fecha Reserva:</b><br>".$value->dia_reservado."</div></div>";
+            
+            
+            echo "<div class='col-md-1'><div class='text-center text-md-left mb-2' ><input name='editar-[".$value->id."]' type='submit' value='Editar' class='btn btn-success'></div></div>";
+            echo "<div class='col-md-1'><div class='text-center text-md-left ml-md-0 ml-0'><input name='eliminar-[".$value->id."]' type='submit' value='Eliminar' class='btn btn-danger'></div></div>";
+            echo "</div>";
+        }
+        echo "</div>";
+    }
+
+
 ?>

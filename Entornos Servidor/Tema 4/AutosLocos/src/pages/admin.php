@@ -44,7 +44,7 @@
         generateUsersListView(('all'));
         //echo "test2";
       }else if(isset($_POST['modvehiculo'])){
-        //echo "test3";
+        generateVehiclesListView();
       }else{
         //echo "test4";
         generateUsersListView('all');
