@@ -38,6 +38,19 @@
         }
     }
 
+    if(isset($_POST['reservar-'])){
+        foreach ($_POST['reservar-'] as $key => $value) {
+            echo $key;
+            reservar($key,$_SESSION['id']);
+        }
+    }
+
+    if(isset($_POST['info-'])){
+        foreach ($_POST['info-'] as $key => $value) {
+            moreInfo($key);
+        }
+    }
+
     if(isset($_POST['addvehiculo'])){
         header('Location: newvehicle.php');
     }

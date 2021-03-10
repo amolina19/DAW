@@ -42,6 +42,7 @@
     function setUserSession($user){
 
         $data = returnUserData($user);
+        $_SESSION['id'] = $data['id'];
         $_SESSION['username'] = $data['username'];
         $_SESSION['password'] = $data['password'];
         $_SESSION['email'] = $data['email'];

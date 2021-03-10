@@ -72,8 +72,15 @@ include_once dirname(__DIR__).'/logic/database.php';
 
     <div class="form-row">
         <div class="col-md-6 mb-3">
-            <label for="caracteristicas" ><b>Caracteristicas</b></label>
-            <textarea rows="10" cols="100" name="caracteristicas" id="caracteristicas" name="caracteristicas"></textarea>
+            <label><b>Caracteristicas</b></label>
+            <textarea class="form-control" name="caracteristicas" id="caracteristicas" name="caracteristicas"></textarea>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label><b>URL Imagen</b></label>
+            <input type="text" class="form-control" id="imagenURL" name="imagenURL" placeholder="Inserte URL de la imagen" value="<?php if(isset($_POST['imagenURL'])){ echo $_POST['imagenURL'];} ?>" required>
         </div>
     </div>
 
@@ -98,6 +105,7 @@ include_once dirname(__DIR__).'/logic/database.php';
             $vehiculo->setMarca($_POST['marcaVehiculo']);
             $vehiculo->setModelo($_POST['modeloVehiculo']);
             $vehiculo->setAnno($_POST['annoVehiculo']);
+            $vehiculo->setImagenURL($_POST['imagenURL']);
             $vehiculo->setPrecio($_POST['precio']);
             $vehiculo->setKm($_POST['kilometros']);
             $vehiculo->setColor($_POST['color']);

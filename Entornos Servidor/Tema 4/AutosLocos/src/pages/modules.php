@@ -111,6 +111,7 @@
     
     function generateView($vehicles){
         echo "<div class='row justify-content-left ml-5 mt-4 mt-md-0'>";
+        
         for($i=0;$i<sizeof($vehicles);$i++){
             generateProduct($vehicles[$i]);
         }
@@ -119,20 +120,26 @@
 
     function generateProduct($vehicle){
         echo "<div class='card mr-2 mr-2 mb-4 mb-md-0 mt-0 mt-md-4' style='width: 18rem;'>";
-        echo "<img class='card-img-top' src='data:image/jpg;charset=utf-8;base64,".base64_encode($vehicle->imagen)."' height='200px' alt='".$vehicle->modelo."'>";
+        if($vehicle->imagen_url != null){
+            echo "<img class='card-img-top' src='".$vehicle->imagen_url."' height='200px' alt='".$vehicle->modelo."'>";
+        }else{
+            echo "<img class='card-img-top' src='data:image/jpg;charset=utf-8;base64,".base64_encode($vehicle->imagen)."' height='200px' alt='".$vehicle->modelo."'>";
+        }
+        
         echo "<div class='card-body'>";
         echo "<h5 class='card-title'><b>".$vehicle->marca." ".$vehicle->modelo."</b></h5>";
         echo "<p class='card-text'>Precio: <b>".$vehicle->precio."€</b></p>";
         echo "<p class='card-text'>Kilometros: <b>".$vehicle->km."</b></p>";
         echo "<p class='card-text'>Año:<b> ".$vehicle->anno."</b></p>";
+        echo "<form method='post'>";
         if($_SESSION['type'] === 'admin' && $vehicle->reservado === 1){
             echo "<input type='submit' class='btn btn-danger mr-2' value='Reservado' disabled>";
         }else{
-            echo "<input type='submit' class='btn btn-success mr-2' value='Reservar'>";
+            echo "<input type='submit' class='btn btn-success mr-2' name='reservar-[".$vehicle->id."]' value='Reservar'>";
         }
         
         echo "<input type='submit' class='btn btn-primary' value='+Info'>";
-        echo "</div></div>";
+        echo "</form></div></div>";
         
     }
 
