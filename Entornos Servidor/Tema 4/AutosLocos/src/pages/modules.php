@@ -123,7 +123,12 @@
         echo "<p class='card-text'>Precio: <b>".$vehicle->precio."€</b></p>";
         echo "<p class='card-text'>Kilometros: <b>".$vehicle->km."</b></p>";
         echo "<p class='card-text'>Año:<b> ".$vehicle->anno."</b></p>";
-        echo "<input type='submit' class='btn btn-success mr-2' value='Reservar'>";
+        if($_SESSION['type'] === 'admin' && $vehicle->reservado === 1){
+            echo "<input type='submit' class='btn btn-danger mr-2' value='Reservado' disabled>";
+        }else{
+            echo "<input type='submit' class='btn btn-success mr-2' value='Reservar'>";
+        }
+        
         echo "<input type='submit' class='btn btn-primary' value='+Info'>";
         echo "</div></div>";
         
