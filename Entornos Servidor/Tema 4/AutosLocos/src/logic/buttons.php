@@ -71,18 +71,23 @@
         }
     }
 
+    if(isset($_POST['cancelarReserva-'])){
+
+        foreach ($_POST['cancelarReserva-'] as $key => $value) {
+            //echo $key;
+            cancelarReserva($key);
+        }
+    }
+
     if(isset($_POST['info-'])){
         foreach ($_POST['info-'] as $key => $value) {
-            moreInfo($key);
+            $_SESSION['info'] = $key;
+            header('Location: info.php');
         }
     }
 
     if(isset($_POST['addvehiculo'])){
         header('Location: newvehicle.php');
-    }
-
-    if(isset($_POST['moduser']) ){
-        header('Location: admin_users.php');
     }
 
     if(isset($_POST['moduser']) ){

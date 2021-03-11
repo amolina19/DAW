@@ -17,9 +17,18 @@
   </head>
   <body>
 
-  <?php if($_SESSION['type'] === 'admin'){generateAdminMenu();generateVehiclesListView();}else{
+  <?php if($_SESSION['type'] === 'admin'){generateAdminMenu();}else{
     header("Location: index.php");
   } ?>
+
+  <?php selectVehicles(); ?>
+
+
+  <?php if(isset($_POST['ordenar'])){
+    generateVehiclesListView($_POST['ordenarpor']);
+  }else{ generateVehiclesListView('all');} ?>
+
+  
 
   </form>
 

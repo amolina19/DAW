@@ -22,7 +22,7 @@
             if($_SESSION['username'] !== null && $_SESSION['password'] !== null){
                 
                 if($_SESSION['type'] === 'admin'){
-                    echo    "<button class='btn btn-success mr-2' name='addvehiculo'>Añadir Vehiculo</button>";
+                   // echo    "<button class='btn btn-success mr-2' name='addvehiculo'>Añadir Vehiculo</button>";
                     echo    "<button class='btn btn-warning mr-4' name='administrar'>Administrar</button>";
                 }
             }
@@ -75,9 +75,9 @@
     function generateVehicleList($filtro,$busqueda){
 
         if($busqueda === null){
-            $vehicles = getAllvehiculos($filtro);
+            $vehicles = getAllvehiculos($filtro,'all');
         }else{
-            $vehicles =getAllvehiculosBuscador($filtro,$busqueda);
+            $vehicles = getAllvehiculosBuscador($filtro,$busqueda);
         }
         
         //var_dump($vehicles);
@@ -121,7 +121,7 @@
     */
     
     function generateView($vehicles){
-        echo "<div class='row justify-content-left ml-5 mt-4 mt-md-0'>";
+        echo "<div class='row justify-content-left ml-3 mt-4 mt-md-0'>";
         
         for($i=0;$i<sizeof($vehicles);$i++){
             generateProduct($vehicles[$i]);
@@ -145,11 +145,13 @@
         echo "<form method='post'>";
         if($_SESSION['type'] === 'admin' && $vehicle->reservado === 1){
             echo "<input type='submit' class='btn btn-danger mr-2' value='Reservado' disabled>";
+        }else if($_SESSION['id'] === $vehicle->usuario_reserva){
+            echo "<input type='submit' class='btn btn-warning mr-2' name='cancelarReserva-[".$vehicle->id."]' value='Cancelar Reserva'>";
         }else{
             echo "<input type='submit' class='btn btn-success mr-2' name='reservar-[".$vehicle->id."]' value='Reservar'>";
         }
         
-        echo "<input type='submit' class='btn btn-primary' value='+Info'>";
+        echo "<input type='submit' class='btn btn-primary' name=info-[".$vehicle->id."]' value='+Info'>";
         echo "</form></div></div>";
         
     }
@@ -187,13 +189,37 @@
     }
 
 
-    function generateVehiclesListView(){
+    function selectVehicles(){
+        echo "<form method='post'>";
+        echo "<div class='container-fluid'>";
+        echo "<div class='d-flex justify-content-center mt-2'>";
+        echo "<select name='ordenarpor' class='form-select'>";
+        echo "<option value='all'>Todo</option>";
+        echo "<option value='marca'>Marca</option>";
+        echo "<option value='modelo'>Modelo</option>";
+        echo "<option value='color'>Color</option>";
+        echo "<option value='precio'>Precio</option>";
+        echo "<option value='km'>Km</option>";
+        echo "<option value='reservado'>Reservado</option>";
+        echo "<option value='anno'>Año</option>";
+        echo "</select>";
+        echo "<input type='submit' class='btn btn-warning ml-2' value='Ordenar' name='ordenar'>";
+        echo "</div></div></form>";
+    }
+
+
+    function generateVehiclesListView($orden){
         echo "<div class='container-fluid'>";
         echo "<form method='post'>";
         $vehicles;
         $cellColor = 0; //0 Blanco y 1 Gris
 
-        $vehicles = getAllvehiculos('admin');
+        if($orden === null){
+            $vehicles = getAllvehiculos('admin','all');
+        }else{
+            $vehicles = getAllvehiculos('admin',$orden);
+        }
+        
         
 
         foreach ($vehicles as $value) {

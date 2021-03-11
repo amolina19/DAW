@@ -253,15 +253,45 @@ class User{
         return $users;
     }
 
-    function getAllvehiculos($filtro){
+    function getAllvehiculos($filtro,$orden){
         $conn = getConnection();
         $vehiculos = array();
         if(isset($_SESSION['type']) && $_SESSION['type'] === 'admin'){
-            $sql = "SELECT * FROM Vehicles";
+
+            if($orden === 'all'){
+                $sql = "SELECT * FROM Vehicles";
+            }else{
+                if($orden === 'anno' || $orden === 'reservado'){
+                    $sql = "SELECT * FROM Vehicles ORDER BY ".$orden." DESC ";
+                }else{
+                    $sql = "SELECT * FROM Vehicles ORDER BY ".$orden;
+                }
+            }
+            
         }else{
-            $sql = "SELECT * FROM Vehicles WHERE reservado LIKE '0'";
+            $sql = "SELECT * FROM Vehicles";
         }
 
+        foreach($conn->query($sql) as $row){
+
+            if($row['usuario_reserva'] === null){
+                $vehiculo = new Vehiculo();
+                $vehiculo->setData($row['id'],$row['reservado'],$row['usuario_reserva'],$row['dia_reservado'],$row['precio'],$row['imagen'],$row['imagen_url'],$row['km'],$row['caracteristicas'],$row['color'],$row['marca'],$row['modelo'],$row['anno'],$row['contacto_tlf'],$row['contacto_email']);
+                array_push($vehiculos,$vehiculo);
+            }else if($row['usuario_reserva'] === $_SESSION['id']){
+                $vehiculo = new Vehiculo();
+                $vehiculo->setData($row['id'],$row['reservado'],$row['usuario_reserva'],$row['dia_reservado'],$row['precio'],$row['imagen'],$row['imagen_url'],$row['km'],$row['caracteristicas'],$row['color'],$row['marca'],$row['modelo'],$row['anno'],$row['contacto_tlf'],$row['contacto_email']);
+                array_push($vehiculos,$vehiculo);
+            }
+            
+        }
+        return $vehiculos;
+    }
+
+    function getAllVehiculosReserved(){
+        $conn = getConnection();
+        $vehiculos = array();
+        $sql = "SELECT * FROM Vehicles WHERE reservado LIKE '1'";
         foreach($conn->query($sql) as $row){
             $vehiculo = new Vehiculo();
             $vehiculo->setData($row['id'],$row['reservado'],$row['usuario_reserva'],$row['dia_reservado'],$row['precio'],$row['imagen'],$row['imagen_url'],$row['km'],$row['caracteristicas'],$row['color'],$row['marca'],$row['modelo'],$row['anno'],$row['contacto_tlf'],$row['contacto_email']);
@@ -341,6 +371,12 @@ class User{
         $conn = getConnection();
         $sql = "UPDATE Vehicles SET reservado = 1 ,usuario_reserva = ".$idUser.", dia_reservado = '".date("Y-m-d H:i:s")."' WHERE id = ".$idCoche;
         //echo $sql;
+        $conn->query($sql);
+    }
+
+    function cancelarReserva($idCoche){
+        $conn = getConnection();
+        $sql = "UPDATE Vehicles SET usuario_reserva = NULL, dia_reservado = NULL, reservado = 0 WHERE id = ".$idCoche;
         $conn->query($sql);
     }
 

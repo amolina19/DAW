@@ -10,7 +10,7 @@
 
     function userCookieExists(){
         //echo $_COOKIE['username'];
-        if($_COOKIE['username'] !== null && isset($_COOKIE['password'])){
+        if($_COOKIE['username'] !== "" && isset($_COOKIE['password'])){
 
             if(password_verify($_COOKIE['password'],getUserPassword($_COOKIE['password']))){
                 setUserSession($_COOKIE['username']);
@@ -40,7 +40,7 @@
     }
 
     function setUserSession($user){
-
+        session_start();
         $data = returnUserData($user);
         $_SESSION['id'] = $data['id'];
         $_SESSION['username'] = $data['username'];

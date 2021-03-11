@@ -89,7 +89,7 @@
             }
 
             if(isset($_POST['volver'])){
-                header('Location: admin.php');
+                header('Location: admin_vehicles.php');
             }
 
             if(isset($_POST['eliminarusuario'])){

@@ -4,9 +4,6 @@
   include_once dirname(__DIR__).'/logic/buttons.php';
   include_once dirname(__DIR__).'/logic/database.php';
   include_once 'modules.php';
-
-  
-
 ?>
 
 <!doctype html>
