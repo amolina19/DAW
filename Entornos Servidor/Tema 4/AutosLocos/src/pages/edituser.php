@@ -4,6 +4,7 @@
   include_once dirname(__DIR__).'/logic/buttons.php';
   include_once dirname(__DIR__).'/logic/database.php';
   include_once 'modules.php';
+  global $id;
 ?>
 
 <!doctype html>
@@ -20,8 +21,34 @@
   <?php 
     if($_SESSION['type'] === 'admin' && $_SESSION['id'] !== null && $_SESSION['username'] != null && $_SESSION['password'] !== null){
         $user = returnUserDataByID($_SESSION['editUser']);
-        unset($_SESSION['editUser']);
+        $id = $user['id'];
         generateAdminMenu();
+
+        if(isset($_POST['guardarcambios'])){
+
+            if($_SESSION['id'] !== null){
+
+                if($_POST['password'] === null){
+                    $userUpdate = new User();
+                    $userUpdate->id = $id;
+                    $userUpdate->username = $_SESSION['username'];
+                    $userUpdate->email = $_POST['email'];
+                    $userUpdate->type = $_POST['type'];
+                }else{
+
+                }
+                $userUpdate = new User();
+                $userUpdate->id = $id;
+                $userUpdate->username = $_SESSION['username'];
+                $userUpdate->password = hashPassword($_POST['password']);
+                $userUpdate->email = $_POST['email'];
+                $userUpdate->type = $_POST['type'];
+            
+                updateUserData($userUpdate);
+            }
+            header('Location: admin_users.php');
+            
+        }
         //print_r($user);
     
     }else{
@@ -34,8 +61,7 @@
         <form method="POST">
         <div class="form-row">
             <div class="col-md-4 mb-3">
-                <label><b>Usuario</b></label>
-                <input type="text" class="form-control" placeholder="Usuario" name="username" value="<?php if(isset($user['username'])){ echo $user['username'];} ?>">
+                <label><b>Usuario: <?php if(isset($user['username'])){ echo $user['username'];}?> </b></label>
             </div>
         </div>
         <div class="form-row">
@@ -55,9 +81,9 @@
                 <label><b>Tipo</b></label>
                 <select class="form-select" name='type'>
                 
-                    <?php if($user['type'] === 'admin'){
-                        echo "<option value='admin' selected>Administrador</option>";
-                        echo "<option value='user'>Usuario</option>";
+                    <?php if($_SESSION['type'] === 'admin'){
+                        echo "<option value='admin'>Administrador</option>";
+                        echo "<option value='user'selected>Usuario</option>";
                     }else{
                         echo "<option value='admin'>Administrador</option>";
                         echo "<option value='user'selected >Usuario</option>";
@@ -82,10 +108,6 @@
         </form>
 
         <?php 
-        
-            if(isset($_POST['guardarcambios'])){
-                updateUserData();
-            }
 
             if(isset($_POST['volver'])){
                 header('Location: admin_users.php');

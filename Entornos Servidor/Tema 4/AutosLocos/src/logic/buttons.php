@@ -82,6 +82,8 @@
     if(isset($_POST['info-'])){
         foreach ($_POST['info-'] as $key => $value) {
             $_SESSION['info'] = $key;
+            $_SESSION['reservado'] = $vehicle->reservado;
+            $_SESSION['user_reservado'] = $vehicle->usuario_reserva;
             header('Location: info.php');
         }
     }

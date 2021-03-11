@@ -3,7 +3,7 @@
 class User{
     public $id;
     public $username;
-    private $password;
+    public $password;
     public $email;
     public $type;
 
@@ -403,6 +403,18 @@ class User{
     function updateVehicleData($vehicle){
         $conn = getConnection();
         $sql = "UPDATE Vehicles SET "."marca=".$vehicle->marca.",modelo=".$vehicle->modelo.",color =".$vehicle->color.",precio =".$vehicle->precio.",km=".$vehicle->km.",anno =".$vehicle->anno.",caracteristicas =".$vehicle->caracteristicas.",imagen_url = ".$vehicle->imagen_url.", contacto_tlf=".$vehicle->contacto_tlf.", contacto_email = ".$vehicle->contacto_email." WHERE id =".$vehicle->id;
+        $conn->query($sql);
+    }
+
+    function updateUserData($user){
+        $conn = getConnection();
+        if($user->password === null){
+            $sql = "UPDATE Users SET email='".$user->email."',type ='".$user->type."' WHERE id =".$user->id;
+        }else{
+            $sql = "UPDATE Users SET email='".$user->email."',password='".$user->password."',type ='".$user->type."' WHERE id =".$user->id;
+        }
+        
+        echo $sql;
         $conn->query($sql);
     }
 ?>
