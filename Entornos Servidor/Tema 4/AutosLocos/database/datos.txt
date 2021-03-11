@@ -1,0 +1,3 @@
+utilizar datos.sql inserta todas las tablas, datos y permismos para acceder a la base de datos
+database.sql solo crea las tablas, no inserta datos
+utilizar sobre el directorio donde este el archivos datos.sql y utlizar mysql -u root -p < datos.sql
