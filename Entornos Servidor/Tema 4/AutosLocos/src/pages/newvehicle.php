@@ -110,8 +110,8 @@ include_once dirname(__DIR__).'/logic/database.php';
             //$fileName = $_FILES["imagenVehiculo"]['name'];
             //$vehiculo->setImagen($image);
             insertVehicle($vehiculo);
-            header('Location: admin_vehicles.php');
         }
+        
             
     } ?>
   </div>

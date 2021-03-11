@@ -174,6 +174,22 @@ class User{
         }
     }
 
+    function returnVehicleDataByID($idCoche){
+
+        if($idCoche === null){
+            return null;
+        }
+        $conn = getConnection();
+        $sql = "SELECT * FROM Vehicles WHERE id=".$idCoche;
+        //echo $sql;
+
+        foreach($conn->query($sql) as $row){
+            $vehiculo = new Vehiculo();
+            $vehiculo->setData($row['id'],$row['reservado'],$row['usuario_reserva'],$row['dia_reservado'],$row['precio'],$row['imagen'],$row['imagen_url'],$row['km'],$row['caracteristicas'],$row['color'],$row['marca'],$row['modelo'],$row['anno'],$row['contacto_tlf'],$row['contacto_email']);
+            return $vehiculo;
+        }
+    }
+
     function userExists($user){
         $conn = getConnection();
         $sql = "SELECT usuario FROM Users WHERE usuario LIKE '$user'";
@@ -384,31 +400,9 @@ class User{
         $conn->query($sql);
     }
 
-    //Filtrador de Busquedas
-
-    function buscarPorPrecio(){
-
-    }
-
-    function buscarPoranno(){
-
-    }
-
-    function buscarPorModelo(){
-
-    }
-
-    function filtrarNombre(){
-
-    }
-
-    function buscarVehiculo(){
-
-    }
-
-
-    //Test Purposefully
-    function generateTableTest(){
-        
+    function updateVehicleData($vehicle){
+        $conn = getConnection();
+        $sql = "UPDATE Vehicles SET "."marca=".$vehicle->marca.",modelo=".$vehicle->modelo.",color =".$vehicle->color.",precio =".$vehicle->precio.",km=".$vehicle->km.",anno =".$vehicle->anno.",caracteristicas =".$vehicle->caracteristicas.",imagen_url = ".$vehicle->imagen_url.", contacto_tlf=".$vehicle->contacto_tlf.", contacto_email = ".$vehicle->contacto_email." WHERE id =".$vehicle->id;
+        $conn->query($sql);
     }
 ?>

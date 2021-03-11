@@ -34,14 +34,14 @@
 
     if(isset($_POST['editar-'])){
         foreach ($_POST['editar-'] as $key => $value) {
-            $_SESSION['editUser'] = $key;
             
-
             if(getActualPage() === 'admin_users.php'){
+                $_SESSION['editUser'] = $key;
                 header('Location: edituser.php');
             }
 
             if(getActualPage() === 'admin_vehicles.php'){
+                $_SESSION['editVehicle'] = $key;
                 header('Location: editvehicle.php');
             }
         }

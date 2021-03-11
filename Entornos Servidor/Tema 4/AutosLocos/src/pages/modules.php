@@ -135,7 +135,7 @@
         if($vehicle->imagen_url != null){
             echo "<img class='card-img-top' src='".$vehicle->imagen_url."' height='200px' alt='".$vehicle->modelo."'>";
         }else{
-            echo "<img class='card-img-top' src='data:image/jpg;charset=utf-8;base64,".base64_encode($vehicle->imagen)."' height='200px' alt='".$vehicle->modelo."'>";
+            echo "<img class='card-img-top rounded' src='data:image/jpg;charset=utf-8;base64,".base64_encode($vehicle->imagen)."' height='200px' alt='".$vehicle->modelo."'>";
         }
         
         echo "<div class='card-body'>";
@@ -150,7 +150,6 @@
             if($vehicle->reservado !== 1 && $_SESSION['type'] !== 'admin'){
                 echo "<input type='submit' class='btn btn-success mr-2 mt-2' name='reservar-[".$vehicle->id."]' value='Reservar'>";
             }
-            
         }
         
         if(isset($_SESSION['id']) && $_SESSION['id'] === $vehicle->usuario_reserva){
@@ -228,8 +227,6 @@
             $vehicles = getAllvehiculos('admin',$orden);
         }
         
-        
-
         foreach ($vehicles as $value) {
                 
             if($cellColor === 0){
