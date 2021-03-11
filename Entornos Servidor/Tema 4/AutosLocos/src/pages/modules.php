@@ -147,13 +147,15 @@
         if(isset($_SESSION['id']) && $_SESSION['type'] === 'admin' && $vehicle->reservado === 1){
             echo "<input type='submit' class='btn btn-danger mr-2 mt-2' value='Reservado' disabled>";
         }else{
-            if($vehicle->reservado !== 1){
+            if($vehicle->reservado !== 1 && $_SESSION['type'] !== 'admin'){
                 echo "<input type='submit' class='btn btn-success mr-2 mt-2' name='reservar-[".$vehicle->id."]' value='Reservar'>";
             }
             
         }
         
         if(isset($_SESSION['id']) && $_SESSION['id'] === $vehicle->usuario_reserva){
+            echo "<input type='submit' class='btn btn-warning mr-2 mt-2' name='cancelarReserva-[".$vehicle->id."]' value='Cancelar Reserva'>";
+        }else if(isset($_SESSION['id']) && $_SESSION['type'] === 'admin' && $vehicle->reservado === 1){
             echo "<input type='submit' class='btn btn-warning mr-2 mt-2' name='cancelarReserva-[".$vehicle->id."]' value='Cancelar Reserva'>";
         }
         
