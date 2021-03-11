@@ -1,5 +1,6 @@
 <?php
 
+    
     function generateMenu(){
         echo "<nav class='navbar navbar-expand-md navbar-light bg-light'>";
         echo  "<img src='../images/logo.svg' width='50px' height='50px'>";
@@ -143,15 +144,20 @@
         echo "<p class='card-text'>Kilometros: <b>".$vehicle->km."</b></p>";
         echo "<p class='card-text'>Año:<b> ".$vehicle->anno."</b></p>";
         echo "<form method='post'>";
-        if($_SESSION['type'] === 'admin' && $vehicle->reservado === 1){
-            echo "<input type='submit' class='btn btn-danger mr-2' value='Reservado' disabled>";
-        }else if($_SESSION['id'] === $vehicle->usuario_reserva){
-            echo "<input type='submit' class='btn btn-warning mr-2' name='cancelarReserva-[".$vehicle->id."]' value='Cancelar Reserva'>";
+        if(isset($_SESSION['id']) && $_SESSION['type'] === 'admin' && $vehicle->reservado === 1){
+            echo "<input type='submit' class='btn btn-danger mr-2 mt-2' value='Reservado' disabled>";
         }else{
-            echo "<input type='submit' class='btn btn-success mr-2' name='reservar-[".$vehicle->id."]' value='Reservar'>";
+            if($vehicle->reservado !== 1){
+                echo "<input type='submit' class='btn btn-success mr-2 mt-2' name='reservar-[".$vehicle->id."]' value='Reservar'>";
+            }
+            
         }
         
-        echo "<input type='submit' class='btn btn-primary' name=info-[".$vehicle->id."]' value='+Info'>";
+        if(isset($_SESSION['id']) && $_SESSION['id'] === $vehicle->usuario_reserva){
+            echo "<input type='submit' class='btn btn-warning mr-2 mt-2' name='cancelarReserva-[".$vehicle->id."]' value='Cancelar Reserva'>";
+        }
+        
+        echo "<input type='submit' class='btn btn-primary mt-2' name=info-[".$vehicle->id."]' value='+Info'>";
         echo "</form></div></div>";
         
     }

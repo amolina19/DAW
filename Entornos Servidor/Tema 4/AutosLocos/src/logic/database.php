@@ -282,6 +282,10 @@ class User{
                 $vehiculo = new Vehiculo();
                 $vehiculo->setData($row['id'],$row['reservado'],$row['usuario_reserva'],$row['dia_reservado'],$row['precio'],$row['imagen'],$row['imagen_url'],$row['km'],$row['caracteristicas'],$row['color'],$row['marca'],$row['modelo'],$row['anno'],$row['contacto_tlf'],$row['contacto_email']);
                 array_push($vehiculos,$vehiculo);
+            }else if($_SESSION['type'] === 'admin'){
+                $vehiculo = new Vehiculo();
+                $vehiculo->setData($row['id'],$row['reservado'],$row['usuario_reserva'],$row['dia_reservado'],$row['precio'],$row['imagen'],$row['imagen_url'],$row['km'],$row['caracteristicas'],$row['color'],$row['marca'],$row['modelo'],$row['anno'],$row['contacto_tlf'],$row['contacto_email']);
+                array_push($vehiculos,$vehiculo);
             }
             
         }
