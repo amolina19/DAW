@@ -328,7 +328,7 @@ class User{
         if(isset($_SESSION['type']) && $_SESSION['type'] === 'admin'){
             $sql = "SELECT * FROM Vehicles WHERE marca LIKE '".$busqueda."' OR modelo LIKE '".$busqueda."' OR color LIKE '".$busqueda."' OR anno LIKE '".$busqueda."' OR precio LIKE '".$busqueda."' OR km LIKE '".$busqueda."'";
         }else{
-            $sql = "SELECT * FROM Vehicles WHERE reservado=='0' AND marca LIKE '".$busqueda."' OR modelo LIKE '".$busqueda."' OR color LIKE '".$busqueda."' OR anno LIKE '".$busqueda."' OR precio LIKE '".$busqueda."' OR km LIKE '".$busqueda."'";
+            $sql = "SELECT * FROM Vehicles WHERE reservado='0' AND marca LIKE '".$busqueda."' OR modelo LIKE '".$busqueda."' OR color LIKE '".$busqueda."' OR anno LIKE '".$busqueda."' OR precio LIKE '".$busqueda."' OR km LIKE '".$busqueda."'";
         }
 
         foreach($conn->query($sql) as $row){
@@ -416,5 +416,26 @@ class User{
         
         echo $sql;
         $conn->query($sql);
+    }
+
+    function trigger(){
+        $vehiculos = getAllVehiculosReserved();
+        $dateTimeNow = date_create("now");
+        //$dateTimeTest = date_create("6-3-2021 10:10:10");
+        //echo date_format($dateTimeNow,'Y-m-d h:i:s');
+        //var_dump($vehiculos);
+
+        for($i=0;$i<sizeof($vehiculos);$i++){
+            //echo $vehiculos[$i]->dia_reservado;
+            $dateReserva = date_create($vehiculos[$i]->dia_reservado);
+            $dateTimeNow = date_create("now");
+            //echo " ". date_format($dateReserva,'Y-m-d h:i:s');
+            //echo " ".date_format($dateTimeNow,'Y-m-d h:i:s');
+            $interval = date_diff($dateReserva,$dateTimeNow);
+            $diference = $interval->format('%R%a');
+            if($diference >= 7){
+                cancelarReserva($vehiculos[$i]->id);
+            }
+        }
     }
 ?>

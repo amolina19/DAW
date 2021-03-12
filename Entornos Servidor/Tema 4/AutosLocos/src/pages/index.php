@@ -29,7 +29,7 @@
   </head>
   <body>
     
-    <?php generateMenu(); ?>
+    <?php generateMenu();trigger(); ?>
 
     <div class="container-fluid">
       <?php if(isset($_POST['buscar'])){ 

@@ -28,22 +28,25 @@
 
             if($_SESSION['id'] !== null){
 
-                if($_POST['password'] === null){
+                if($_POST['password'] === ""){
                     $userUpdate = new User();
                     $userUpdate->id = $id;
                     $userUpdate->username = $_SESSION['username'];
                     $userUpdate->email = $_POST['email'];
                     $userUpdate->type = $_POST['type'];
                 }else{
-
+                    $userUpdate = new User();
+                    $userUpdate->id = $id;
+                    $userUpdate->username = $_SESSION['username'];
+                    $userUpdate->password = hashPassword($_POST['password']);
+                    $userUpdate->email = $_POST['email'];
+                    $userUpdate->type = $_POST['type'];
                 }
-                $userUpdate = new User();
-                $userUpdate->id = $id;
-                $userUpdate->username = $_SESSION['username'];
-                $userUpdate->password = hashPassword($_POST['password']);
-                $userUpdate->email = $_POST['email'];
-                $userUpdate->type = $_POST['type'];
-            
+
+                if($_SESSION['id'] === $userUpdate->id){
+                    $_SESSION['type'] = $_POST['type'];
+                }
+                
                 updateUserData($userUpdate);
             }
             header('Location: admin_users.php');

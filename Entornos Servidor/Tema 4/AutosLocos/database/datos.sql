@@ -1,9 +1,9 @@
 CREATE DATABASE IF NOT EXISTS autoslocos;
 USE autoslocos;
 
-CREATE USER 'autoslocos'@'localhost' IDENTIFIED BY 'autoslocos';
+/*CREATE USER 'autoslocos'@'localhost' IDENTIFIED BY 'autoslocos';
 GRANT ALL PRIVILEGES ON autoslocos.* TO 'autoslocos'@'localhost';
-FLUSH PRIVILEGES;
+FLUSH PRIVILEGES;*/
 -- MySQL dump 10.13  Distrib 8.0.23, for Linux (x86_64)
 --
 -- Host: localhost    Database: autoslocos
@@ -35,7 +35,7 @@ CREATE TABLE `Users` (
   `email` varchar(255) NOT NULL,
   `type` varchar(64) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +74,7 @@ CREATE TABLE `Vehicles` (
   PRIMARY KEY (`id`),
   KEY `FK_UsuarioReserva` (`usuario_reserva`),
   CONSTRAINT `FK_UsuarioReserva` FOREIGN KEY (`usuario_reserva`) REFERENCES `Users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,3 +97,12 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2021-03-11 23:37:18
+
+
+
+
+/*UPDATE Vehicles SET dia_reservado = '2021-03-05 10:10:10' where reservado=1;
+UPDATE Vehicles SET dia_reservado = '2021-03-05 10:10:10' where reservado=1 AND id=1;
+UPDATE Vehicles SET dia_reservado = '2021-03-06 10:10:10' where reservado=1 AND id=2;
+*/
+
