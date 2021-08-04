@@ -1,3 +1,9 @@
+#FINAL VERSION 
+
+https://github.com/amolina19/EasySync
+
+
+#PRE PROJECT NOT FINAL VERSION
 Project Using React as JavaScript Framework and React Native to Android Support, web as simple one page
 
 Using RethinkDB as main database and his Push,NoSQL and ReQL Language, so powerfull.
